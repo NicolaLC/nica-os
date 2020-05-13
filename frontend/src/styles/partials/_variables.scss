@@ -1,0 +1,28 @@
+$background-color: #000;
+$on-background-color: #07FE6A;
+$surface-color: #2d2d2d;
+$on-surface-color: #07FE6A;
+$primary-color: #FFF;
+$on-primary-color: #000;
+
+$fontSizes: (
+  "small": 0.875rem,
+  "normal": 1.25rem,
+  "medium": 1.5rem,
+  "big": 2.25rem,
+  "extra-big": 4.875rem
+) !default;
+
+$padding: (
+  "small": .75rem,
+  "normal": 1rem,
+  "medium": 1.5rem,
+  "big": 6rem,
+  "extra-big": 7rem
+);
+
+$breakpoints: (
+  'small':  767px,
+  'medium': 992px,
+  'large':  1200px
+) !default;

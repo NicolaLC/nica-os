@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "types": []
+  },
+  "files": [
+    "src/main.ts",
+    "src/polyfills.ts",
+    "node_modules/gsap/types/gsap-core.d.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts"
+  ]
+}
