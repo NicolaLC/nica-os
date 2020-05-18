@@ -1,0 +1,227 @@
+.taskbar {
+  position: relative;
+  grid-area: taskbar;
+  border-top: 2px solid $on-background-color;
+  color: $background-color;
+  height: 100%;
+
+  transform: translate(0, 500px);
+
+  display: grid;
+  align-items: center;
+  grid-template-areas: "menuToggle menu windows themeToggle themeSelector today";
+  grid-template-columns: 8rem 0 1fr 1rem 0 8rem;
+
+  z-index: 9000009;
+
+  &-menu {
+    display: flex;
+    place-items: center;
+    place-content: center;
+    padding: map_get($padding, normal);
+
+    background-color: $on-background-color;
+    font-size: map_get($fontSizes, normal);
+    color: $background-color;
+    cursor: pointer;
+
+    grid-area: menuToggle;
+
+    .icon {
+      height: 1rem;
+      width: 1rem;
+      margin-right: map_get($padding, normal);
+
+      svg {
+        rect {
+          fill: $background-color;
+        }
+      }
+    }
+  }
+
+  &-today {
+    grid-area: today;
+    color: $on-background-color;
+    display: flex;
+    place-content: center;
+    place-items: center;
+  }
+
+  &-windows {
+    grid-area: windows;
+    display: inline-flex;
+    overflow-x: auto;
+    height: 100%;
+
+    &-item {
+      height: 100%;
+      background-color: $background-color;
+      color: $on-background-color;
+      display: inline-flex;
+      place-content: center;
+      place-items: center;
+      min-width: 8rem;
+      transition: all .25s ease-out;
+      cursor: pointer;
+      font-size: map_get($fontSizes, medium);
+      opacity: 0;
+      box-shadow: 0 0 0 0 $on-background-color inset;
+      padding: 0 map_get($padding, small);
+
+      .icon {
+        margin-right: map_get($padding, small);
+        width: 1rem;
+        height: 1rem;
+
+        svg {
+          rect {
+            fill: $on-background-color;
+          }
+        }
+      }
+
+      &:hover {
+        box-shadow: 0 -5px 0 0 $primary-color inset;
+      }
+
+      &.active {
+        box-shadow: 0 -100px 0 0 $primary-color inset;
+        color: $on-primary-color;
+        svg {
+          rect {
+            fill: $on-primary-color;
+          }
+        }
+      }
+    }
+  }
+
+  .menu {
+    grid-area: menu;
+    display: grid;
+    grid-template-rows: 1fr 5rem;
+    min-width: 300px;
+    min-height: 400px;
+    position: absolute;
+    left: -8rem;
+    bottom: 3.1rem;
+
+    z-index: 9000009;
+
+    background-color: $surface-color;
+    color: $on-surface-color;
+
+    border: 2px solid $on-surface-color;
+
+    &-applications {
+      display: flex;
+      flex-direction: column;
+      width: calc(100% - #{map_get($padding, normal) *2});
+      height: calc(100% - #{map_get($padding, normal) *2});
+      padding: map_get($padding, normal);
+
+      &-item {
+        display: grid;
+        grid-template-columns: 1rem 1fr;
+        column-gap: map_get($padding, small);
+        margin-bottom: map_get($padding, normal);
+        align-items: center;
+        padding: map_get($padding, normal);
+        margin: 0 -#{map_get($padding, normal)};
+        cursor: pointer;
+
+        .icon {
+          width: 1rem;
+          height: 1rem;
+        }
+
+        &:hover {
+          background-color: rgba($primary-color, .1);
+        }
+      }
+    }
+
+    &-user {
+      display: grid;
+      width: calc(100% - #{map_get($padding, normal) *2});
+      height: calc(100% - #{map_get($padding, normal) *2});
+      justify-items: center;
+      grid-template-columns: 3rem auto;
+      padding: map_get($padding, normal);
+
+      &-icon {
+        height: 100%;
+        width: 100%;
+        background-repeat: no-repeat !important;
+        background-size: contain !important;
+        background-position: center left !important;
+      }
+
+      &-info {
+        display: flex;
+        flex-direction: column;
+        justify-items: flex-start;
+        justify-content: space-between;
+
+        h4 {
+          margin: 0;
+          font-size: map_get($fontSizes, medium);
+        }
+
+        b {
+          color: $primary-color;
+        }
+      }
+    }
+  }
+
+  &-theme {
+    grid-area: themeSelector;
+    position: absolute;
+    bottom: 3.25rem;
+    right: -5rem;
+    width: 10rem;
+
+    padding: map_get($padding, normal);
+    background-color: $surface-color;
+    color: $on-surface-color;
+
+    &-colors {
+      display: flex;
+      flex-direction: column;
+
+      h3 {
+        margin: 0 0 map_get($padding, small) 0;
+        color: $on-surface-color;
+      }
+
+      &-picker {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+
+      &-item {
+        width: 1rem;
+        height: 1rem;
+
+        cursor: pointer;
+
+        &.selected {
+          box-shadow: 0 0 0 2px $primary-color;
+        }
+      }
+    }
+  }
+
+  &-theme-toggle {
+    grid-area: themeToggle;
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+    background-color: $on-background-color;
+    border-radius: 50px;
+  }
+
+}

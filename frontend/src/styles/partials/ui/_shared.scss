@@ -1,0 +1,49 @@
+body {
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  text-transform: uppercase;
+  font-family: $mainFont !important;
+  padding: 0;
+  font-size: 100%;
+  text-rendering: geometricPrecision;
+  background-color: $background-color;
+  color: $on-background-color;
+
+  @include respond-to('small') {
+    margin-top: 4rem;
+    height: calc(100vh - 4rem);
+    font-size: 90%;
+  }
+}
+
+.icon, .image {
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    rect {
+      fill: $on-background-color;
+    }
+  }
+
+  image {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
+  user-select: none;
+  opacity: 0;
+}
+
+hr {
+  border-color: $on-background-color;
+  margin: map_get($padding, medium) 0;
+}

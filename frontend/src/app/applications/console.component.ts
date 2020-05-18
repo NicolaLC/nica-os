@@ -11,8 +11,12 @@ import {Subscription} from 'rxjs';
   template: `
     <div id="console">
       <ul>
+        <li>
+          <div class="console-rindex">[0]</div>
+          <div class="console-message">Loading...</div>
+        </li>
         <li *ngFor="let message of (consoleMessages$ | async); let i = index; trackBy: trackByFn">
-          <div class="console-rindex">[{{ i }}]</div>
+          <div class="console-rindex">[{{ i + 1 }}]</div>
           <div class="console-message" [innerHTML]="message | safe:'html'"></div>
         </li>
       </ul>
@@ -22,6 +26,7 @@ import {Subscription} from 'rxjs';
 })
 
 export class ConsoleComponent {
+  public data: any;
   consoleMessages$ = this.store$.pipe(select(selectConsoleMessages));
   constructor(private store$: Store<AppState>) {}
 

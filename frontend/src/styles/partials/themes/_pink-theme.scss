@@ -1,0 +1,13 @@
+$background-color: #26191b;
+$on-background-color: #f6acc8;
+$surface-color: #584153;
+$on-surface-color: #FFF;
+$primary-color: #af8baf;
+$on-primary-color: #000;
+@import '../ui/shared';
+@import '../ui/taskbar';
+@import '../ui/window';
+@import '../ui/loader';
+@import '../ui/os';
+@import '../applications/welcome';
+@import '../applications/browser';

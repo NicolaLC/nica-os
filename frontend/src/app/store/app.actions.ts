@@ -13,9 +13,14 @@ export const setConsoleMessage = createAction('[App] Set Console Message', props
 /** WINDOW MANAGEMENT */
 export const createApp = createAction('[App] Create window', props<{app: Application}>());
 export const closeApp = createAction('[App] Close window', props<{app: Application}>());
-export const setAppFullscreen = createAction('[App] Window to fullscreen', props<{app: Application, fullScreen: boolean}>());
-export const setAppFocus = createAction('[App] Toggle window fullscreen', props<{app: Application, focus: boolean}>());
+export const setAppFullscreen = createAction('[App] Toggle window fullscreen', props<{app: Application, fullScreen: boolean}>());
+export const setAppFocus = createAction('[App] Toggle window focus', props<{app: Application, focus: boolean}>());
 export const setAppMinified = createAction('[App] Toggle window minified', props<{app: Application, minified: boolean}>());
 
 /** MENU MANAGEMENT */
 export const toggleMenuActive = createAction('[App] Toggle menu active');
+export const closeMenu = createAction('[App] Close menu');
+
+/** APP SETTINGS MANAGEMENT */
+export const setTheme = createAction('[App] Set Theme', props<{theme: string}>());
+export const toggleTaskbarThemeSelector = createAction('[App] Toggle Taskbar Theme selector');

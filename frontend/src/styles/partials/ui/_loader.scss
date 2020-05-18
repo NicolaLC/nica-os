@@ -1,0 +1,77 @@
+.loader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 900009;
+  background-color: $background-color;
+  color: $on-background-color;
+  display: flex;
+  flex-direction: column;
+  place-content: flex-start;
+  place-items: flex-start;
+  opacity: 0;
+  text-transform: uppercase;
+
+  font-size: map_get($fontSizes, big);
+  font-family: $mainFont !important;
+  max-height: 100vh;
+  overflow: auto;
+
+  &-title {
+    margin-left: map_get($padding, normal);
+
+    @include respond-to('small') {
+      margin-left: map_get($padding, normal);
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
+  ul {
+    list-style: none;
+    margin-left: map_get($padding, normal);
+    padding: 0;
+
+    @include respond-to('small') {
+      margin-left: map_get($padding, normal);
+    }
+
+    li {
+      padding: 0;
+      display: grid;
+      grid-template-columns: 4.5rem auto 1rem;
+      align-items: center;
+
+      b {
+        background-color: blue;
+      }
+
+      i {
+        background-color: lawngreen;
+        color: blue;
+        font-style: normal;
+      }
+
+      small {
+        font-size: inherit !important;
+        background-color: red;
+      }
+
+      pre {
+        display: inline-flex;
+        margin: 0;
+        background-color: aqua;
+        font-size: inherit !important;
+        font-family: inherit !important;
+      }
+    }
+  }
+
+  &-rindex {
+    color: white;
+  }
+}

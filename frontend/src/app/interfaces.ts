@@ -16,11 +16,11 @@ export class Application {
 
   constructor(properties: ApplicationProperties) {
     this.properties = {
-      ...properties,
       fullScreen: false,
       draggable: true,
       focus: true,
-      minified: false
+      minified: false,
+      ...properties
     };
     this.id = uuid.v4();
   }
@@ -37,4 +37,9 @@ export class ApplicationProperties {
   iconContrast?: string;
   startPosition?: {x: string, y: string};
   size?: {width: string, height: string};
+  data?: {[key: string]: any};
+}
+
+export class AppSettings {
+ theme: string;
 }

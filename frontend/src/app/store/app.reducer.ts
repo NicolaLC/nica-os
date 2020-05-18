@@ -3,10 +3,18 @@ import {
   closeApp,
   createApp,
   loadAssets,
-  loadAssetsSuccess, setConsoleMessage,
-  setLoadingMessage, setAppFocus, setAppFullscreen, setAppMinified, toggleMenuActive
+  loadAssetsSuccess,
+  setConsoleMessage,
+  setLoadingMessage,
+  setAppFocus,
+  setAppFullscreen,
+  setAppMinified,
+  toggleMenuActive,
+  closeMenu,
+  setTheme,
+  toggleTaskbarThemeSelector
 } from './app.actions';
-import {Application, AssetMap} from '../interfaces';
+import {Application, AppSettings, AssetMap} from '../interfaces';
 import {cloneDeep} from 'lodash';
 
 export interface AppState {
@@ -16,6 +24,8 @@ export interface AppState {
   loadedAssets: AssetMap;
   applications: Application[];
   menuActive: boolean;
+  taskbarThemeSelectorActive: boolean;
+  appSettings: AppSettings;
 }
 
 export const initialState: AppState = {
@@ -24,7 +34,9 @@ export const initialState: AppState = {
   consoleMessages: [],
   loadedAssets: null,
   applications: [],
-  menuActive: false
+  menuActive: false,
+  taskbarThemeSelectorActive: false,
+  appSettings: {theme: window.localStorage.getItem('nos_th') || 'default'}
 };
 
 const _appReducer = createReducer(initialState,
@@ -33,13 +45,17 @@ const _appReducer = createReducer(initialState,
   on(setLoadingMessage, (state, {message}) => ({...state, loadingMessage: [...state.loadingMessage, message]})),
   on(setConsoleMessage, (state, {message}) => ({...state, consoleMessages: [...state.consoleMessages, message]})),
   on(toggleMenuActive, (state) => ({...state, menuActive: !state.menuActive})),
+  on(closeMenu, (state) => ({...state, menuActive: false})),
   on(createApp, (state, {app}) => {
     const applications = cloneDeep(state.applications);
     let newApp = app;
     applications.map(a => {
       a.properties.focus = newApp && a.id === newApp.id;
       /** if there is at least one focused app there is no new app */
-      if (a.properties.focus) { newApp = null; }
+      if (a.properties.focus) {
+        a.properties.minified = false;
+        newApp = null;
+      }
     });
     if (newApp) {
       applications.push(newApp);
@@ -65,14 +81,16 @@ const _appReducer = createReducer(initialState,
     const applications = cloneDeep(state.applications);
     applications.map(w => w.id === app.id ? w.properties.minified = minified : w);
     return {...state, applications};
-  })
+  }),
+  on(setTheme, (state, {theme}) => ({...state, appSettings: {...state.appSettings, theme}})),
+  on(toggleTaskbarThemeSelector, (state) => ({...state, taskbarThemeSelectorActive: !state.taskbarThemeSelectorActive})),
 );
 
 export function appReducer(state, action) {
   return _appReducer(state, action);
 }
 
-export const selectAppState = (state: any) => state.app;
+export const selectAppState = (state) => state.app;
 export const selectLoadedAssets = createSelector(
   selectAppState,
   (state: AppState) => state.loadedAssets
@@ -96,5 +114,17 @@ export const selectApplications = createSelector(
 export const selectMenuActive = createSelector(
   selectAppState,
   (state: AppState) => state.menuActive
+);
+export const selectAppSettings = createSelector(
+  selectAppState,
+  (state: AppState) => state.appSettings
+);
+export const selectTheme = createSelector(
+  selectAppSettings,
+  (state: AppSettings) => state.theme
+);
+export const selectTaskbarThemeSelectorActive = createSelector(
+  selectAppState,
+  (state: AppState) => state.taskbarThemeSelectorActive
 );
 

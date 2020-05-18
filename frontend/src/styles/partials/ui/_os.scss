@@ -1,0 +1,108 @@
+.nicaos {
+  display: grid;
+  grid-template-areas: "desktop" "taskbar";
+  height: 100%;
+  grid-template-rows: 1fr 3rem;
+
+  .desktop {
+    grid-area: desktop;
+    height: 100%;
+    max-height: calc(100vh - 3rem);
+    overflow: hidden;
+    place-content: flex-start;
+    place-items: flex-start;
+    flex-wrap: wrap;
+    opacity: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    &-icon {
+      display: inline-flex;
+      flex-direction: column;
+      place-content: center;
+      place-items: center;
+      width: 5rem;
+      margin: map_get($padding, normal);
+      padding: map_get($padding, normal);
+      cursor: pointer;
+      opacity: 0;
+      transform: translate3d(0, 100px, 0);
+      color: $on-background-color;
+
+      word-break: break-word;
+      text-align: center;
+
+      &:hover {
+        background-color: rgba($on-background-color, .25);
+      }
+
+      .icon {
+        width: 3rem;
+        height: 3rem;
+        margin-bottom: map_get($padding, normal);
+      }
+    }
+
+    &-background {
+      opacity: 0;
+      position: absolute;
+      width: 5rem;
+      height: 5rem;
+      top: calc(50% - 2.5rem);
+      left: calc(50% - 2.5rem);
+      background-size: contain !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+    }
+  }
+
+  #console {
+    overflow: auto;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      @include respond-to('small') {
+        margin-left: map_get($padding, normal);
+      }
+
+      li {
+        padding: 0;
+        display: grid;
+        grid-template-columns: 3rem auto 1rem;
+        align-items: center;
+
+        b {
+          background-color: blue;
+        }
+
+        i {
+          background-color: lawngreen;
+          color: blue;
+          font-style: normal;
+        }
+
+        small {
+          font-size: inherit !important;
+          background-color: $primary-color;
+          color: $on-primary-color;
+        }
+
+        pre {
+          display: inline-flex;
+          margin: 0;
+          background-color: aqua;
+          font-size: inherit !important;
+          font-family: inherit !important;
+        }
+      }
+    }
+
+    &-rindex {
+      color: white;
+    }
+  }
+}

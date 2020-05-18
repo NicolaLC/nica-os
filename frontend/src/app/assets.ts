@@ -2,7 +2,7 @@ import {AssetMap} from './interfaces';
 
 export const assetsToLoad: AssetMap = {
   nicaCutted: {
-    path: 'nica-cutted.png',
+    path: 'nica-cutted.svg',
     loaded: false,
     resource: null
   },
@@ -83,6 +83,61 @@ export const assetsToLoad: AssetMap = {
   },
   consoleContrast: {
     path: 'console_green.svg',
+    loaded: false,
+    resource: null
+  },
+  about01: {
+    path: 'about01.svg',
+    loaded: false,
+    resource: null
+  },
+  university: {
+    path: 'university.png',
+    loaded: false,
+    resource: null
+  },
+  addvalue: {
+    path: 'addvalue.png',
+    loaded: false,
+    resource: null
+  },
+  vas: {
+    path: 'vas.png',
+    loaded: false,
+    resource: null
+  },
+  slowmedia: {
+    path: 'slowmedia.png',
+    loaded: false,
+    resource: null
+  },
+  eleads: {
+    path: 'eleads.png',
+    loaded: false,
+    resource: null
+  },
+  trueblue: {
+    path: 'trueblue.png',
+    loaded: false,
+    resource: null
+  },
+  spaceinvaders: {
+    path: 'spaceinvaders.svg',
+    loaded: false,
+    resource: null
+  },
+  spaceinvadersGreen: {
+    path: 'spaceinvaders_green.svg',
+    loaded: false,
+    resource: null
+  },
+  unity: {
+    path: 'unity.svg',
+    loaded: false,
+    resource: null
+  },
+  unityGreen: {
+    path: 'unity_green.svg',
     loaded: false,
     resource: null
   }

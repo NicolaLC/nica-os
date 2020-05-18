@@ -75,7 +75,7 @@ export class MenuComponent implements AfterViewInit {
   }
 
   create(app: Application) {
-    this.store$.dispatch(createApp({app: app}));
+    this.store$.dispatch(createApp({app}));
     this.toggleMenu();
   }
 

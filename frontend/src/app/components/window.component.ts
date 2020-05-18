@@ -1,10 +1,10 @@
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
   ComponentFactoryResolver,
   ElementRef,
-  Input,
+  Input, OnChanges, SimpleChanges,
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
@@ -16,6 +16,7 @@ import {Application} from '../interfaces';
 import {closeApp, setAppFocus, setAppFullscreen, setAppMinified} from '../store/app.actions';
 import {WelcomeComponent} from '../applications/welcome.component';
 import {ConsoleComponent} from '../applications/console.component';
+import { applicationMapping } from '../applications/applications';
 
 @Component({
   selector: 'app-window',
@@ -25,8 +26,6 @@ import {ConsoleComponent} from '../applications/console.component';
       [class.full-screen]="currentWindow.properties.fullScreen"
       [class.on-focus]="currentWindow.properties.focus"
       [class.hidden]="currentWindow.properties.minified"
-      [style.left]="currentWindow.properties?.startPosition?.x"
-      [style.top]="currentWindow.properties?.startPosition?.y"
       [style.width]="currentWindow.properties?.size?.width || 'auto'"
       [style.height]="currentWindow.properties?.size?.height || 'auto'"
       (click)="!currentWindow.properties.focus && toggleWindowFocus()"
@@ -64,14 +63,10 @@ import {ConsoleComponent} from '../applications/console.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class WindowComponent implements AfterViewInit {
+export class WindowComponent implements AfterViewInit, OnChanges {
   loadedAssets$ = this.store$.pipe(select(selectLoadedAssets));
   windowAnimation: TimelineMax;
-
-  componentMapping = {
-    'WelcomeComponent': WelcomeComponent,
-    'ConsoleComponent': ConsoleComponent
-  };
+  draggableRef: Draggable;
 
   @Input() currentWindow: Application;
 
@@ -88,35 +83,63 @@ export class WindowComponent implements AfterViewInit {
   constructor(
     private store$: Store<AppState>,
     private viewContainerRef: ViewContainerRef,
-    private componentFactoryResolver: ComponentFactoryResolver
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private cd: ChangeDetectorRef
   ) { }
 
   ngAfterViewInit() {
     const componentFactory = this.componentFactoryResolver
-      .resolveComponentFactory(this.componentMapping[this.currentWindow.properties.component]);
+      .resolveComponentFactory(applicationMapping[this.currentWindow.properties.component]);
     this._windowContent.clear();
-    this._windowContent.createComponent(componentFactory);
+    const component = this._windowContent.createComponent(componentFactory);
+    (component.instance as any).data = this.currentWindow.properties.data;
+
     this.animateIn();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    const {currentWindow} = changes;
+    if (
+      currentWindow &&
+      currentWindow.previousValue &&
+      currentWindow.currentValue.properties.fullScreen !== currentWindow.previousValue.properties.fullScreen
+    ) {
+      this.handleChanges(currentWindow.currentValue.properties.fullScreen);
+    }
+  }
+
+  private handleChanges(fullScreen: boolean) {
+    if (this.draggableRef) {
+      fullScreen ? this.draggableRef.disable() : this.draggableRef.enable();
+    }
   }
 
   private animateIn() {
     if (this.windowAnimation && this.windowAnimation.progress() === 1) { return; }
     window.requestAnimationFrame(() => {
       this.windowAnimation = new TimelineMax({paused: true, reversed: false});
-      this.windowAnimation.to(this.windowEl, 1, {opacity: '1', ease: 'Expo.easeInOut'}, 0);
-      this.windowAnimation.to(this.windowEl, 1, {y: 0, ease: 'Expo.easeInOut'}, 0);
+      this.windowAnimation.to(this.windowEl, .25, {opacity: '1', ease: 'Expo.easeInOut'}, 0);
       this.windowAnimation.play();
 
       if (this.currentWindow.properties.draggable) {
-        Draggable.create(this.windowEl,
-          {type: 'x,y',
+        this.draggableRef = Draggable.create(this.windowEl,
+          {
+            type: 'x,y',
             edgeResistance: 0.65,
+            trigger: this.windowEl.querySelector('.window-toolbar'),
             bounds: '.desktop',
             inertia: true,
             onClick: () => this.store$.dispatch(setAppFocus({ app: this.currentWindow, focus: true})),
             onDragStart: () => this.store$.dispatch(setAppFocus({ app: this.currentWindow, focus: true})),
-          });
+            onRelease: (e) => this.draggableRef.endDrag(e)
+          })[0];
+
+        this.handleChanges(this.currentWindow.properties.fullScreen);
       }
+
+      setTimeout(() => {
+        this.cd.detectChanges();
+      }, 0);
     });
   }
 
@@ -133,6 +156,6 @@ export class WindowComponent implements AfterViewInit {
   }
 
   toggleWindowMinified() {
-    this.store$.dispatch(setAppMinified({ app: this.currentWindow, minified: !this.currentWindow.properties.minified }))
+    this.store$.dispatch(setAppMinified({ app: this.currentWindow, minified: !this.currentWindow.properties.minified }));
   }
 }

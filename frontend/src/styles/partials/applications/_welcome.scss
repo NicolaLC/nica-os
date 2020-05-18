@@ -1,0 +1,139 @@
+.app-welcome {
+
+  display: grid;
+  grid-template-columns: 25% 75%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($primary-color, .05);
+
+  .image {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  h1 {
+    font-size: map_get($fontSizes, extra-big);
+    margin-top: 0;
+    margin-bottom: map_get($padding, medium);
+  }
+
+  &-left {
+    background-color: $surface-color;
+    height: calc(100% - #{map_get($padding, small) * 2});
+    width: calc(100% - #{map_get($padding, small) * 2});
+    padding: map_get($padding, small);
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      li {
+        margin: map_get($padding, small) 0;
+        cursor: pointer;
+        opacity: .5;
+
+        &:hover {
+          color: $primary-color;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &-right {
+    height: calc(100% - #{map_get($padding, medium) * 2});
+    width: calc(100% - #{map_get($padding, medium) * 2});
+    overflow: auto;
+    padding: map_get($padding, medium);
+
+    @include scrollbars(10px, $on-primary-color, $primary-color);
+
+    #intro {
+      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: 50% 50%;
+      column-gap: map_get($padding, small);
+      grid-template-areas:
+        "h1 h1"
+        "about01 text1"
+        "h2 h2"
+        "text2 text2";
+
+      h1 { grid-area: h1; }
+      h2 { grid-area: h2; }
+
+      #about01 {
+        width: 20rem;
+        height: 20rem;
+        float: left;
+        margin-right: map_get($padding, medium);
+        grid-area: about01;
+      }
+    }
+
+    #education {
+      #university {
+        width: 10rem;
+        height: 10rem;
+
+        margin: map_get($padding, medium) auto;
+      }
+    }
+
+    #works {
+      .work-item {
+        margin: map_get($padding, big) 0;
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        column-gap: map_get($padding, medium);
+
+        &-left {
+          .image {
+            width: 100%;
+          }
+        }
+
+        &-title {
+          font-size: map_get($fontSizes, big);
+        }
+
+        &-subtitle {
+          opacity: .75;
+          font-size: map_get($fontSizes, normal);
+
+          a {
+            text-decoration: none;
+            color: $primary-color;
+          }
+        }
+
+        &-dates {
+          font-style: italic;
+          color: $primary-color;
+        }
+
+        &-description {
+          margin-top: map_get($padding, normal);
+        }
+      }
+    }
+  }
+
+  h1 {
+    margin: 0;
+  }
+
+  h2 {
+    margin: map-get($padding, normal) 0 0 0;
+  }
+
+  p {
+    font-size: map_get($fontSizes, medium);
+
+    b, i {
+      color: $primary-color;
+    }
+
+    &#text1 { grid-area: text1; }
+    &#text2 { grid-area: text2; }
+  }
+}

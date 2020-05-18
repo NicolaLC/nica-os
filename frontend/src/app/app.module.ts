@@ -21,6 +21,9 @@ import {WelcomeComponent} from './applications/welcome.component';
 import {ConsoleComponent} from './applications/console.component';
 import { TaskbarItemDirective } from './directives/taskbar-item.directive';
 import {MenuComponent} from './components/menu.component';
+import {DesktopIconDirective} from './directives/desktop-icon.directive';
+import {BrowserComponent} from './applications/browser.component';
+import {ThemeService} from './services/theme.service';
 
 const components = [
   NicaOSComponent,
@@ -30,15 +33,22 @@ const components = [
   WindowComponent,
   WelcomeComponent,
   ConsoleComponent,
-  MenuComponent
+  MenuComponent,
+  BrowserComponent
 ];
 
 const directives = [
-  TaskbarItemDirective
+  TaskbarItemDirective,
+  DesktopIconDirective
 ];
 
 const pipes = [
   SafePipe
+];
+
+const services = [
+  ThemeService,
+  AssetsService
 ];
 
 @NgModule({
@@ -56,8 +66,7 @@ const pipes = [
     EffectsModule.forRoot([AppEffects]),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production})
   ],
-  providers: [AssetsService],
+  providers: [...services],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }

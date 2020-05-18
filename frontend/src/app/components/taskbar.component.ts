@@ -8,9 +8,22 @@ import {
   ViewChild
 } from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {AppState, selectLoadedAssets, selectMenuActive, selectApplications} from '../store/app.reducer';
+import {
+  AppState,
+  selectLoadedAssets,
+  selectMenuActive,
+  selectApplications,
+  selectTaskbarThemeSelectorActive,
+  selectTheme
+} from '../store/app.reducer';
 import {TimelineMax} from 'gsap';
-import {setAppFocus, setAppMinified, toggleMenuActive} from '../store/app.actions';
+import {
+  setAppFocus,
+  setAppMinified,
+  setTheme,
+  toggleMenuActive,
+  toggleTaskbarThemeSelector
+} from '../store/app.actions';
 import {Application} from '../interfaces';
 
 @Component({
@@ -18,7 +31,8 @@ import {Application} from '../interfaces';
   template: `
     <div class="taskbar" #taskbar>
       <div class="taskbar-menu" (click)="toggleMenu()">
-        <div class="icon" [innerHTML]="(loadedAssets$ | async)?.nicaLogo?.resource | safe:'html'"></div> START
+        <div class="icon" [innerHTML]="(loadedAssets$ | async)?.nicaLogo?.resource | safe:'html'"></div>
+        START
       </div>
       <app-menu *ngIf="menuActive$ | async"></app-menu>
       <div class="taskbar-windows">
@@ -35,6 +49,26 @@ import {Application} from '../interfaces';
           {{window.properties.title}}
         </div>
       </div>
+      <div class="taskbar-theme-toggle" title="Theme settings" (click)="toggleTaskbarThemeSelector()"></div>
+      <div class="taskbar-theme" *ngIf="(selectTaskbarThemeSelectorActive$ | async)">
+        <div class="taskbar-theme-colors">
+          <h3>Choose a Theme color</h3>
+          <div class="taskbar-theme-colors-picker">
+            <div class="taskbar-theme-colors-item" style="background-color: #07FE6A;"
+                 [class.selected]="(selectedTheme$ | async) === 'default'"
+                 (click)="setTheme('default')"></div>
+            <div class="taskbar-theme-colors-item" style="background-color: #ff9ff3;"
+                 (click)="setTheme('pink')"
+                 [class.selected]="(selectedTheme$ | async) === 'pink'"></div>
+            <div class="taskbar-theme-colors-item" style="background-color: #ff5733;"
+                 (click)="setTheme('sunset')"
+                 [class.selected]="(selectedTheme$ | async) === 'sunset'"></div>
+            <div class="taskbar-theme-colors-item" style="background-color: #c1a57b;"
+                 (click)="setTheme('elegant')"
+                 [class.selected]="(selectedTheme$ | async) === 'elegant'"></div>
+          </div>
+        </div>
+      </div>
       <div class="taskbar-today"> {{date | date:'short'}} </div>
     </div>
   `,
@@ -45,6 +79,8 @@ export class TaskBarComponent implements AfterViewInit, OnDestroy {
   loadedAssets$ = this.store$.pipe(select(selectLoadedAssets));
   windows$ = this.store$.pipe(select(selectApplications));
   menuActive$ = this.store$.pipe(select(selectMenuActive));
+  selectedTheme$ = this.store$.pipe(select(selectTheme));
+  selectTaskbarThemeSelectorActive$ = this.store$.pipe(select(selectTaskbarThemeSelectorActive));
   taskbarAnimation: TimelineMax;
 
   date = new Date();
@@ -52,12 +88,15 @@ export class TaskBarComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild('taskbar')
   _taskbar: ElementRef;
-  private get taskbar(): HTMLElement { return this._taskbar.nativeElement; }
+  private get taskbar(): HTMLElement {
+    return this._taskbar.nativeElement;
+  }
 
   constructor(
     public store$: Store<AppState>,
     private cd: ChangeDetectorRef
-  ) {}
+  ) {
+  }
 
   ngAfterViewInit() {
     this.animateIn();
@@ -80,12 +119,20 @@ export class TaskBarComponent implements AfterViewInit, OnDestroy {
   }
 
   toggleWindowMinified(w: Application) {
-    this.store$.dispatch(setAppFocus( {app: w, focus: true}));
-    this.store$.dispatch(setAppMinified({ app: w, minified: false }));
+    this.store$.dispatch(setAppFocus({app: w, focus: true}));
+    this.store$.dispatch(setAppMinified({app: w, minified: false}));
   }
 
   toggleMenu() {
     this.store$.dispatch(toggleMenuActive());
+  }
+
+  setTheme(themeName: string) {
+    this.store$.dispatch(setTheme({theme: themeName}));
+  }
+
+  toggleTaskbarThemeSelector() {
+    this.store$.dispatch(toggleTaskbarThemeSelector());
   }
 
   trackByFn(index, item) {

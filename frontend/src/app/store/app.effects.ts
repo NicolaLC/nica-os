@@ -7,13 +7,14 @@ import {
   loadAssets,
   loadAssetsSuccess,
   setConsoleMessage,
-  setLoadingMessage, setAppFocus, setAppFullscreen, setAppMinified
+  setLoadingMessage, setAppFocus, setAppFullscreen, setAppMinified, setTheme
 } from './app.actions';
 import {AssetsService} from '../services/assets.service';
 import {AppState, selectLoadedAssets} from './app.reducer';
 import {select, Store} from '@ngrx/store';
 import {Router} from '@angular/router';
 import {EMPTY, of} from 'rxjs';
+import {ThemeService} from '../services/theme.service';
 
 @Injectable()
 export class AppEffects {
@@ -85,10 +86,19 @@ export class AppEffects {
     }))
   );
 
+  setTheme$ = createEffect(() => this.actions$.pipe(
+    ofType(setTheme),
+    switchMap(({theme}) => {
+      this.themeService.setTheme(theme);
+      return EMPTY;
+    }))
+  );
+
   constructor(
     private store$: Store<AppState>,
     private actions$: Actions,
     private assetsService: AssetsService,
+    private themeService: ThemeService,
     private router: Router
   ) {}
 }
