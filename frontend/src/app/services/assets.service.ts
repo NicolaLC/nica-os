@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {forkJoin, of} from 'rxjs';
 import {catchError, delay, map, switchMap} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
-import {assetsToLoad} from '../assets';
+import {assetsToLoad} from '../constants/assets';
 import {AppState} from '../store/app.reducer';
 import {Store} from '@ngrx/store';
 import {setLoadingMessage} from '../store/app.actions';

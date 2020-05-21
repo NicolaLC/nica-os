@@ -17,7 +17,6 @@
 
   font-size: map_get($fontSizes, normal);
 
-  border-radius: 5px;
 
   &.full-screen {
     top: 0 !important;
@@ -26,13 +25,8 @@
     height: calc(100% - 2px) !important;
     max-width: 100vw !important;
     max-height: calc(100vh - 3rem) !important;
-    border-radius: 0;
 
     transform: translate3d(0, 0, 0) !important;
-
-    .window-toolbar {
-      border-radius: 0;
-    }
   }
 
   &.on-focus {
@@ -68,7 +62,7 @@
         height: 1rem;
 
         svg {
-          rect {
+          rect, path {
             fill: $background-color;
           }
         }
@@ -96,6 +90,12 @@
 
         &:last-child {
           background-color: red;
+
+          svg {
+            rect, path {
+              fill: white;
+            }
+          }
         }
       }
     }

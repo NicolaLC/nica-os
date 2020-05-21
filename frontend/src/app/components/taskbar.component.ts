@@ -10,9 +10,9 @@ import {
 import {select, Store} from '@ngrx/store';
 import {
   AppState,
+  selectActiveApplications,
   selectLoadedAssets,
   selectMenuActive,
-  selectApplications,
   selectTaskbarThemeSelectorActive,
   selectTheme
 } from '../store/app.reducer';
@@ -24,7 +24,7 @@ import {
   toggleMenuActive,
   toggleTaskbarThemeSelector
 } from '../store/app.actions';
-import {Application} from '../interfaces';
+import {Application} from '../interfaces/interfaces';
 
 @Component({
   selector: 'app-taskbar',
@@ -66,6 +66,9 @@ import {Application} from '../interfaces';
             <div class="taskbar-theme-colors-item" style="background-color: #c1a57b;"
                  (click)="setTheme('elegant')"
                  [class.selected]="(selectedTheme$ | async) === 'elegant'"></div>
+            <div class="taskbar-theme-colors-item" style="background-color: #ff1e56;"
+                 (click)="setTheme('vintage')"
+                 [class.selected]="(selectedTheme$ | async) === 'vintage'"></div>
           </div>
         </div>
       </div>
@@ -77,7 +80,7 @@ import {Application} from '../interfaces';
 
 export class TaskBarComponent implements AfterViewInit, OnDestroy {
   loadedAssets$ = this.store$.pipe(select(selectLoadedAssets));
-  windows$ = this.store$.pipe(select(selectApplications));
+  windows$ = this.store$.pipe(select(selectActiveApplications));
   menuActive$ = this.store$.pipe(select(selectMenuActive));
   selectedTheme$ = this.store$.pipe(select(selectTheme));
   selectTaskbarThemeSelectorActive$ = this.store$.pipe(select(selectTaskbarThemeSelectorActive));

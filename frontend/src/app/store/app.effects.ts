@@ -7,7 +7,7 @@ import {
   loadAssets,
   loadAssetsSuccess,
   setConsoleMessage,
-  setLoadingMessage, setAppFocus, setAppFullscreen, setAppMinified, setTheme
+  setLoadingMessage, setAppFocus, setAppFullscreen, setAppMinified, setTheme, toggleTaskbarThemeSelector
 } from './app.actions';
 import {AssetsService} from '../services/assets.service';
 import {AppState, selectLoadedAssets} from './app.reducer';
@@ -90,7 +90,7 @@ export class AppEffects {
     ofType(setTheme),
     switchMap(({theme}) => {
       this.themeService.setTheme(theme);
-      return EMPTY;
+      return of(toggleTaskbarThemeSelector());
     }))
   );
 

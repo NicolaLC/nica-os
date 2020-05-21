@@ -89,7 +89,7 @@
         box-shadow: 0 -100px 0 0 $primary-color inset;
         color: $on-primary-color;
         svg {
-          rect {
+          rect, path {
             fill: $on-primary-color;
           }
         }
@@ -113,6 +113,11 @@
     color: $on-surface-color;
 
     border: 2px solid $on-surface-color;
+
+    h3 {
+      font-size: map_get($fontSizes, small);
+      color: $primary-color;
+    }
 
     &-applications {
       display: flex;
@@ -149,6 +154,8 @@
       justify-items: center;
       grid-template-columns: 3rem auto;
       padding: map_get($padding, normal);
+      background-color: $background-color;
+      color: $on-background-color;
 
       &-icon {
         height: 100%;
@@ -199,6 +206,7 @@
       &-picker {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
+        row-gap: map_get($padding, small);
       }
 
 

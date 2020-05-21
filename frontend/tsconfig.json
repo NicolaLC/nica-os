@@ -14,7 +14,19 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@constants/*": ["src/app/constants/*"],
+      "@interfaces/*": ["src/app/interfaces/*"],
+      "@directives/*": ["src/app/directives/*"],
+      "@pipes/*": ["src/app/pipes/*"],
+      "@services/*": ["src/app/services/*"],
+      "@views/*": ["src/app/views/*"],
+      "@components/*": ["src/app/components/*"],
+      "@applications/*": ["src/app/applications/*"],
+      "@appstore/*": ["src/app/store/*"],
+      "@fsstore/*": ["src/app/applications/file-explorer/store/*"]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

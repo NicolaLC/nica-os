@@ -12,11 +12,11 @@ import {select, Store} from '@ngrx/store';
 import {AppState, selectLoadedAssets} from '../store/app.reducer';
 import {TimelineMax} from 'gsap';
 import Draggable from 'gsap/Draggable';
-import {Application} from '../interfaces';
+import {Application} from '../interfaces/interfaces';
 import {closeApp, setAppFocus, setAppFullscreen, setAppMinified} from '../store/app.actions';
 import {WelcomeComponent} from '../applications/welcome.component';
 import {ConsoleComponent} from '../applications/console.component';
-import { applicationMapping } from '../applications/applications';
+import { applicationMapping } from '../constants/applications';
 
 @Component({
   selector: 'app-window',
@@ -93,7 +93,7 @@ export class WindowComponent implements AfterViewInit, OnChanges {
     this._windowContent.clear();
     const component = this._windowContent.createComponent(componentFactory);
     (component.instance as any).data = this.currentWindow.properties.data;
-
+    (component.instance as any).window = this.currentWindow;
     this.animateIn();
   }
 

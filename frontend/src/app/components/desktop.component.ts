@@ -1,11 +1,12 @@
 import {AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostListener, ViewChild} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {AppState, selectLoadedAssets, selectApplications} from '../store/app.reducer';
+import {AppState, selectLoadedAssets, selectActiveApplications} from '../store/app.reducer';
 import {TimelineMax} from 'gsap';
 import {createApp, setAppMinified, setConsoleMessage, toggleMenuActive, closeMenu} from '../store/app.actions';
-import {Application} from '../interfaces';
-import {WelcomeComponent} from '../applications/welcome.component';
-import {APPLICATIONS} from '../applications/applications';
+import {APPLICATIONS} from '@constants/applications';
+import {Application} from '@interfaces/interfaces';
+import {fs} from '@constants/filesystem';
+import {selectApplications} from '@fsstore/file-explorer.reducer';
 
 @Component({
   selector: 'app-desktop',
@@ -17,7 +18,7 @@ import {APPLICATIONS} from '../applications/applications';
       <ng-container *ngIf="showIcons">
         <div class="desktop-icon"
              appDesktopItem
-             *ngFor="let app of applications; trackBy: trackByFn"
+             *ngFor="let app of (applications$ | async); trackBy: trackByFn"
              (click)="create(app)">
           <div class="icon"
                *ngIf="app?.properties?.icon"
@@ -37,12 +38,10 @@ import {APPLICATIONS} from '../applications/applications';
 
 export class DesktopComponent implements AfterViewInit {
   loadedAssets$ = this.store$.pipe(select(selectLoadedAssets));
-  windows$ = this.store$.pipe(select(selectApplications));
+  windows$ = this.store$.pipe(select(selectActiveApplications));
   desktopAnimation: TimelineMax;
-
   showIcons = false;
-
-  applications = Object.values(APPLICATIONS);
+  applications$ = this.store$.pipe(select(selectApplications, {path: fs.getPath('desktop')}));
 
   @ViewChild('desktop')
   _desktop: ElementRef;
@@ -56,9 +55,11 @@ export class DesktopComponent implements AfterViewInit {
     return this._background.nativeElement;
   }
 
-  @HostListener('mousedown')
-  onMouseDown() {
-    this.store$.dispatch(closeMenu());
+  @HostListener('mousedown', ['$event'])
+  onMouseDown({target}) {
+    if (target === this.desktop) {
+      this.store$.dispatch(closeMenu());
+    }
   }
 
   constructor(public store$: Store<AppState>) {
@@ -90,7 +91,7 @@ export class DesktopComponent implements AfterViewInit {
 
       setTimeout(() => {
         this.store$.dispatch(setAppMinified({ app: APPLICATIONS.console, minified: true }));
-        this.store$.dispatch(createApp({ app: APPLICATIONS.welcome }));
+        this.store$.dispatch(createApp({ app: APPLICATIONS.explorer }));
       }, 6000);
     });
   }

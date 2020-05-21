@@ -1,5 +1,5 @@
 import {createAction, props} from '@ngrx/store';
-import {Application} from '../interfaces';
+import {Application} from '../interfaces/interfaces';
 
 /** ASSETS MANAGEMENT */
 export const loadAssets = createAction('[App] Load Assets');

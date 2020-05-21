@@ -14,7 +14,7 @@ import {
   setTheme,
   toggleTaskbarThemeSelector
 } from './app.actions';
-import {Application, AppSettings, AssetMap} from '../interfaces';
+import {Application, AppSettings, AssetMap} from '../interfaces/interfaces';
 import {cloneDeep} from 'lodash';
 
 export interface AppState {
@@ -75,7 +75,7 @@ const _appReducer = createReducer(initialState,
   on(setAppFocus, (state, {app, focus}) => {
     const applications = cloneDeep(state.applications);
     applications.map(w => w.id === app.id ? w.properties.focus = focus : w.properties.focus = false);
-    return {...state, applications};
+    return {...state, applications, menuActive: false};
   }),
   on(setAppMinified, (state, {app, minified}) => {
     const applications = cloneDeep(state.applications);
@@ -107,7 +107,7 @@ export const selectConsoleMessages = createSelector(
   selectAppState,
   (state: AppState) => state.consoleMessages
 );
-export const selectApplications = createSelector(
+export const selectActiveApplications = createSelector(
   selectAppState,
   (state: AppState) => state.applications
 );

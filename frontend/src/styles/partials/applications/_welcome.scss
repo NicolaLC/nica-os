@@ -45,7 +45,7 @@
     overflow: auto;
     padding: map_get($padding, medium);
 
-    @include scrollbars(10px, $on-primary-color, $primary-color);
+    @include scrollbars(10px, $primary-color, rgba($primary-color, .1));
 
     #intro {
       flex-wrap: wrap;

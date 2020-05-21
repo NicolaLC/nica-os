@@ -6,7 +6,8 @@
 .default-theme { @import "./partials/themes/default-theme"; }
 .pink-theme    { @import "./partials/themes/pink-theme"; }
 .sunset-theme  { @import "./partials/themes/sunset-theme"; }
-.elegant-theme  { @import "./partials/themes/elegant-theme"; }
+.elegant-theme { @import "./partials/themes/elegant-theme"; }
+.vintage-theme { @import "./partials/themes/vintage-theme"; }
 
 html {
   font-family: $mainFont;

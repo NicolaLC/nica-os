@@ -1,4 +1,4 @@
-import {AssetMap} from './interfaces';
+import {AssetMap} from '../interfaces/interfaces';
 
 export const assetsToLoad: AssetMap = {
   nicaCutted: {
@@ -18,6 +18,11 @@ export const assetsToLoad: AssetMap = {
   },
   nicaLogo: {
     path: 'nica-logo.svg',
+    loaded: false,
+    resource: null
+  },
+  nicaBackground: {
+    path: 'nicaLogo.svg',
     loaded: false,
     resource: null
   },
@@ -140,5 +145,10 @@ export const assetsToLoad: AssetMap = {
     path: 'unity_green.svg',
     loaded: false,
     resource: null
-  }
+  },
+  folderIcon: {
+    path: 'folderIcon.svg',
+    loaded: false,
+    resource: null
+  },
 };

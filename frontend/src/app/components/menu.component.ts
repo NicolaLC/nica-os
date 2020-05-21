@@ -1,28 +1,44 @@
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  OnDestroy,
-  ViewChild
-} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {AppState, selectLoadedAssets, selectApplications} from '../store/app.reducer';
+import {AppState, selectLoadedAssets} from '../store/app.reducer';
 import {TimelineMax} from 'gsap';
-import {createApp, setAppFocus, setAppMinified, toggleMenuActive} from '../store/app.actions';
-import {Application} from '../interfaces';
-import {APPLICATIONS} from '../applications/applications';
+import {createApp, toggleMenuActive} from '../store/app.actions';
+import {Application, APPLICATION_CATEGORY} from '@interfaces/interfaces';
+import {selectApplicationsByCategory} from '@fsstore/file-explorer.reducer';
 
 @Component({
   selector: 'app-menu',
   template: `
     <div class="menu" #menu>
       <div class="menu-applications">
-        <h3>Applications</h3>
+        <h3>Info</h3>
         <div
           class="menu-applications-item"
-          *ngFor="let app of applications; trackBy: trackByFn"
+          *ngFor="let app of (infos$ | async); trackBy: trackByFn"
+          (click)="create(app)"
+        >
+          <div class="icon"
+               *ngIf="app?.properties?.icon"
+               [innerHTML]="(loadedAssets$ | async)[app?.properties?.iconContrast]?.resource | safe:'html'"
+          ></div>
+          {{app.properties.title}}
+        </div>
+        <h3>Games</h3>
+        <div
+          class="menu-applications-item"
+          *ngFor="let app of (games$ | async); trackBy: trackByFn"
+          (click)="create(app)"
+        >
+          <div class="icon"
+               *ngIf="app?.properties?.icon"
+               [innerHTML]="(loadedAssets$ | async)[app?.properties?.iconContrast]?.resource | safe:'html'"
+          ></div>
+          {{app.properties.title}}
+        </div>
+        <h3>Utilities</h3>
+        <div
+          class="menu-applications-item"
+          *ngFor="let app of (utilities$ | async); trackBy: trackByFn"
           (click)="create(app)"
         >
           <div class="icon"
@@ -47,20 +63,18 @@ import {APPLICATIONS} from '../applications/applications';
 
 export class MenuComponent implements AfterViewInit {
   loadedAssets$ = this.store$.pipe(select(selectLoadedAssets));
-  applications = Object.values(APPLICATIONS);
+  games$ = this.store$.pipe(select(selectApplicationsByCategory, {category: APPLICATION_CATEGORY.GAME}));
+  infos$ = this.store$.pipe(select(selectApplicationsByCategory, {category: APPLICATION_CATEGORY.INFO}));
+  utilities$ = this.store$.pipe(select(selectApplicationsByCategory, {category: APPLICATION_CATEGORY.UTILITY}));
   menuAnimation: TimelineMax;
 
   @ViewChild('menu')
   _menu: ElementRef;
   private get menu(): HTMLElement { return this._menu.nativeElement; }
 
-  constructor(
-    public store$: Store<AppState>
-  ) {}
+  constructor( public store$: Store<AppState> ) {}
 
-  ngAfterViewInit() {
-    this.animateIn();
-  }
+  ngAfterViewInit() { this.animateIn(); }
 
   animateIn() {
     window.requestAnimationFrame(() => {

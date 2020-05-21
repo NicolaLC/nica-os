@@ -3,27 +3,29 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {NicaOSComponent} from './views/nica-o-s.component';
+import {NicaOSComponent} from '@views/nica-o-s.component';
 import {StoreModule} from '@ngrx/store';
-import {appReducer} from './store/app.reducer';
+import {appReducer} from '@appstore/app.reducer';
+import {AppEffects} from '@appstore/app.effects';
 import {EffectsModule} from '@ngrx/effects';
-import {AppEffects} from './store/app.effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
-import {AssetsService} from './services/assets.service';
+import {AssetsService} from '@services/assets.service';
 import {HttpClientModule} from '@angular/common/http';
-import {SafePipe} from './pipes/safe.pipe';
-import {TaskBarComponent} from './components/taskbar.component';
-import {LoaderComponent} from './components/loader.component';
-import {DesktopComponent} from './components/desktop.component';
-import {WindowComponent} from './components/window.component';
-import {WelcomeComponent} from './applications/welcome.component';
-import {ConsoleComponent} from './applications/console.component';
-import { TaskbarItemDirective } from './directives/taskbar-item.directive';
-import {MenuComponent} from './components/menu.component';
-import {DesktopIconDirective} from './directives/desktop-icon.directive';
-import {BrowserComponent} from './applications/browser.component';
-import {ThemeService} from './services/theme.service';
+import {SafePipe} from '@pipes/safe.pipe';
+import {TaskBarComponent} from '@components/taskbar.component';
+import {fileExplorerReducer} from '@applications/file-explorer/store/file-explorer.reducer';
+import {DesktopComponent} from '@components/desktop.component';
+import {DesktopIconDirective} from '@directives/desktop-icon.directive';
+import {LoaderComponent} from '@components/loader.component';
+import {ConsoleComponent} from '@applications/console.component';
+import {TaskbarItemDirective} from '@directives/taskbar-item.directive';
+import {WindowComponent} from '@components/window.component';
+import {BrowserComponent} from '@applications/browser.component';
+import {FileExplorerComponent} from '@applications/file-explorer/file-explorer.component';
+import {WelcomeComponent} from '@applications/welcome.component';
+import {MenuComponent} from '@components/menu.component';
+import {ThemeService} from '@services/theme.service';
 
 const components = [
   NicaOSComponent,
@@ -34,7 +36,8 @@ const components = [
   WelcomeComponent,
   ConsoleComponent,
   MenuComponent,
-  BrowserComponent
+  BrowserComponent,
+  FileExplorerComponent
 ];
 
 const directives = [
@@ -62,7 +65,7 @@ const services = [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({app: appReducer}),
+    StoreModule.forRoot({app: appReducer, fs: fileExplorerReducer}),
     EffectsModule.forRoot([AppEffects]),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production})
   ],
