@@ -61,11 +61,7 @@
         width: 1rem;
         height: 1rem;
 
-        svg {
-          rect, path {
-            fill: $background-color;
-          }
-        }
+        @include svgFill($background-color);
       }
     }
 
@@ -91,11 +87,7 @@
         &:last-child {
           background-color: red;
 
-          svg {
-            rect, path {
-              fill: white;
-            }
-          }
+          @include svgFill(white);
         }
       }
     }

@@ -1,22 +1,25 @@
 import {createReducer, createSelector, on} from '@ngrx/store';
 import {fs} from '@constants/filesystem';
 import {Application, APPLICATION_CATEGORY, File} from '@interfaces/interfaces';
-import {loadApplications, loadItems, resetFileExplorer, setCurrentPath} from './file-explorer.actions';
+import {loadApplications, loadFiles, loadItems, resetFileExplorer, setCurrentPath} from './file-explorer.actions';
 
 export interface FileExplorerState {
   currentPath?: string;
   currentPathItems?: File[] & Application[];
   applications?: Application[];
+  files?: File[];
 }
 
 export const initialState: FileExplorerState = {
   currentPath: fs.root,
   currentPathItems: [],
-  applications: []
+  applications: [],
+  files: []
 };
 
 const _fileExplorerReducer = createReducer(initialState,
   on(loadApplications, (state, {applications}) => ({...state, applications})),
+  on(loadFiles, (state, {files}) => ({...state, files})),
   on(loadItems, (state, {path}) => {
     const currentPathItems = [];
 
@@ -44,6 +47,11 @@ export const selectApplications = createSelector(
   (state: FileExplorerState, props?: {path: string}) =>
     props && props.path ? state.applications.filter(app => app.properties.fs.paths.indexOf(props.path) > -1) : state.applications
 );
+export const selectFiles = createSelector(
+  selectFileExplorerState,
+  (state: FileExplorerState, props?: {path: string}) =>
+    props && props.path ? state.files.filter(file => file.fs.paths.indexOf(props.path) > -1) : state.files
+);
 export const selectApplicationsByCategory = createSelector(
   selectFileExplorerState,
   (state: FileExplorerState, props?: {category: APPLICATION_CATEGORY}) =>
@@ -52,7 +60,10 @@ export const selectApplicationsByCategory = createSelector(
 export const selectApplicationsByCurrentPath = createSelector(
   selectFileExplorerState,
   (state: FileExplorerState, pr) =>
-    state.currentPath === fs.root ?
-      state.applications :
       state.applications.filter(app => app.properties.fs.paths.indexOf(state.currentPath) > -1)
+);
+export const selectFilesByCurrentPath = createSelector(
+  selectFileExplorerState,
+  (state: FileExplorerState, pr) =>
+      state.files.filter(file => file.fs.paths.indexOf(state.currentPath) > -1)
 );

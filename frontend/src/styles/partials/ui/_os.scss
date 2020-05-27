@@ -41,6 +41,8 @@
         width: 3rem;
         height: 3rem;
         margin-bottom: map_get($padding, normal);
+
+        @include svgFill($on-background-color);
       }
     }
 

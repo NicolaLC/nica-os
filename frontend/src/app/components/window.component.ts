@@ -52,7 +52,7 @@ import { applicationMapping } from '../constants/applications';
                [innerHTML]="(loadedAssets$ | async)?.minify?.resource | safe:'html'"
                (click)="toggleWindowMinified()"
           ></div>
-          <div class="icon" [innerHTML]="(loadedAssets$ | async)?.closeWhite?.resource | safe:'html'" (click)="closeWindow()"></div>
+          <div class="icon" [innerHTML]="(loadedAssets$ | async)?.close?.resource | safe:'html'" (click)="closeWindow()"></div>
         </div>
       </div>
       <div class="window-content">

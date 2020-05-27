@@ -11,8 +11,8 @@
 
   &-toolbar {
     grid-area: toolbar;
-    background-color: $background-color;
-    color: $on-background-color;
+    background-color: rgba($on-surface-color, .1);
+    color: $surface-color;
 
     input {
       background-color: transparent;
@@ -48,26 +48,14 @@
           width: 1rem;
           height: 1rem;
           margin-right: map_get($padding, normal);
-          svg {
-            fill: $on-surface-color;
-
-            rect {
-              fill: $on-surface-color;
-            }
-          }
+          @include svgFill($on-surface-color);
         }
 
-        &:hover {
+        &:hover, &.active {
           background-color: $primary-color;
           color: $on-primary-color;
 
-          svg {
-            fill: $on-primary-color;
-
-            rect {
-              fill: $on-primary-color;
-            }
-          }
+          @include svgFill($on-primary-color);
         }
       }
     }
@@ -99,21 +87,22 @@
         tr {
           background-color: rgba($primary-color, .1);
           cursor: pointer;
-          &:hover {
+
+          &.app-file-explorer-result-separator {
             background-color: $primary-color;
-            td {
-              color: $on-primary-color;
+            color: $on-primary-color;
 
-              .icon {
-                svg {
-                  fill: $on-primary-color;
-
-                  rect, path {
-                    fill: $on-primary-color;
-                  }
-                }
-              }
+            h4 {
+              margin: 0;
             }
+          }
+
+          &:not(.app-file-explorer-result-empty):hover {
+            background-color: rgba($primary-color, .25);
+          }
+
+          &.app-file-explorer-result-separator:hover {
+            background-color: $primary-color;
           }
 
           td {
@@ -125,7 +114,7 @@
               text-align: center;
               opacity: .5;
             }
-            
+
             .icon {
               width: 1rem;
               height: 1rem;

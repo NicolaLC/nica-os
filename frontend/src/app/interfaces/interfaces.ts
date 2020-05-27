@@ -38,6 +38,7 @@ export enum APPLICATION_CATEGORY {
 }
 
 export class ApplicationProperties {
+  alt?: string;
   title?: string;
   component?: any;
   fullScreen?: boolean;
@@ -74,11 +75,21 @@ export enum FILE_CATEGORY {
   FOLDER = 'FOLDER'
 }
 
-export class File {
+export class FileProperties {
+  alt?: string;
   name?: string;
+  component?: any;
+  icon?: string;
+  iconContrast?: string;
+  data?: { [key: string]: any };
+  category?: FILE_CATEGORY;
+}
+
+export class File {
+  properties?: FileProperties;
   fs?: {
-    path: string;
-    category: FILE_CATEGORY;
+    paths: string[];
+    root: string;
   };
 }
 
@@ -109,7 +120,9 @@ export class FileSystem {
 
   getPath(pathPartial: string) {
     const target = this._paths[pathPartial];
-    return target ? `${this._root}/${target}` : null;
+    return target ?
+      ( target === this.root ? this.root : `${this.root}/${target}` )
+      : pathPartial;
   }
 }
 

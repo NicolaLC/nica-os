@@ -27,7 +27,7 @@ export const assetsToLoad: AssetMap = {
     resource: null
   },
   marimar: {
-    path: 'marimar.jpg',
+    path: 'marimar.svg',
     loaded: false,
     resource: null
   },
@@ -151,4 +151,14 @@ export const assetsToLoad: AssetMap = {
     loaded: false,
     resource: null
   },
+  devTo: {
+    path: 'devTo.svg',
+    loaded: false,
+    resource: null
+  },
+  textEditorIcon: {
+    path: 'textEditorIcon.svg',
+    loaded: false,
+    resource: null
+  }
 };

@@ -2,10 +2,16 @@ import {ChangeDetectionStrategy, Component, OnDestroy} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {selectLoadedAssets} from '@appstore/app.reducer';
 import {fs} from '@constants/filesystem';
-import {selectApplicationsByCurrentPath, selectCurrentPath} from './store/file-explorer.reducer';
+import {
+  selectApplicationsByCurrentPath,
+  selectCurrentPath,
+  selectFilesByCurrentPath
+} from './store/file-explorer.reducer';
 import {resetFileExplorer, setCurrentPath} from './store/file-explorer.actions';
-import {createApp, setAppFocus} from '@appstore/app.actions';
-import {Application} from '@interfaces/interfaces';
+import {createApp, openFile} from '@appstore/app.actions';
+import {Application, APPLICATION_CATEGORY, File, FILE_CATEGORY} from '@interfaces/interfaces';
+import {APPLICATIONS} from '@constants/applications';
+import {UtilityService} from '@services/utility.service';
 
 @Component({
   selector: 'app-file-explorer',
@@ -16,7 +22,7 @@ import {Application} from '@interfaces/interfaces';
       </div>
       <div class="app-file-explorer-three">
         <ul>
-          <li *ngFor="let path of paths" (click)="setPath(path)">
+          <li *ngFor="let path of paths" (click)="setPath(path)" [class.active]="(currentPath$ | async) === fs.getPath(path)">
             <div class="icon"
                  [innerHTML]="(loadedAssets$ | async).folderIcon.resource | safe:'html'"
             ></div>
@@ -33,7 +39,15 @@ import {Application} from '@interfaces/interfaces';
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let app of (result$ | async); trackBy: trackByFn" (click)="openApp(app)">
+          <tr class="app-file-explorer-result-separator">
+            <td [colSpan]="2">
+              <h4>Applications</h4>
+            </td>
+          </tr>
+          <tr
+            *ngFor="let app of (resultApplications$ | async); trackBy: trackByFn"
+            [title]="app.properties?.alt || ''"
+            (click)="openApp(app, $event)">
             <td>
               <div class="icon"
                    *ngIf="app?.properties?.icon"
@@ -45,7 +59,30 @@ import {Application} from '@interfaces/interfaces';
               {{app.properties.fs.category}}
             </td>
           </tr>
-          <tr class="app-file-explorer-result-empty" *ngIf="(result$ | async).length === 0">
+          <tr class="app-file-explorer-result-empty" *ngIf="(resultApplications$ | async).length === 0">
+            <td colspan="2"><h3>No results.</h3></td>
+          </tr>
+          <tr class="app-file-explorer-result-separator">
+            <td [colSpan]="2">
+              <h4>File</h4>
+            </td>
+          </tr>
+          <tr
+            *ngFor="let file of (resultFiles$ | async); trackBy: trackByFn"
+            [title]="file.properties?.alt || ''"
+            (click)="openFile(file, $event)">
+            <td>
+              <div class="icon"
+                   *ngIf="file?.properties?.icon"
+                   [innerHTML]="(loadedAssets$ | async)[file?.properties?.iconContrast]?.resource | safe:'html'"
+              ></div>
+              <p>{{file.properties.name}}</p>
+            </td>
+            <td>
+              {{file.properties.category}}
+            </td>
+          </tr>
+          <tr class="app-file-explorer-result-empty" *ngIf="(resultFiles$ | async).length === 0">
             <td colspan="2"><h3>No results.</h3></td>
           </tr>
           </tbody>
@@ -61,19 +98,29 @@ export class FileExplorerComponent implements OnDestroy {
   public window: Application;
   loadedAssets$ = this.store$.pipe(select(selectLoadedAssets));
   currentPath$ = this.store$.pipe(select(selectCurrentPath));
-  result$ = this.store$.pipe(select(selectApplicationsByCurrentPath));
+  resultApplications$ = this.store$.pipe(select(selectApplicationsByCurrentPath));
+  resultFiles$ = this.store$.pipe(select(selectFilesByCurrentPath));
   paths = Object.values(fs.paths);
+  fs = fs;
 
-  constructor(private store$: Store<any>) {
-  }
+  constructor(
+    private store$: Store<any>
+  ) {}
 
   setPath(path: string) {
     this.store$.dispatch(setCurrentPath({path}));
   }
 
-  openApp(app) {
-    this.store$.dispatch(setAppFocus({app: this.window, focus: false}));
+  openApp(app, event) {
+    event.preventDefault();
+    event.stopPropagation();
     this.store$.dispatch(createApp({app}));
+  }
+
+  openFile(file: File, event) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.store$.dispatch(openFile({file}));
   }
 
   ngOnDestroy() {

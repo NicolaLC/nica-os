@@ -7,7 +7,7 @@ import {
   loadAssets,
   loadAssetsSuccess,
   setConsoleMessage,
-  setLoadingMessage, setAppFocus, setAppFullscreen, setAppMinified, setTheme, toggleTaskbarThemeSelector
+  setLoadingMessage, setAppFocus, setAppFullscreen, setAppMinified, setTheme, toggleTaskbarThemeSelector, openFile
 } from './app.actions';
 import {AssetsService} from '../services/assets.service';
 import {AppState, selectLoadedAssets} from './app.reducer';
@@ -15,6 +15,8 @@ import {select, Store} from '@ngrx/store';
 import {Router} from '@angular/router';
 import {EMPTY, of} from 'rxjs';
 import {ThemeService} from '../services/theme.service';
+import {UtilityService} from '@services/utility.service';
+import {APPLICATIONS} from '@constants/applications';
 
 @Injectable()
 export class AppEffects {
@@ -94,11 +96,23 @@ export class AppEffects {
     }))
   );
 
+  openFile$ = createEffect(() => this.actions$.pipe(
+    ofType(openFile),
+    switchMap(({file}) => {
+      this.utility.openFile(file);
+      return [
+        setConsoleMessage({
+          message: `<b>Opening file:</b> <i>${file.properties.name}</i>`
+        })
+      ];
+    }))
+  );
+
   constructor(
     private store$: Store<AppState>,
     private actions$: Actions,
     private assetsService: AssetsService,
     private themeService: ThemeService,
-    private router: Router
+    private utility: UtilityService
   ) {}
 }

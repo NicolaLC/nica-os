@@ -1,12 +1,13 @@
 import {AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostListener, ViewChild} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {AppState, selectLoadedAssets, selectActiveApplications} from '../store/app.reducer';
+import {AppState, selectActiveApplications, selectLoadedAssets} from '../store/app.reducer';
 import {TimelineMax} from 'gsap';
-import {createApp, setAppMinified, setConsoleMessage, toggleMenuActive, closeMenu} from '../store/app.actions';
+import {closeMenu, createApp, openFile, setAppMinified, setConsoleMessage} from '../store/app.actions';
 import {APPLICATIONS} from '@constants/applications';
-import {Application} from '@interfaces/interfaces';
+import {Application, File} from '@interfaces/interfaces';
 import {fs} from '@constants/filesystem';
-import {selectApplications} from '@fsstore/file-explorer.reducer';
+import {selectApplications, selectFiles} from '@fsstore/file-explorer.reducer';
+import {UtilityService} from '@services/utility.service';
 
 @Component({
   selector: 'app-desktop',
@@ -19,12 +20,24 @@ import {selectApplications} from '@fsstore/file-explorer.reducer';
         <div class="desktop-icon"
              appDesktopItem
              *ngFor="let app of (applications$ | async); trackBy: trackByFn"
+             [title]="app.properties?.alt || ''"
              (click)="create(app)">
           <div class="icon"
                *ngIf="app?.properties?.icon"
                [innerHTML]="(loadedAssets$ | async)[app?.properties?.iconContrast]?.resource | safe:'html'"
           ></div>
           {{app.properties.title}}
+        </div>
+        <div class="desktop-icon"
+             appDesktopItem
+             *ngFor="let file of (files$ | async); trackBy: trackByFn"
+             [title]="file.properties?.alt || ''"
+             (click)="openFile(file, $event)">
+          <div class="icon"
+               *ngIf="file?.properties?.icon"
+               [innerHTML]="(loadedAssets$ | async)[file?.properties?.iconContrast]?.resource | safe:'html'"
+          ></div>
+          {{file.properties?.name}}
         </div>
       </ng-container>
       <app-window
@@ -42,6 +55,7 @@ export class DesktopComponent implements AfterViewInit {
   desktopAnimation: TimelineMax;
   showIcons = false;
   applications$ = this.store$.pipe(select(selectApplications, {path: fs.getPath('desktop')}));
+  files$ = this.store$.pipe(select(selectFiles, {path: fs.getPath('desktop')}));
 
   @ViewChild('desktop')
   _desktop: ElementRef;
@@ -62,8 +76,9 @@ export class DesktopComponent implements AfterViewInit {
     }
   }
 
-  constructor(public store$: Store<AppState>) {
-  }
+  constructor(
+    public store$: Store<AppState>
+  ) {}
 
 
   ngAfterViewInit() {
@@ -91,13 +106,19 @@ export class DesktopComponent implements AfterViewInit {
 
       setTimeout(() => {
         this.store$.dispatch(setAppMinified({ app: APPLICATIONS.console, minified: true }));
-        this.store$.dispatch(createApp({ app: APPLICATIONS.explorer }));
+        this.store$.dispatch(createApp({ app: APPLICATIONS.textEditor }));
       }, 6000);
     });
   }
 
   create(app: Application) {
     this.store$.dispatch(createApp({app}));
+  }
+
+  openFile(file: File, event) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.store$.dispatch(openFile({file}));
   }
 
   trackByFn(index, item) {

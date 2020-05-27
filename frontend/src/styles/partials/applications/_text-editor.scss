@@ -1,0 +1,66 @@
+.text-editor {
+  display: grid;
+  grid-template-areas: "toolbar"
+                       "pages";
+  grid-template-rows: auto 1fr;
+  height: 100%;
+  overflow: hidden;
+
+  &-toolbar {
+    grid-area: toolbar;
+    display: flex;
+    flex-wrap: wrap;
+    button {
+      padding: map_get($padding, normal);
+      background-color: transparent;
+      border-radius: 0;
+      color: $on-surface-color;
+      outline: none;
+      border: none;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba($primary-color, .05);
+      }
+    }
+
+    select {
+      background-color: transparent;
+      color: $on-surface-color;
+      outline: none;
+      border: none;
+      min-width: 10rem;
+      cursor: pointer;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;       /* Remove default arrow */
+    }
+  }
+
+  &-pages {
+    grid-area: pages;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    display: flex;
+    place-content: center;
+    place-items: center;
+
+    @include scrollbars(10px, $on-background-color, $background-color);
+
+    #page {
+      outline: none !important;
+      border: none !important;
+      height: 100%;
+      width: 800px;
+      max-width: 100%;
+      padding: map_get($padding, normal);
+      box-shadow: 0 0 5px 0 black;
+      overflow: hidden;
+      margin-top: map_get($padding, big);
+      background-color: white;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      user-select: none;
+    }
+  }
+}

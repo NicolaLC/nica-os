@@ -18,10 +18,11 @@
   }
 
   &-left {
-    background-color: $surface-color;
+    background-color: rgba($background-color, .25);
     height: calc(100% - #{map_get($padding, small) * 2});
     width: calc(100% - #{map_get($padding, small) * 2});
     padding: map_get($padding, small);
+
     ul {
       list-style: none;
       margin: 0;

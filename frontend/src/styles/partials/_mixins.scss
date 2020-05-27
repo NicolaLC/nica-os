@@ -39,3 +39,12 @@
     scrollbar-track-color: $background-color;
   }
 }
+
+@mixin svgFill($color) {
+  svg {
+    fill: $color;
+    rect, path, line, circle, path {
+      fill: $color;
+    }
+  }
+}

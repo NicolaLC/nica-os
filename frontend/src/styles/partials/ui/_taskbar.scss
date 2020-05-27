@@ -32,11 +32,7 @@
       width: 1rem;
       margin-right: map_get($padding, normal);
 
-      svg {
-        rect {
-          fill: $background-color;
-        }
-      }
+      @include svgFill($background-color);
     }
   }
 
@@ -74,11 +70,7 @@
         width: 1rem;
         height: 1rem;
 
-        svg {
-          rect {
-            fill: $on-background-color;
-          }
-        }
+        @include svgFill($on-background-color);
       }
 
       &:hover {
@@ -88,11 +80,7 @@
       &.active {
         box-shadow: 0 -100px 0 0 $primary-color inset;
         color: $on-primary-color;
-        svg {
-          rect, path {
-            fill: $on-primary-color;
-          }
-        }
+        @include svgFill($on-primary-color);
       }
     }
   }

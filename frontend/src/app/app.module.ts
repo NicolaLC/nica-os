@@ -26,6 +26,11 @@ import {FileExplorerComponent} from '@applications/file-explorer/file-explorer.c
 import {WelcomeComponent} from '@applications/welcome.component';
 import {MenuComponent} from '@components/menu.component';
 import {ThemeService} from '@services/theme.service';
+import {UtilityService} from '@services/utility.service';
+import {TextEditorComponent} from '@applications/text-editor/text-editor.component';
+import {FormsModule} from '@angular/forms';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {CommonsModule} from './commons/commons.module';
 
 const components = [
   NicaOSComponent,
@@ -37,7 +42,8 @@ const components = [
   ConsoleComponent,
   MenuComponent,
   BrowserComponent,
-  FileExplorerComponent
+  FileExplorerComponent,
+  TextEditorComponent
 ];
 
 const directives = [
@@ -51,7 +57,8 @@ const pipes = [
 
 const services = [
   ThemeService,
-  AssetsService
+  AssetsService,
+  UtilityService
 ];
 
 @NgModule({
@@ -65,6 +72,9 @@ const services = [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    FontAwesomeModule,
+    CommonsModule,
     StoreModule.forRoot({app: appReducer, fs: fileExplorerReducer}),
     EffectsModule.forRoot([AppEffects]),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production})

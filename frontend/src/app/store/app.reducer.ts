@@ -50,7 +50,7 @@ const _appReducer = createReducer(initialState,
     const applications = cloneDeep(state.applications);
     let newApp = app;
     applications.map(a => {
-      a.properties.focus = newApp && a.id === newApp.id;
+      a.properties.focus = newApp ? a.id === newApp.id : false;
       /** if there is at least one focused app there is no new app */
       if (a.properties.focus) {
         a.properties.minified = false;

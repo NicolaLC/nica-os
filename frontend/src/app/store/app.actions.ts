@@ -1,5 +1,5 @@
 import {createAction, props} from '@ngrx/store';
-import {Application} from '../interfaces/interfaces';
+import {Application, File} from '../interfaces/interfaces';
 
 /** ASSETS MANAGEMENT */
 export const loadAssets = createAction('[App] Load Assets');
@@ -16,6 +16,9 @@ export const closeApp = createAction('[App] Close window', props<{app: Applicati
 export const setAppFullscreen = createAction('[App] Toggle window fullscreen', props<{app: Application, fullScreen: boolean}>());
 export const setAppFocus = createAction('[App] Toggle window focus', props<{app: Application, focus: boolean}>());
 export const setAppMinified = createAction('[App] Toggle window minified', props<{app: Application, minified: boolean}>());
+
+/** FILE MANAGEMENT */
+export const openFile = createAction('[App] Open file', props<{file: File}>());
 
 /** MENU MANAGEMENT */
 export const toggleMenuActive = createAction('[App] Toggle menu active');

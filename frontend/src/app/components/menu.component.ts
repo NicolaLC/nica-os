@@ -15,6 +15,7 @@ import {selectApplicationsByCategory} from '@fsstore/file-explorer.reducer';
         <div
           class="menu-applications-item"
           *ngFor="let app of (infos$ | async); trackBy: trackByFn"
+          [title]="app.properties?.alt || ''"
           (click)="create(app)"
         >
           <div class="icon"
@@ -27,6 +28,7 @@ import {selectApplicationsByCategory} from '@fsstore/file-explorer.reducer';
         <div
           class="menu-applications-item"
           *ngFor="let app of (games$ | async); trackBy: trackByFn"
+          [title]="app.properties?.alt || ''"
           (click)="create(app)"
         >
           <div class="icon"
@@ -39,6 +41,7 @@ import {selectApplicationsByCategory} from '@fsstore/file-explorer.reducer';
         <div
           class="menu-applications-item"
           *ngFor="let app of (utilities$ | async); trackBy: trackByFn"
+          [title]="app.properties?.alt || ''"
           (click)="create(app)"
         >
           <div class="icon"
