@@ -31,6 +31,7 @@ import {TextEditorComponent} from '@applications/text-editor/text-editor.compone
 import {FormsModule} from '@angular/forms';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {CommonsModule} from './commons/commons.module';
+import {TextEditorService} from '@applications/text-editor/text-editor.service';
 
 const components = [
   NicaOSComponent,
@@ -58,7 +59,8 @@ const pipes = [
 const services = [
   ThemeService,
   AssetsService,
-  UtilityService
+  UtilityService,
+  TextEditorService
 ];
 
 @NgModule({

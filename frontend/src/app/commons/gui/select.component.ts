@@ -1,4 +1,14 @@
-import {Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges
+} from '@angular/core';
 import {SelectOption} from './interfaces';
 
 @Component({
@@ -6,16 +16,17 @@ import {SelectOption} from './interfaces';
   template: `
     <div class="app-select" [class.opened]="opened">
       <div class="app-select-value" (click)="opened = !opened">
-        {{value.label}}
+        {{selectedValue ? selectedValue.label : placeholder}}
       </div>
       <div class="app-select-options">
         <ng-container *ngIf="opened">
           <div
             class="app-select-options-item"
             *ngFor="let item of options; trackBy: trackByFn"
+            [class.selected]="selectedValue && item.value === selectedValue.value"
             (click)="onItemClick(item)"
           >
-            {{item.value}}
+            {{item.label}}
           </div>
         </ng-container>
       </div>
@@ -23,11 +34,12 @@ import {SelectOption} from './interfaces';
   `
 })
 
-export class SelectComponent implements OnInit {
+export class SelectComponent {
   @Input() options: SelectOption[];
+  @Input() placeholder = '-';
+  @Input() selectedValue: SelectOption;
   @Output() change = new EventEmitter<SelectOption>();
 
-  value: SelectOption = {value: null, label: '-'};
   opened = false;
 
   @HostListener('document:mousedown', ['$event'])
@@ -42,18 +54,8 @@ export class SelectComponent implements OnInit {
     private elementRef: ElementRef
   ) {}
 
-  ngOnInit() {
-    const selectedOption = this.options.filter(option => option.selected);
-
-    if (selectedOption && selectedOption.length) {
-      this.value = selectedOption[0];
-    }
-  }
-
   onItemClick(item: SelectOption): void {
-    this.options.map(o => o.selected = false);
-    item.selected = true;
-    this.value = item;
+    this.selectedValue = item;
     this.opened = false;
     this.change.emit(item);
   }

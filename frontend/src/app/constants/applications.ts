@@ -65,6 +65,7 @@ const welcome = new Application({
   alt: 'Who is Nicola Castellani?',
   icon: 'home',
   iconContrast: 'home',
+  fullScreen: true,
   size: {width: '1000px', height: '800px'},
   fs: {
     category: APPLICATION_CATEGORY.INFO,

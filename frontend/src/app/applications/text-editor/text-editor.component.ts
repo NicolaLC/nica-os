@@ -1,7 +1,16 @@
-import {AfterViewInit, Component, ElementRef, HostListener, OnDestroy, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  HostListener,
+  OnDestroy,
+  ViewChild
+} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ICONS} from './constants';
 import {SelectOption} from '../../commons/gui/interfaces';
+import { TextEditorService } from './text-editor.service';
 
 @Component({
   selector: 'app-text-editor',
@@ -71,11 +80,18 @@ import {SelectOption} from '../../commons/gui/interfaces';
         </button>
         <app-select
           [options]="formatBlockOptions"
+          [selectedValue]="formatBlock"
           (change)="execCommandWithChangeEvent('formatBlock', $event)"
         ></app-select>
         <app-select
           [options]="fontNameOptions"
+          [selectedValue]="fontName"
           (change)="execCommandWithChangeEvent('fontName', $event)"
+        ></app-select>
+        <app-select
+          [options]="downloadOptions"
+          [placeholder]="'Download'"
+          (change)="download($event)"
         ></app-select>
       </div>
       <div class="text-editor-pages">
@@ -91,7 +107,7 @@ export class TextEditorComponent implements OnDestroy, AfterViewInit {
   subs: Subscription[] = [];
 
   formatBlockOptions: SelectOption[] = [
-    {value: 'P', label: 'Paragraph', selected: true},
+    {value: 'P', label: 'Paragraph'},
     {value: 'H1', label: 'HEADER 1'},
     {value: 'H2', label: 'HEADER 2'},
     {value: 'H3', label: 'HEADER 3'},
@@ -99,15 +115,23 @@ export class TextEditorComponent implements OnDestroy, AfterViewInit {
     {value: 'H5', label: 'HEADER 5'},
     {value: 'H5', label: 'HEADER 5'}
   ];
+  formatBlock = this.formatBlockOptions[0];
 
   fontNameOptions: SelectOption[] = [
-    {value: 'Arial', label: 'Arial', selected: true},
+    {value: 'Arial', label: 'Arial'},
     {value: 'Comic Sans MS', label: 'Comic Sans MS'},
     {value: 'Courier', label: 'Courier'},
     {value: 'Georgia', label: 'Georgia'},
     {value: 'Tahoma', label: 'Tahoma'},
     {value: 'Times New Roman', label: 'Times New Roman'},
     {value: 'Verdana', label: 'Verdana'}
+  ];
+  fontName = this.fontNameOptions[0];
+
+  downloadOptions: SelectOption[] = [
+    {value: 'PDF', label: 'Download as PDF'},
+    {value: 'DOC', label: 'Download as DOC'},
+    {value: 'DOCX', label: 'Download as DOCX'}
   ];
 
   selectionTimeout = null;
@@ -121,7 +145,10 @@ export class TextEditorComponent implements OnDestroy, AfterViewInit {
     }
   }
 
-  constructor() {
+  constructor(
+    private cd: ChangeDetectorRef,
+    private service: TextEditorService
+  ) {
     document.execCommand('DefaultParagraphSeparator', false, 'p');
   }
 
@@ -130,7 +157,7 @@ export class TextEditorComponent implements OnDestroy, AfterViewInit {
     contentDocument.designMode = 'On';
     contentDocument.body.addEventListener('selectstart', _ => {
       clearTimeout(this.selectionTimeout);
-      this.selectionTimeout = setTimeout(() => this.handlePageSelection(contentWindow.getSelection()), 50);
+      this.selectionTimeout = setTimeout(() => this.handlePageSelection(contentWindow.getSelection()), 100);
     });
   }
 
@@ -141,27 +168,21 @@ export class TextEditorComponent implements OnDestroy, AfterViewInit {
   handlePageSelection(selection: Selection) {
     const {anchorNode} = selection;
     if (anchorNode.nodeName === 'body' || !anchorNode.parentNode) {
+      this.formatBlock = this.formatBlockOptions.find(fBO => fBO.value === 'P');
       return;
     }
-
-    console.log(this.formatBlockOptions);
-
+    let target = 'P';
     switch (anchorNode.parentNode.nodeName.toLowerCase()) {
-      case 'text':
-        this.formatBlockOptions.map(f => f.selected = f.value === 'P'); break;
-      case 'h1':
-        this.formatBlockOptions.map(f => f.selected = f.value === 'H1'); break;
-      case 'h2':
-        this.formatBlockOptions.map(f => f.selected = f.value === 'H2'); break;
-      case 'h3':
-        this.formatBlockOptions.map(f => f.selected = f.value === 'H3'); break;
-      case 'h4':
-        this.formatBlockOptions.map(f => f.selected = f.value === 'H4'); break;
-      case 'h5':
-        this.formatBlockOptions.map(f => f.selected = f.value === 'H5'); break;
-      case 'h6':
-        this.formatBlockOptions.map(f => f.selected = f.value === 'H6'); break;
+      case '#text': target = 'P'; break;
+      case 'h1': target = 'H1'; break;
+      case 'h2': target = 'H2'; break;
+      case 'h3': target = 'H3'; break;
+      case 'h4': target = 'H4'; break;
+      case 'h5': target = 'H5'; break;
+      case 'h6': target = 'H6'; break;
     }
+    this.formatBlock = this.formatBlockOptions.find(fBO => fBO.value === target);
+    this.cd.detectChanges();
   }
 
   exec(command) {
@@ -174,5 +195,20 @@ export class TextEditorComponent implements OnDestroy, AfterViewInit {
 
   execCommandWithChangeEvent(command, options: SelectOption) {
     this.page.nativeElement.contentDocument.execCommand(command, false, options.value);
+  }
+
+  download(as) {
+    const {value} = as;
+
+    switch (value) {
+      case 'PDF':
+        return this.service.downloadPDF(this.page.nativeElement.contentDocument);
+      case 'DOC':
+        return this.service.downloadDoc(this.page.nativeElement.contentDocument);
+      case 'DOCX':
+        return this.service.downloadDoc(this.page.nativeElement.contentDocument, 'docx');
+      default:
+        return console.warn('No download for type %o found.', value);
+    }
   }
 }

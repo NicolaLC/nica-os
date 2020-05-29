@@ -181,6 +181,7 @@
     padding: map_get($padding, normal);
     background-color: $surface-color;
     color: $on-surface-color;
+    border: 2px solid $primary-color;
 
     &-colors {
       display: flex;

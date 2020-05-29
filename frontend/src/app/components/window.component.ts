@@ -16,7 +16,7 @@ import {Application} from '../interfaces/interfaces';
 import {closeApp, setAppFocus, setAppFullscreen, setAppMinified} from '../store/app.actions';
 import {WelcomeComponent} from '../applications/welcome.component';
 import {ConsoleComponent} from '../applications/console.component';
-import { applicationMapping } from '../constants/applications';
+import {applicationMapping} from '../constants/applications';
 
 @Component({
   selector: 'app-window',
@@ -33,7 +33,7 @@ import { applicationMapping } from '../constants/applications';
       <div class="window-toolbar">
         <div class="window-toolbar-title">
           <div class="icon"
-                *ngIf="currentWindow?.properties?.icon"
+               *ngIf="currentWindow?.properties?.icon"
                [innerHTML]="(loadedAssets$ | async)[currentWindow?.properties?.icon]?.resource | safe:'html'"
           ></div>
           {{currentWindow?.properties?.title}}
@@ -52,7 +52,8 @@ import { applicationMapping } from '../constants/applications';
                [innerHTML]="(loadedAssets$ | async)?.minify?.resource | safe:'html'"
                (click)="toggleWindowMinified()"
           ></div>
-          <div class="icon" [innerHTML]="(loadedAssets$ | async)?.close?.resource | safe:'html'" (click)="closeWindow()"></div>
+          <div class="icon" [innerHTML]="(loadedAssets$ | async)?.close?.resource | safe:'html'"
+               (click)="closeWindow()"></div>
         </div>
       </div>
       <div class="window-content">
@@ -85,7 +86,8 @@ export class WindowComponent implements AfterViewInit, OnChanges {
     private viewContainerRef: ViewContainerRef,
     private componentFactoryResolver: ComponentFactoryResolver,
     private cd: ChangeDetectorRef
-  ) { }
+  ) {
+  }
 
   ngAfterViewInit() {
     const componentFactory = this.componentFactoryResolver
@@ -111,11 +113,17 @@ export class WindowComponent implements AfterViewInit, OnChanges {
   private handleChanges(fullScreen: boolean) {
     if (this.draggableRef) {
       fullScreen ? this.draggableRef.disable() : this.draggableRef.enable();
+      if (fullScreen) {
+        this.windowEl.style.top = '50%';
+        this.windowEl.style.left = '50%';
+      }
     }
   }
 
   private animateIn() {
-    if (this.windowAnimation && this.windowAnimation.progress() === 1) { return; }
+    if (this.windowAnimation && this.windowAnimation.progress() === 1) {
+      return;
+    }
     window.requestAnimationFrame(() => {
       this.windowAnimation = new TimelineMax({paused: true, reversed: false});
       this.windowAnimation.to(this.windowEl, .25, {opacity: '1', ease: 'Expo.easeInOut'}, 0);
@@ -129,8 +137,8 @@ export class WindowComponent implements AfterViewInit, OnChanges {
             trigger: this.windowEl.querySelector('.window-toolbar'),
             bounds: '.desktop',
             inertia: true,
-            onClick: () => this.store$.dispatch(setAppFocus({ app: this.currentWindow, focus: true})),
-            onDragStart: () => this.store$.dispatch(setAppFocus({ app: this.currentWindow, focus: true})),
+            onClick: () => this.store$.dispatch(setAppFocus({app: this.currentWindow, focus: true})),
+            onDragStart: () => this.store$.dispatch(setAppFocus({app: this.currentWindow, focus: true})),
             onRelease: (e) => this.draggableRef.endDrag(e)
           })[0];
 
@@ -148,14 +156,17 @@ export class WindowComponent implements AfterViewInit, OnChanges {
   }
 
   toggleFullScreen() {
-    this.store$.dispatch(setAppFullscreen({ app: this.currentWindow, fullScreen: !this.currentWindow.properties.fullScreen }));
+    this.store$.dispatch(setAppFullscreen({
+      app: this.currentWindow,
+      fullScreen: !this.currentWindow.properties.fullScreen
+    }));
   }
 
   toggleWindowFocus() {
-    this.store$.dispatch(setAppFocus({ app: this.currentWindow, focus: !this.currentWindow.properties.focus }));
+    this.store$.dispatch(setAppFocus({app: this.currentWindow, focus: !this.currentWindow.properties.focus}));
   }
 
   toggleWindowMinified() {
-    this.store$.dispatch(setAppMinified({ app: this.currentWindow, minified: !this.currentWindow.properties.minified }));
+    this.store$.dispatch(setAppMinified({app: this.currentWindow, minified: !this.currentWindow.properties.minified}));
   }
 }
