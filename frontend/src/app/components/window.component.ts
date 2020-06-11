@@ -17,6 +17,8 @@ import {closeApp, setAppFocus, setAppFullscreen, setAppMinified} from '../store/
 import {WelcomeComponent} from '../applications/welcome.component';
 import {ConsoleComponent} from '../applications/console.component';
 import {applicationMapping} from '../constants/applications';
+import {UtilityService} from '@services/utility.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-window',
@@ -39,15 +41,17 @@ import {applicationMapping} from '../constants/applications';
           {{currentWindow?.properties?.title}}
         </div>
         <div class="window-toolbar-actions">
-          <div class="icon"
-               *ngIf="!currentWindow.properties.fullScreen"
-               [innerHTML]="(loadedAssets$ | async)?.fullscreen?.resource | safe:'html'"
-               (click)="toggleFullScreen()"></div>
-          <div class="icon"
-               *ngIf="currentWindow.properties.fullScreen"
-               [innerHTML]="(loadedAssets$ | async)?.closeFullscreen?.resource | safe:'html'"
-               (click)="toggleFullScreen()"
-          ></div>
+          <ng-container *ngIf="(utilityService.isMobile | async) === false">
+            <div class="icon"
+                 *ngIf="!currentWindow.properties.fullScreen"
+                 [innerHTML]="(loadedAssets$ | async)?.fullscreen?.resource | safe:'html'"
+                 (click)="toggleFullScreen()"></div>
+            <div class="icon"
+                 *ngIf="currentWindow.properties.fullScreen"
+                 [innerHTML]="(loadedAssets$ | async)?.closeFullscreen?.resource | safe:'html'"
+                 (click)="toggleFullScreen()"
+            ></div>
+          </ng-container>
           <div class="icon"
                [innerHTML]="(loadedAssets$ | async)?.minify?.resource | safe:'html'"
                (click)="toggleWindowMinified()"
@@ -81,13 +85,14 @@ export class WindowComponent implements AfterViewInit, OnChanges {
     return this._windowEl.nativeElement;
   }
 
+
   constructor(
+    public utilityService: UtilityService,
     private store$: Store<AppState>,
     private viewContainerRef: ViewContainerRef,
     private componentFactoryResolver: ComponentFactoryResolver,
     private cd: ChangeDetectorRef
-  ) {
-  }
+  ) {}
 
   ngAfterViewInit() {
     const componentFactory = this.componentFactoryResolver

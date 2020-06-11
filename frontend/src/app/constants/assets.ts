@@ -160,5 +160,30 @@ export const assetsToLoad: AssetMap = {
     path: 'textEditorIcon.svg',
     loaded: false,
     resource: null
+  },
+  jssheetIcon: {
+    path: 'jssheetIcon.svg',
+    loaded: false,
+    resource: null
+  },
+  twitterIcon: {
+    path: 'twitterIcon.svg',
+    loaded: false,
+    resource: null
+  },
+  redditIcon: {
+    path: 'redditIcon.svg',
+    loaded: false,
+    resource: null
+  },
+  hackernoonIcon: {
+    path: 'hackernoonIcon.svg',
+    loaded: false,
+    resource: null
+  },
+  socialFolderIcon: {
+    path: 'socialFolderIcon.svg',
+    loaded: false,
+    resource: null
   }
 };

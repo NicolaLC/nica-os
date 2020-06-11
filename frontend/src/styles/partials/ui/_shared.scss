@@ -9,12 +9,6 @@ body {
   text-rendering: geometricPrecision;
   background-color: $background-color;
   color: $on-background-color;
-
-  @include respond-to('small') {
-    margin-top: 4rem;
-    height: calc(100vh - 4rem);
-    font-size: 90%;
-  }
 }
 
 .icon, .image {

@@ -33,10 +33,14 @@ export class AppEffects {
         return [loadAssetsSuccess({loadedAssets})];
       } else {
         return this.assetsService.getAll().pipe(
-         switchMap(assets => {
-           this.store$.dispatch(setLoadingMessage({message: '<b>Loading</b> done.'}));
-           return of(loadAssetsSuccess({loadedAssets: assets}));
-         })
+          switchMap(assets => {
+            this.store$.dispatch(setLoadingMessage({message: '<b>Loading</b> done.'}));
+            return of(assets);
+          }),
+          delay(2000),
+          switchMap(assets => {
+            return of(loadAssetsSuccess({loadedAssets: assets}));
+          })
         );
       }
     }))
@@ -114,5 +118,6 @@ export class AppEffects {
     private assetsService: AssetsService,
     private themeService: ThemeService,
     private utility: UtilityService
-  ) {}
+  ) {
+  }
 }

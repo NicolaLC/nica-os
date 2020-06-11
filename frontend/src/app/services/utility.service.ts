@@ -4,10 +4,22 @@ import {File, FILE_CATEGORY} from '@interfaces/interfaces';
 import {setCurrentPath} from '@fsstore/file-explorer.actions';
 import {createApp} from '@appstore/app.actions';
 import {APPLICATIONS} from '@constants/applications';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable()
 export class UtilityService {
-  constructor(private store$: Store<any>) {}
+
+  isMobile: BehaviorSubject<boolean> = new BehaviorSubject(false);
+
+  constructor(private store$: Store<any>) {
+    window.addEventListener('resize', () => this.onWindowResize());
+    this.onWindowResize();
+  }
+
+  onWindowResize() {
+    this.isMobile.next(document.body.offsetWidth <= 768);
+  }
+
   openFile(file: File) {
     switch (file.properties.category) {
       case FILE_CATEGORY.FOLDER:

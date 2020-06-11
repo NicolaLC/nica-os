@@ -12,6 +12,10 @@
   grid-template-areas: "menuToggle menu windows themeToggle themeSelector today";
   grid-template-columns: 8rem 0 1fr 1rem 0 8rem;
 
+  @include respond-to('medium') {
+    grid-template-columns: 4rem 0 1fr 1rem 0 8rem;
+  }
+
   z-index: 9000009;
 
   &-menu {
@@ -33,6 +37,16 @@
       margin-right: map_get($padding, normal);
 
       @include svgFill($background-color);
+
+      @include respond-to('medium') {
+        margin-right: 0;
+      }
+    }
+
+    @include respond-to('medium') {
+      span {
+        display: none;
+      }
     }
   }
 
@@ -50,6 +64,8 @@
     overflow-x: auto;
     height: 100%;
 
+    @include scrollbars(2.5px, $background-color, $on-background-color);
+
     &-item {
       height: 100%;
       background-color: $background-color;
@@ -65,12 +81,23 @@
       box-shadow: 0 0 0 0 $on-background-color inset;
       padding: 0 map_get($padding, small);
 
+      @include respond-to('medium') {
+        min-width: 2rem;
+        span {
+          display: none;
+        }
+      }
+
       .icon {
         margin-right: map_get($padding, small);
         width: 1rem;
         height: 1rem;
 
         @include svgFill($on-background-color);
+
+        @include respond-to('medium') {
+          margin-right: 0;
+        }
       }
 
       &:hover {
@@ -101,6 +128,15 @@
     color: $on-surface-color;
 
     border: 2px solid $on-surface-color;
+
+    @include respond-to('medium') {
+      left: -4rem;
+      min-width: unset;
+      min-height: unset;
+      border-bottom: none;
+      width: calc(100vw - 4px);
+      height: calc(100vh - 3.25rem);
+    }
 
     h3 {
       font-size: map_get($fontSizes, small);
@@ -141,6 +177,7 @@
       height: calc(100% - #{map_get($padding, normal) *2});
       justify-items: center;
       grid-template-columns: 3rem auto;
+      column-gap: map_get($padding, normal);
       padding: map_get($padding, normal);
       background-color: $background-color;
       color: $on-background-color;
@@ -156,8 +193,10 @@
       &-info {
         display: flex;
         flex-direction: column;
+        place-content: flex-start;
         justify-items: flex-start;
         justify-content: space-between;
+        width: 100%;
 
         h4 {
           margin: 0;

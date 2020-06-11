@@ -32,7 +32,7 @@ import {Application} from '../interfaces/interfaces';
     <div class="taskbar" #taskbar>
       <div class="taskbar-menu" (click)="toggleMenu()">
         <div class="icon" [innerHTML]="(loadedAssets$ | async)?.nicaLogo?.resource | safe:'html'"></div>
-        START
+        <span>START</span>
       </div>
       <app-menu *ngIf="menuActive$ | async"></app-menu>
       <div class="taskbar-windows">
@@ -46,7 +46,7 @@ import {Application} from '../interfaces/interfaces';
                *ngIf="window?.properties?.icon"
                [innerHTML]="(loadedAssets$ | async)[window?.properties?.icon]?.resource | safe:'html'"
           ></div>
-          {{window.properties.title}}
+          <span>{{window.properties.title}}</span>
         </div>
       </div>
       <div class="taskbar-theme-toggle" title="Theme settings" (click)="toggleTaskbarThemeSelector()"></div>

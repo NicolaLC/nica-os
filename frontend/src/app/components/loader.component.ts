@@ -67,7 +67,6 @@ export class LoaderComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy() {
     this.subs.map(s => s.unsubscribe());
-    // this.loaderAnimation.timeScale(this.loaderAnimation.duration()).reverse();
   }
 
   private animateLoader() {

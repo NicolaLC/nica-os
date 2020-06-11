@@ -43,7 +43,7 @@
 @mixin svgFill($color) {
   svg {
     fill: $color;
-    rect, path, line, circle, path {
+    rect, circle, path, line {
       fill: $color;
     }
   }

@@ -19,6 +19,13 @@
   max-height: 100vh;
   overflow: auto;
 
+  @include respond-to('medium') {
+    padding: map_get($padding, normal);
+    width: calc(100% - #{map_get($padding, normal) * 2});
+    height: calc(100% - #{map_get($padding, normal) * 2});
+    font-size: map_get($fontSizes, small);
+  }
+
   &-title {
     margin-left: map_get($padding, normal);
 

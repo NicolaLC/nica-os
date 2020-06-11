@@ -6,6 +6,10 @@
   height: 100%;
   background-color: rgba($primary-color, .05);
 
+  @include respond-to('small') {
+    grid-template-columns: 100%;
+  }
+
   .image {
     width: 2rem;
     height: 2rem;
@@ -15,6 +19,10 @@
     font-size: map_get($fontSizes, extra-big);
     margin-top: 0;
     margin-bottom: map_get($padding, medium);
+
+    @include respond-to('small') {
+      font-size: map_get($fontSizes, big);
+    }
   }
 
   &-left {
@@ -22,6 +30,10 @@
     height: calc(100% - #{map_get($padding, small) * 2});
     width: calc(100% - #{map_get($padding, small) * 2});
     padding: map_get($padding, small);
+
+    @include respond-to('small') {
+      display: none;
+    }
 
     ul {
       list-style: none;
@@ -33,7 +45,7 @@
         opacity: .5;
 
         &:hover {
-          color: $primary-color;
+          color: $primary\-color;
           opacity: 1;
         }
       }
@@ -59,8 +71,22 @@
         "h2 h2"
         "text2 text2";
 
-      h1 { grid-area: h1; }
-      h2 { grid-area: h2; }
+      @include respond-to('small') {
+        grid-template-areas: none;
+        grid-template-columns: none;
+        display: flex;
+      }
+
+      h1 {
+        grid-area: h1;
+        @include respond-to('small') { grid-area: none; }
+      }
+
+      h2 {
+        grid-area: h2;
+        width: 100%;
+        @include respond-to('small') { grid-area: none; }
+      }
 
       #about01 {
         width: 20rem;
@@ -68,6 +94,14 @@
         float: left;
         margin-right: map_get($padding, medium);
         grid-area: about01;
+
+        @include respond-to('small') {
+          width: 15rem;
+          height: auto;
+          max-width: 100vw;
+          margin: 0 auto;
+          grid-area: none;
+        }
       }
     }
 
@@ -134,7 +168,13 @@
       color: $primary-color;
     }
 
-    &#text1 { grid-area: text1; }
-    &#text2 { grid-area: text2; }
+    &#text1 {
+      grid-area: text1;
+      @include respond-to('small') { grid-area: none; }
+    }
+    &#text2 {
+      grid-area: text2;
+      @include respond-to('small') { grid-area: none; }
+    }
   }
 }
