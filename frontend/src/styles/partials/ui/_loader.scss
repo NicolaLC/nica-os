@@ -16,7 +16,7 @@
 
   font-size: map_get($fontSizes, big);
   font-family: $mainFont !important;
-  max-height: 100vh;
+  max-height: 100%;
   overflow: auto;
 
   @include respond-to('medium') {

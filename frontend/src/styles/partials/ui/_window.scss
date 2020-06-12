@@ -1,8 +1,8 @@
 .window {
   display: grid;
   grid-template-rows: auto 1fr;
-  max-height: 75vh;
-  max-width: 75vw;
+  max-height: 75%;
+  max-width: 75%;
   opacity: 0;
   resize: both;
 
@@ -22,7 +22,7 @@
     width: calc(100% - 2px) !important;
     height: calc(100% - 2px) !important;
     max-width: 100vw !important;
-    max-height: calc(100vh - 3rem) !important;
+    max-height: calc(100% - 3rem) !important;
 
     transform: translate(-50%, -50%)!important;
     margin-top: -25px;
@@ -33,7 +33,7 @@
     width: calc(100% - 2px) !important;
     height: calc(100% - 2px) !important;
     max-width: 100vw !important;
-    max-height: calc(100vh - 3rem) !important;
+    max-height: calc(100% - 3rem) !important;
 
     transform: translate(-50%, -50%)!important;
     margin-top: -25px;

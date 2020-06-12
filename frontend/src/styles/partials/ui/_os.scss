@@ -2,12 +2,12 @@
   display: grid;
   grid-template-areas: "desktop" "taskbar";
   height: 100%;
-  grid-template-rows: 1fr 3rem;
+  grid-template-rows: calc(100% - 3rem) 3rem;
 
   .desktop {
     grid-area: desktop;
     height: 100%;
-    max-height: calc(100vh - 3rem);
+    max-height: calc(100% - 3rem);
     overflow: hidden;
     place-content: flex-start;
     place-items: flex-start;
