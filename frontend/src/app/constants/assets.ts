@@ -31,21 +31,6 @@ export const assetsToLoad: AssetMap = {
     loaded: false,
     resource: null
   },
-  aff: {
-    path: 'aff.jpg',
-    loaded: false,
-    resource: null
-  },
-  castellanisas: {
-    path: 'castellanisas.jpg',
-    loaded: false,
-    resource: null
-  },
-  tg: {
-    path: 'tg.jpg',
-    loaded: false,
-    resource: null
-  },
   close: {
     path: 'close.svg',
     loaded: false,
@@ -81,48 +66,38 @@ export const assetsToLoad: AssetMap = {
     loaded: false,
     resource: null
   },
-  homeContrast: {
-    path: 'home_green.svg',
-    loaded: false,
-    resource: null
-  },
-  consoleContrast: {
-    path: 'console_green.svg',
-    loaded: false,
-    resource: null
-  },
   about01: {
     path: 'about01.svg',
     loaded: false,
     resource: null
   },
   university: {
-    path: 'university.png',
+    path: 'university.svg',
     loaded: false,
     resource: null
   },
   addvalue: {
-    path: 'addvalue.png',
+    path: 'addvalue.svg',
     loaded: false,
     resource: null
   },
   vas: {
-    path: 'vas.png',
+    path: 'vas.svg',
     loaded: false,
     resource: null
   },
   slowmedia: {
-    path: 'slowmedia.png',
+    path: 'slowmedia.svg',
     loaded: false,
     resource: null
   },
   eleads: {
-    path: 'eleads.png',
+    path: 'eleads.svg',
     loaded: false,
     resource: null
   },
   trueblue: {
-    path: 'trueblue.png',
+    path: 'trueblue.svg',
     loaded: false,
     resource: null
   },
@@ -131,18 +106,8 @@ export const assetsToLoad: AssetMap = {
     loaded: false,
     resource: null
   },
-  spaceinvadersGreen: {
-    path: 'spaceinvaders_green.svg',
-    loaded: false,
-    resource: null
-  },
   unity: {
     path: 'unity.svg',
-    loaded: false,
-    resource: null
-  },
-  unityGreen: {
-    path: 'unity_green.svg',
     loaded: false,
     resource: null
   },

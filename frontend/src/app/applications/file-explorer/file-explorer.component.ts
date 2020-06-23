@@ -84,9 +84,9 @@ import {UtilityService} from '@services/utility.service';
                 </td>
               </tr>
             </ng-container>
-            <ng-container *ngIf="(resultApplications$ | async).length > 0 && (resultFiles$ | async).length > 0">
+            <ng-container *ngIf="(resultApplications$ | async).length == 0 && (resultFiles$ | async).length == 0">
               <tr>
-                <h3>No results.</h3>
+                <td colspan="2"><h3>No results.</h3></td>
               </tr>
             </ng-container>
           </tbody>

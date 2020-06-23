@@ -46,7 +46,7 @@ const console = new Application({
   component: 'ConsoleComponent',
   alt: 'A simple console wich displays a part of redux state changes',
   icon: 'console',
-  iconContrast: 'consoleContrast',
+  iconContrast: 'console',
   startPosition: {x: '200px', y: '200px'},
   size: {width: '500px', height: '300px'},
   fs: {
@@ -81,7 +81,7 @@ const browser_spaceInvaders = new Application({
   alt: 'Play now SpaceInvaders JS, a personal project created using typescript and three js!',
   component: 'BrowserComponent',
   icon: 'spaceinvaders',
-  iconContrast: 'spaceinvadersGreen',
+  iconContrast: 'spaceinvaders',
   size: {width: '1200px', height: '1000px'},
   data: { url: 'https://nicolalc.github.io/jssheet/spaceinvaders/index.html' },
   fs: {
@@ -99,7 +99,7 @@ const browser_helloUnity = new Application({
   component: 'BrowserComponent',
   alt: 'Take a look to an example of Unity3D webgl export and templating',
   icon: 'unity',
-  iconContrast: 'unityGreen',
+  iconContrast: 'unity',
   size: {width: '1200px', height: '1000px'},
   data: { url: 'https://nicawd.herokuapp.com/unity-demo' },
   fs: {

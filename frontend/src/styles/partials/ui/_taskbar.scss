@@ -130,12 +130,16 @@
     border: 2px solid $on-surface-color;
 
     @include respond-to('medium') {
-      left: -4rem;
+      grid-area: none;
+      left: 0;
+      top: -95vh;
+      bottom: unset;
       min-width: unset;
       min-height: unset;
       border-bottom: none;
-      width: calc(100% - 4px);
-      height: calc(100% - 3.25rem);
+      position: fixed;
+      width: calc(100vw - 4px);
+      height: calc(100vh - 3.25rem);
     }
 
     h3 {
