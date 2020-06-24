@@ -106,7 +106,7 @@ export class DesktopComponent implements AfterViewInit {
 
       setTimeout(() => {
         this.store$.dispatch(setAppMinified({ app: APPLICATIONS.console, minified: true }));
-        this.store$.dispatch(createApp({ app: APPLICATIONS.welcome }));
+        this.store$.dispatch(createApp({ app: APPLICATIONS.knightsAndMonsters }));
       }, 6000);
     });
   }

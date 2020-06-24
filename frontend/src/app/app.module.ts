@@ -32,6 +32,8 @@ import {FormsModule} from '@angular/forms';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {CommonsModule} from './commons/commons.module';
 import {TextEditorService} from '@applications/text-editor/text-editor.service';
+import {KnightsAndMonstersComponent} from '@applications/knights-and-monsters/knights-and-monsters.component';
+import {ButtonDirective} from '@directives/button.directive';
 
 const components = [
   NicaOSComponent,
@@ -44,12 +46,14 @@ const components = [
   MenuComponent,
   BrowserComponent,
   FileExplorerComponent,
-  TextEditorComponent
+  TextEditorComponent,
+  KnightsAndMonstersComponent
 ];
 
 const directives = [
   TaskbarItemDirective,
-  DesktopIconDirective
+  DesktopIconDirective,
+  ButtonDirective
 ];
 
 const pipes = [

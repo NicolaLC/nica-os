@@ -5,6 +5,7 @@ import {Application, APPLICATION_CATEGORY} from '@interfaces/interfaces';
 import {WelcomeComponent} from '@applications/welcome.component';
 import {fs} from '@constants/filesystem';
 import {TextEditorComponent} from '@applications/text-editor/text-editor.component';
+import {KnightsAndMonstersComponent} from '@applications/knights-and-monsters/knights-and-monsters.component';
 
 const explorer = new Application({
   title: 'File explorer',
@@ -112,13 +113,32 @@ const browser_helloUnity = new Application({
   }
 });
 
+const knightsAndMonsters = new Application({
+  title: 'Knights VS Monsters',
+  component: 'KnightsAndMonstersComponent',
+  alt: 'Play Knights VS Monsters Now!',
+  icon: 'unity',
+  iconContrast: 'unity',
+  size: {width: '1200px', height: '1000px'},
+  fullScreen: true,
+  fs: {
+    category: APPLICATION_CATEGORY.GAME,
+    paths: [
+      fs.getPath('applications'),
+      fs.getPath('game'),
+      fs.getPath('desktop')
+    ]
+  }
+});
+
 export const APPLICATIONS: { [key: string]: Application } = {
   console,
   welcome,
   browser_spaceInvaders,
   browser_helloUnity,
   explorer,
-  textEditor
+  textEditor,
+  knightsAndMonsters
 };
 
 
@@ -127,5 +147,6 @@ export const applicationMapping = {
   'ConsoleComponent': ConsoleComponent,
   'BrowserComponent': BrowserComponent,
   'FileExplorerComponent': FileExplorerComponent,
-  'TextEditorComponent': TextEditorComponent
+  'TextEditorComponent': TextEditorComponent,
+  'KnightsAndMonstersComponent': KnightsAndMonstersComponent
 };

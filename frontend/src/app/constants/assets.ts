@@ -150,5 +150,55 @@ export const assetsToLoad: AssetMap = {
     path: 'socialFolderIcon.svg',
     loaded: false,
     resource: null
+  },
+  km_logo1: {
+    path: 'k&m/logo-part1.svg',
+    loaded: false,
+    resource: null
+  },
+  km_logo2: {
+    path: 'k&m/logo-part2.svg',
+    loaded: false,
+    resource: null
+  },
+  km_logo3: {
+    path: 'k&m/logo-part3.svg',
+    loaded: false,
+    resource: null
+  },
+  km_playButton: {
+    path: 'k&m/play_button.png',
+    loaded: false,
+    resource: null
+  },
+  km_shield: {
+    path: 'k&m/shield_icon.png',
+    loaded: false,
+    resource: null
+  },
+  km_sword: {
+    path: 'k&m/sword_icon.png',
+    loaded: false,
+    resource: null
+  },
+  km_sword_r: {
+    path: 'k&m/sword_icon_r.png',
+    loaded: false,
+    resource: null
+  },
+  km_background01: {
+    path: 'k&m/background01.png',
+    loaded: false,
+    resource: null
+  },
+  km_background02: {
+    path: 'k&m/background02.png',
+    loaded: false,
+    resource: null
+  },
+  km_background03: {
+    path: 'k&m/background03.png',
+    loaded: false,
+    resource: null
   }
 };

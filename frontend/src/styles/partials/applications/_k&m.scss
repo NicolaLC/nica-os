@@ -1,0 +1,107 @@
+.app-kandm {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  overflow: hidden;
+
+  &-intro {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    place-content: center;
+    place-items: center;
+    flex-direction: column;
+    position: relative;
+
+    &-background {
+      position: absolute;
+      top: -12.5%;
+      left: -12.5%;
+      width: 125%;
+      height: 125%;
+      -webkit-transform-style: preserve-3d;
+      -moz-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+
+      background-color: #82B6FF;
+
+      #background01,
+      #background02,
+      #background03{
+        background-size: contain !important;
+        background-repeat: repeat !important;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &-logo {
+      width: 75%;
+      display: flex;
+      place-content: center;
+      place-items: center;
+      flex-direction: column;
+      position: relative;
+
+      #shield {
+        width: 128px;
+        height: 144px;
+        background-size: contain !important;
+        position: absolute;
+        left: calc(50% - 64px);
+        top: calc(50% - 77px);
+      }
+
+      #sword-left,
+      #sword-right {
+        width: 100px;
+        height: 100px;
+        background-size: contain !important;
+        position: absolute;
+        left: calc(50% - 50px) !important;
+        top: calc(50% - 50px) !important;
+      }
+
+      #logos {
+        width: 100%;
+        display: flex;
+        place-content: center;
+        place-items: center;
+        flex-direction: column;
+
+        #logo-p1 {
+          width: 60%;
+          min-width: 20rem;
+          @include svgFill(#FED330);
+        }
+
+        #logo-p2 {
+          width: 30%;
+          min-width: 10rem;
+          @include svgFill(#FFF);
+        }
+
+        #logo-p3 {
+          width: 40%;
+          min-width: 18rem;
+          @include svgFill(#EB3B5A);
+        }
+      }
+    }
+  }
+  &-buttons {
+    margin-top: map_get($padding, big);
+    button {
+      background-size: contain !important;
+      background-color: transparent;
+      width: 240px;
+      height: 110px;
+      outline: none;
+      border: none;
+      cursor: pointer;
+    }
+  }
+}
