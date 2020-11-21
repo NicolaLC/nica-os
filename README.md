@@ -10,3 +10,8 @@ Inside the ./frontend dir run the following:
 
 1. npm install
 2. npm start
+
+**foo**
+```javascript
+const foo = boo();
+```
