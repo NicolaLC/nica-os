@@ -26,7 +26,7 @@
     "@ngrx/store": "^9.1.1",
     "@ngrx/store-devtools": "^9.1.1",
     "@types/gsap": "^1.20.2",
-    "gsap": "^3.2.6",
+    "gsap": "^3.6.0",
     "html2canvas": "^1.0.0-rc.5",
     "jspdf": "^1.5.3",
     "lodash": "^4.17.15",
