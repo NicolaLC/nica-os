@@ -106,7 +106,8 @@
     }
 
     #education {
-      #university {
+      #university,
+      #master-game-dev {
         width: 10rem;
         height: 10rem;
 
@@ -114,7 +115,9 @@
       }
     }
 
-    #works {
+    #works,
+    #education {
+      .education-item,
       .work-item {
         margin: map_get($padding, big) 0;
         display: grid;

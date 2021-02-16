@@ -34,6 +34,7 @@ import {CommonsModule} from './commons/commons.module';
 import {TextEditorService} from '@applications/text-editor/text-editor.service';
 import {KnightsAndMonstersComponent} from '@applications/knights-and-monsters/knights-and-monsters.component';
 import {ButtonDirective} from '@directives/button.directive';
+import {RandomNameGeneratorComponent} from '@applications/random-name-generator/random-name-generator';
 
 const components = [
   NicaOSComponent,
@@ -47,7 +48,8 @@ const components = [
   BrowserComponent,
   FileExplorerComponent,
   TextEditorComponent,
-  KnightsAndMonstersComponent
+  KnightsAndMonstersComponent,
+  RandomNameGeneratorComponent
 ];
 
 const directives = [

@@ -200,5 +200,15 @@ export const assetsToLoad: AssetMap = {
     path: 'k&m/background03.png',
     loaded: false,
     resource: null
+  },
+  dog_tag: {
+    path: 'dog-tag.svg',
+    loaded: false,
+    resource: null
+  },
+  polygone_logo: {
+    path: 'polygone_logo.svg',
+    loaded: false,
+    resource: null
   }
 };

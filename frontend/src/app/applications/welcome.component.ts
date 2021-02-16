@@ -73,10 +73,34 @@ import {selectLoadedAssets} from '../store/app.reducer';
           </p>
         </div>
         <div id="education">
+          <hr>
           <h2>
-            <hr>
             Education
           </h2>
+          <div class="education-item-title">
+            Master in Game Development
+          </div>
+          <div class="education-item-subtitle">
+            <a href="https://www.mastergamedev.it/" target="_blank">Master Game Dev</a>
+          </div>
+          <div class="education-item-dates">
+            2020 - 2022
+          </div>
+          <div id="master-game-dev" class="image"
+               [style.background]="'url(assets/' + (loadedAssets$ | async)?.university?.path + ')'"></div>
+          <p>Studying <b>Game Development</b> at the University Master Course. Learning game development
+            foundamentals and Engines.<br>
+          </p>
+          <br>
+          <div class="education-item-title">
+            Computer Science Degree
+          </div>
+          <div class="education-item-subtitle">
+            <a href="https://www.univr.it/it/" target="_blank">UniVR</a>
+          </div>
+          <div class="education-item-dates">
+            2011 - 2014
+          </div>
           <div id="university" class="image"
                [style.background]="'url(assets/' + (loadedAssets$ | async)?.university?.path + ')'"></div>
           <p>I've studied as <b>accountant</b> in Verona at the <b>ITIS Aldo Pasoli</b>. After the diploma I've started

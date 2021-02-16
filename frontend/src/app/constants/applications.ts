@@ -6,6 +6,7 @@ import {WelcomeComponent} from '@applications/welcome.component';
 import {fs} from '@constants/filesystem';
 import {TextEditorComponent} from '@applications/text-editor/text-editor.component';
 import {KnightsAndMonstersComponent} from '@applications/knights-and-monsters/knights-and-monsters.component';
+import {RandomNameGeneratorComponent} from '@applications/random-name-generator/random-name-generator';
 
 const explorer = new Application({
   title: 'File explorer',
@@ -113,6 +114,25 @@ const browser_helloUnity = new Application({
   }
 });
 
+const browser_polyGone = new Application({
+  title: 'Poly Gone',
+  component: 'BrowserComponent',
+  alt: 'A 3-match game I\'ve made for my Master Game Development Mobile course',
+  icon: 'polygone_logo',
+  iconContrast: 'polygone_logo',
+  fullScreen: true,
+  size: {width: '720px', height: '1280px'},
+  data: { url: 'assets/static/webgl/polygone/index.html' },
+  fs: {
+    category: APPLICATION_CATEGORY.GAME,
+    paths: [
+      fs.getPath('applications'),
+      fs.getPath('game'),
+      fs.getPath('desktop')
+    ]
+  }
+});
+
 const knightsAndMonsters = new Application({
   title: 'Knights VS Monsters',
   component: 'KnightsAndMonstersComponent',
@@ -131,6 +151,24 @@ const knightsAndMonsters = new Application({
   }
 });
 
+const randomNameGenerator = new Application({
+  title: 'Random Name Generator',
+  component: 'RandomNameGeneratorComponent',
+  alt: 'Generate random fantasy name',
+  icon: 'dog_tag',
+  iconContrast: 'dog_tag',
+  size: {width: '1200px', height: '1000px'},
+  fullScreen: false,
+  fs: {
+    category: APPLICATION_CATEGORY.UTILITY,
+    paths: [
+      fs.getPath('applications'),
+      fs.getPath('utilities'),
+      fs.getPath('desktop')
+    ]
+  }
+});
+
 export const APPLICATIONS: { [key: string]: Application } = {
   console,
   welcome,
@@ -138,7 +176,9 @@ export const APPLICATIONS: { [key: string]: Application } = {
   browser_helloUnity,
   explorer,
   textEditor,
-  knightsAndMonsters
+  knightsAndMonsters,
+  randomNameGenerator,
+  browser_polyGone
 };
 
 
@@ -148,5 +188,6 @@ export const applicationMapping = {
   'BrowserComponent': BrowserComponent,
   'FileExplorerComponent': FileExplorerComponent,
   'TextEditorComponent': TextEditorComponent,
-  'KnightsAndMonstersComponent': KnightsAndMonstersComponent
+  'KnightsAndMonstersComponent': KnightsAndMonstersComponent,
+  'RandomNameGeneratorComponent': RandomNameGeneratorComponent
 };

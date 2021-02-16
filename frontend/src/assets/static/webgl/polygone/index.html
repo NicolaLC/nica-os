@@ -1,0 +1,51 @@
+<!--
+unity webgl responsive
+
+template by dom
+dom@crowscrowscrows.com
+https://twitter.com/zerstoerer
+
+source code on github
+https://github.com/sno/unity-webgl-responsive
+-->
+
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>PoliGone</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <script src="assets/js/jquery-3.4.1.min.js"></script>
+
+    <!-- unity resources -->
+    <script src="Build/UnityLoader.js"></script>
+
+    <script>
+      // instantiate webgl only if we're not on a touch device
+
+      var isTouch = ('ontouchstart' in document.documentElement);
+
+      if ( !isTouch ) {
+        var unityInstance = UnityLoader.instantiate("unityContainer", "Build/polygone.json");
+      }
+    </script>
+  </head>
+
+  <body>
+
+    <div class="webgl-wrapper">
+        <div class="webgl-content">
+          <div id="unityContainer" style="width:720px; height: 1280px;"></div>
+        </div>
+    </div>
+    <script src="assets/js/app.js"></script>
+  </body>
+
+</html>
