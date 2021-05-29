@@ -20,10 +20,11 @@ export class AppComponent {
     this.loadFiles();
   }
 
+  /** @desc load all website applications */
   loadApplications() {
     this.store$.dispatch(loadApplications({applications: Object.values(APPLICATIONS)}));
   }
-
+  /** @desc load all website files */
   loadFiles() {
     this.store$.dispatch(loadFiles({files: Object.values(FILES)}));
   }
