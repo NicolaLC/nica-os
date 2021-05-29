@@ -201,13 +201,33 @@ export const assetsToLoad: AssetMap = {
     loaded: false,
     resource: null
   },
-  dog_tag: {
-    path: 'dog-tag.svg',
+  random: {
+    path: 'random.svg',
     loaded: false,
     resource: null
   },
   polygone_logo: {
     path: 'polygone_logo.svg',
+    loaded: false,
+    resource: null
+  },
+  autobattler_logo: {
+    path: 'autobattler-logo.svg',
+    loaded: false,
+    resource: null
+  },
+  folderIconGame: {
+    path: 'folderIconGame.svg',
+    loaded: false,
+    resource: null
+  },
+  folderIconApps: {
+    path: 'folderIconApps.svg',
+    loaded: false,
+    resource: null
+  },
+  folderIconProjects: {
+    path: 'folderIconProjects.svg',
     loaded: false,
     resource: null
   }

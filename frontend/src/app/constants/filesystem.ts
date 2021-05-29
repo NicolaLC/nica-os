@@ -1,62 +1,88 @@
 /** GLOBAL APP FILESYSTEM */
-import {File, FILE_CATEGORY, FileSystem} from '../interfaces/interfaces';
+import {File, FILE_CATEGORY, FileSystem} from '@interfaces/interfaces';
+
+export const FS_PATH_MAPPING = {
+  ROOT: 'system',
+  APPLICATION: 'applications',
+  DESKTOP: 'desktop',
+  UTILITIES: 'utilities',
+  GAME: 'games',
+  OTHERS: 'others',
+  INFO: 'info',
+  SYSTEM: 'system',
+  PROJECTS: 'projects',
+  SOCIAL: 'social'
+};
 
 export const fs: FileSystem = new FileSystem(
-  'system',
+  FS_PATH_MAPPING.ROOT,
   {
-    applications: 'applications',
-    desktop: 'desktop',
-    utilities: 'utilities',
-    game: 'game',
-    others: 'others',
-    info: 'info',
-    system: 'system',
-    projects: 'projects',
-    social: 'social'
+    applications: FS_PATH_MAPPING.APPLICATION,
+    desktop: FS_PATH_MAPPING.DESKTOP,
+    utilities: FS_PATH_MAPPING.UTILITIES,
+    game: FS_PATH_MAPPING.GAME,
+    others: FS_PATH_MAPPING.OTHERS,
+    info: FS_PATH_MAPPING.INFO,
+    system: FS_PATH_MAPPING.SYSTEM,
+    projects: FS_PATH_MAPPING.PROJECTS,
+    social: FS_PATH_MAPPING.SOCIAL
   }
 );
 
 export const FILES: File[] = [
   {
     properties: {
-      name: 'applications',
+      name: FS_PATH_MAPPING.APPLICATION,
       alt: 'Applications folder',
       category: FILE_CATEGORY.FOLDER,
-      icon: 'folderIcon',
-      iconContrast: 'folderIcon'
+      icon: 'folderIconApps',
+      iconContrast: 'folderIconApps'
     },
     fs: {
       paths: [
-        fs.getPath('system'),
-        fs.getPath('dekstop')
+        fs.getPath(FS_PATH_MAPPING.ROOT),
+        fs.getPath(FS_PATH_MAPPING.DESKTOP)
       ],
-      root: fs.getPath('applications')
+      root: fs.getPath(FS_PATH_MAPPING.APPLICATION)
     }
   },
   {
     properties: {
-      name: 'projects',
+      name: FS_PATH_MAPPING.PROJECTS,
       alt: 'Projects folder',
       category: FILE_CATEGORY.FOLDER,
-      icon: 'folderIcon',
-      iconContrast: 'folderIcon'
+      icon: 'folderIconProjects',
+      iconContrast: 'folderIconProjects'
     },
     fs: {
-      paths: [fs.getPath('system'), fs.getPath('desktop')],
-      root: fs.getPath('projects')
+      paths: [fs.getPath(FS_PATH_MAPPING.ROOT), fs.getPath(FS_PATH_MAPPING.DESKTOP)],
+      root: fs.getPath(FS_PATH_MAPPING.PROJECTS)
     }
   },
   {
     properties: {
-      name: 'socials',
+      name: FS_PATH_MAPPING.GAME,
+      alt: 'Games folder',
+      category: FILE_CATEGORY.FOLDER,
+      icon: 'folderIconGame',
+      iconContrast: 'folderIconGame'
+    },
+    fs: {
+      paths: [fs.getPath(FS_PATH_MAPPING.ROOT), fs.getPath(FS_PATH_MAPPING.DESKTOP)],
+      root: fs.getPath(FS_PATH_MAPPING.GAME)
+    }
+  },
+  {
+    properties: {
+      name: FS_PATH_MAPPING.SOCIAL,
       alt: 'Socials folder',
       category: FILE_CATEGORY.FOLDER,
       icon: 'socialFolderIcon',
       iconContrast: 'socialFolderIcon'
     },
     fs: {
-      paths: [fs.getPath('system'), fs.getPath('desktop')],
-      root: fs.getPath('social')
+      paths: [fs.getPath(FS_PATH_MAPPING.ROOT), fs.getPath(FS_PATH_MAPPING.DESKTOP)],
+      root: fs.getPath(FS_PATH_MAPPING.SOCIAL)
     }
   },
   {
@@ -69,8 +95,8 @@ export const FILES: File[] = [
       iconContrast: 'marimar'
     },
     fs: {
-      paths: [fs.getPath('projects')],
-      root: fs.getPath('projects')
+      paths: [fs.getPath(FS_PATH_MAPPING.PROJECTS)],
+      root: fs.getPath(FS_PATH_MAPPING.PROJECTS)
     }
   },
   {
@@ -83,8 +109,8 @@ export const FILES: File[] = [
       iconContrast: 'jssheetIcon'
     },
     fs: {
-      paths: [fs.getPath('projects')],
-      root: fs.getPath('projects')
+      paths: [fs.getPath(FS_PATH_MAPPING.PROJECTS)],
+      root: fs.getPath(FS_PATH_MAPPING.PROJECTS)
     }
   },
   {
@@ -97,8 +123,8 @@ export const FILES: File[] = [
       iconContrast: 'devTo'
     },
     fs: {
-      paths: [fs.getPath('social')],
-      root: fs.getPath('social')
+      paths: [fs.getPath(FS_PATH_MAPPING.SOCIAL)],
+      root: fs.getPath(FS_PATH_MAPPING.SOCIAL)
     }
   },
   {
@@ -111,8 +137,8 @@ export const FILES: File[] = [
       iconContrast: 'linkedin'
     },
     fs: {
-      paths: [fs.getPath('social')],
-      root: fs.getPath('social')
+      paths: [fs.getPath(FS_PATH_MAPPING.SOCIAL)],
+      root: fs.getPath(FS_PATH_MAPPING.SOCIAL)
     }
   },
   {
@@ -125,8 +151,8 @@ export const FILES: File[] = [
       iconContrast: 'twitterIcon'
     },
     fs: {
-      paths: [fs.getPath('social')],
-      root: fs.getPath('social')
+      paths: [fs.getPath(FS_PATH_MAPPING.SOCIAL)],
+      root: fs.getPath(FS_PATH_MAPPING.SOCIAL)
     }
   },
   {
@@ -139,8 +165,8 @@ export const FILES: File[] = [
       iconContrast: 'redditIcon'
     },
     fs: {
-      paths: [fs.getPath('social')],
-      root: fs.getPath('social')
+      paths: [fs.getPath(FS_PATH_MAPPING.SOCIAL)],
+      root: fs.getPath(FS_PATH_MAPPING.SOCIAL)
     }
   },
   {
@@ -153,8 +179,8 @@ export const FILES: File[] = [
       iconContrast: 'hackernoonIcon'
     },
     fs: {
-      paths: [fs.getPath('social')],
-      root: fs.getPath('social')
+      paths: [fs.getPath(FS_PATH_MAPPING.SOCIAL)],
+      root: fs.getPath(FS_PATH_MAPPING.SOCIAL)
     }
   }
 ];

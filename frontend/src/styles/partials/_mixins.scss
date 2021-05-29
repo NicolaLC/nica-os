@@ -44,7 +44,7 @@
   svg {
     fill: $color;
     rect, circle, path, line {
-      fill: $color;
+      fill: $color !important;
     }
   }
 }

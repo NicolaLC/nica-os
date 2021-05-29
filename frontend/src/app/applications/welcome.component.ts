@@ -16,36 +16,36 @@ import {selectLoadedAssets} from '../store/app.reducer';
       </div>
       <div class="app-welcome-right" #welcomeRight>
         <div id="intro">
-          <h1>🖐 Welcome to my personal website!
-            <hr>
-          </h1>
+          <h1>🖐 Welcome!</h1>
           <div id="about01" class="image" [innerHTML]="(loadedAssets$ | async)?.about01?.resource | safe:'html'"></div>
-          <p id="text1">Welcome to <b>Nica OS</b>, my personal web operating system!<br>
-            This website is created using <b>Angular 9+</b> with a <i>stateless design pattern</i> in mind.<br>
+          <p id="text1">Welcome to <b>Nica OS</b>, my web operating system!<br>
+            This website is created using <b>Angular 11</b> with a <i>stateless design pattern</i> in mind.<br>
             Its goal is to demonstrate how
             strong web apps are nowadays, and obviously to create a personal portfolio.</p>
-          <h2>Who Am I?
-            <hr>
-          </h2>
+          <h2>Who Am I?</h2>
           <p id="text2">
             I'm a <b>web full-stack developer</b> living in <i>Verona</i> (IT) with a strong focus on <i>creativity</i>.
             I love to create unique products, using the latest techniques in web development 🐱‍👤<br>
             <br>
-            My work method is really simple: <i>prototype more, work less</i>.<br>
-            <br>
             If you need a job in a short time, I'm not the right person for you. <br>
-            Personally, I think the simplest project in the world needs its time because it needs <i>study, prototype
+            I think the simplest project in the world needs its time because it needs <i>study, prototype
             and tests</i>.
             <br>
             In my free time, I love to <b>study</b>, <b>try</b> and <b>learn new technologies</b>, or simply <b>improve
             my skills</b>.<br>
-            Obviously, I'm also a human so I love to walk around the incredible mountains and places near my city,
+            I'm also a human so I love to walk around the incredible mountains and places near my city,
             play foosball or just chill out with my (three) cats 🐈🐈🐈.<br>
             <br>
             ---
             <br>
             Here there is a list of skills I've earned during my career:<br>
             <br>
+            <b>[GAME DEVELOPMENT]</b><br>
+            - AI programming
+            - UI Design and Development
+            - Procedural programming
+            - Graphics programming
+            - Sound programming
             <b>[REACT FullStack Development]</b><br>
             - Stateless frontend web applications<br>
             - WebGL contents<br>
@@ -68,15 +68,11 @@ import {selectLoadedAssets} from '../store/app.reducer';
             - WebVR/VR<br>
             <br>
             As a hobby I love also to <b>prototype websites, applications or just design things</b>, and also I love to
-            produce
-            <i>music!</i><br>
+            produce <i>music!</i><br>
           </p>
         </div>
         <div id="education">
-          <hr>
-          <h2>
-            Education
-          </h2>
+          <h2> Education </h2>
           <div class="education-item-title">
             Master in Game Development
           </div>
@@ -103,15 +99,12 @@ import {selectLoadedAssets} from '../store/app.reducer';
           </div>
           <div id="university" class="image"
                [style.background]="'url(assets/' + (loadedAssets$ | async)?.university?.path + ')'"></div>
-          <p>I've studied as <b>accountant</b> in Verona at the <b>ITIS Aldo Pasoli</b>. After the diploma I've started
+          <p>I've studied as an <b>accountant</b> in Verona at the <b>ITIS Aldo Pasoli</b>. After the diploma I've started
             the university course in <b>Computer Science</b> at the <i>University of Verona</i>.<br>
           </p>
         </div>
         <div id="works">
-          <h2>
-            <hr>
-            Works
-          </h2>
+          <h2> Works </h2>
           <div class="work-item">
             <div class="work-item-left">
               <div class="image"

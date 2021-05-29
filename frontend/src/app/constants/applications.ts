@@ -3,7 +3,7 @@ import {BrowserComponent} from '@applications/browser.component';
 import {FileExplorerComponent} from '@applications/file-explorer/file-explorer.component';
 import {Application, APPLICATION_CATEGORY} from '@interfaces/interfaces';
 import {WelcomeComponent} from '@applications/welcome.component';
-import {fs} from '@constants/filesystem';
+import {fs, FS_PATH_MAPPING} from '@constants/filesystem';
 import {TextEditorComponent} from '@applications/text-editor/text-editor.component';
 import {KnightsAndMonstersComponent} from '@applications/knights-and-monsters/knights-and-monsters.component';
 import {RandomNameGeneratorComponent} from '@applications/random-name-generator/random-name-generator';
@@ -18,9 +18,9 @@ const explorer = new Application({
   fs: {
     category: APPLICATION_CATEGORY.UTILITY,
     paths: [
-      fs.getPath('desktop'),
-      fs.getPath('applications'),
-      fs.getPath('utilities')
+      fs.getPath(FS_PATH_MAPPING.APPLICATION),
+      fs.getPath(FS_PATH_MAPPING.UTILITIES),
+      fs.getPath(FS_PATH_MAPPING.DESKTOP)
     ]
   }
 });
@@ -36,9 +36,8 @@ const textEditor = new Application({
   fs: {
     category: APPLICATION_CATEGORY.UTILITY,
     paths: [
-      fs.getPath('desktop'),
-      fs.getPath('applications'),
-      fs.getPath('utilities')
+      fs.getPath(FS_PATH_MAPPING.APPLICATION),
+      fs.getPath(FS_PATH_MAPPING.UTILITIES)
     ]
   }
 });
@@ -54,9 +53,8 @@ const console = new Application({
   fs: {
     category: APPLICATION_CATEGORY.UTILITY,
     paths: [
-      fs.getPath('utilities'),
-      fs.getPath('applications'),
-      fs.getPath('desktop')
+      fs.getPath(FS_PATH_MAPPING.UTILITIES),
+      fs.getPath(FS_PATH_MAPPING.APPLICATION)
     ]
   }
 });
@@ -67,13 +65,14 @@ const welcome = new Application({
   alt: 'Who is Nicola Castellani?',
   icon: 'home',
   iconContrast: 'home',
+  fullScreen: true,
   size: {width: '1000px', height: '800px'},
   fs: {
     category: APPLICATION_CATEGORY.INFO,
     paths: [
-      fs.getPath('applications'),
-      fs.getPath('desktop'),
-      fs.getPath('info')
+      fs.getPath(FS_PATH_MAPPING.APPLICATION),
+      fs.getPath(FS_PATH_MAPPING.INFO),
+      fs.getPath(FS_PATH_MAPPING.DESKTOP)
     ]
   }
 });
@@ -89,9 +88,8 @@ const browser_spaceInvaders = new Application({
   fs: {
     category: APPLICATION_CATEGORY.GAME,
     paths: [
-      fs.getPath('applications'),
-      fs.getPath('game'),
-      fs.getPath('desktop')
+      fs.getPath(FS_PATH_MAPPING.APPLICATION),
+      fs.getPath(FS_PATH_MAPPING.GAME)
     ]
   }
 });
@@ -107,9 +105,8 @@ const browser_helloUnity = new Application({
   fs: {
     category: APPLICATION_CATEGORY.GAME,
     paths: [
-      fs.getPath('applications'),
-      fs.getPath('game'),
-      fs.getPath('desktop')
+      fs.getPath(FS_PATH_MAPPING.APPLICATION),
+      fs.getPath(FS_PATH_MAPPING.GAME)
     ]
   }
 });
@@ -126,9 +123,8 @@ const browser_polyGone = new Application({
   fs: {
     category: APPLICATION_CATEGORY.GAME,
     paths: [
-      fs.getPath('applications'),
-      fs.getPath('game'),
-      fs.getPath('desktop')
+      fs.getPath(FS_PATH_MAPPING.APPLICATION),
+      fs.getPath(FS_PATH_MAPPING.GAME)
     ]
   }
 });
@@ -137,17 +133,16 @@ const browser_autoBattler = new Application({
   title: 'AutoBattler!',
   component: 'BrowserComponent',
   alt: 'A full mobile game made for MasterGameDev mobile course',
-  icon: 'autobattler-logo',
-  iconContrast: 'autobattler-logo',
+  icon: 'autobattler_logo',
+  iconContrast: 'autobattler_logo',
   fullScreen: true,
   size: {width: '720px', height: '1280px'},
   data: { url: 'assets/static/webgl/autobattler/index.html' },
   fs: {
     category: APPLICATION_CATEGORY.GAME,
     paths: [
-      fs.getPath('applications'),
-      fs.getPath('game'),
-      fs.getPath('desktop')
+      fs.getPath(FS_PATH_MAPPING.APPLICATION),
+      fs.getPath(FS_PATH_MAPPING.GAME)
     ]
   }
 });
@@ -163,9 +158,8 @@ const knightsAndMonsters = new Application({
   fs: {
     category: APPLICATION_CATEGORY.GAME,
     paths: [
-      fs.getPath('applications'),
-      fs.getPath('game'),
-      fs.getPath('desktop')
+      fs.getPath(FS_PATH_MAPPING.APPLICATION),
+      fs.getPath(FS_PATH_MAPPING.GAME)
     ]
   }
 });
@@ -174,16 +168,15 @@ const randomNameGenerator = new Application({
   title: 'Random Name Generator',
   component: 'RandomNameGeneratorComponent',
   alt: 'Generate random fantasy name',
-  icon: 'dog_tag',
-  iconContrast: 'dog_tag',
+  icon: 'random',
+  iconContrast: 'random',
   size: {width: '1200px', height: '1000px'},
   fullScreen: false,
   fs: {
     category: APPLICATION_CATEGORY.UTILITY,
     paths: [
-      fs.getPath('applications'),
-      fs.getPath('utilities'),
-      fs.getPath('desktop')
+      fs.getPath(FS_PATH_MAPPING.APPLICATION),
+      fs.getPath(FS_PATH_MAPPING.UTILITIES)
     ]
   }
 });
@@ -197,7 +190,8 @@ export const APPLICATIONS: { [key: string]: Application } = {
   textEditor,
   knightsAndMonsters,
   randomNameGenerator,
-  browser_polyGone
+  browser_polyGone,
+  browser_autoBattler
 };
 
 
@@ -208,5 +202,5 @@ export const applicationMapping = {
   'FileExplorerComponent': FileExplorerComponent,
   'TextEditorComponent': TextEditorComponent,
   'KnightsAndMonstersComponent': KnightsAndMonstersComponent,
-  'RandomNameGeneratorComponent': RandomNameGeneratorComponent
+  'RandomNameGeneratorComponent': RandomNameGeneratorComponent,
 };

@@ -1,22 +1,26 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {delay, exhaustMap, map, switchMap, tap, withLatestFrom} from 'rxjs/operators';
+import {delay, map, switchMap, tap, withLatestFrom} from 'rxjs/operators';
 import {
   closeApp,
   createApp,
   loadAssets,
   loadAssetsSuccess,
+  openFile,
+  setAppFocus,
+  setAppFullscreen,
+  setAppMinified,
   setConsoleMessage,
-  setLoadingMessage, setAppFocus, setAppFullscreen, setAppMinified, setTheme, toggleTaskbarThemeSelector, openFile
+  setLoadingMessage,
+  setTheme,
+  toggleTaskbarThemeSelector
 } from './app.actions';
 import {AssetsService} from '../services/assets.service';
 import {AppState, selectLoadedAssets} from './app.reducer';
 import {select, Store} from '@ngrx/store';
-import {Router} from '@angular/router';
-import {EMPTY, of} from 'rxjs';
+import {of} from 'rxjs';
 import {ThemeService} from '../services/theme.service';
 import {UtilityService} from '@services/utility.service';
-import {APPLICATIONS} from '@constants/applications';
 
 @Injectable()
 export class AppEffects {
@@ -46,50 +50,50 @@ export class AppEffects {
     }))
   );
 
-  createapp$ = createEffect(() => this.actions$.pipe(
+  createApp$ = createEffect(() => this.actions$.pipe(
     ofType(createApp),
-    switchMap(({app}) => {
+    map(({app}) => {
       this.store$.dispatch(setConsoleMessage({message: `<b>New app created</b>: ${app.properties.title}`}));
-      return EMPTY;
-    }))
+    })),
+    { dispatch: false }
   );
 
   closeApp$ = createEffect(() => this.actions$.pipe(
     ofType(closeApp),
-    switchMap(({app}) => {
+    map(({app}) => {
       this.store$.dispatch(setConsoleMessage({message: `<b>app closed</b>: ${app.properties.title}`}));
-      return EMPTY;
-    }))
+    })),
+    { dispatch: false }
   );
 
   setAppFullScreen$ = createEffect(() => this.actions$.pipe(
     ofType(setAppFullscreen),
-    switchMap(({app}) => {
+    map(({app}) => {
       this.store$.dispatch(setConsoleMessage({
         message: `<b>app</b> <i>${app.properties.title}</i> is now fullscreen <small>[${app.properties.fullScreen}]</small>`
       }));
-      return EMPTY;
-    }))
+    })),
+    { dispatch: false }
   );
 
   setAppFocus$ = createEffect(() => this.actions$.pipe(
     ofType(setAppFocus),
-    switchMap(({app}) => {
+    map(({app}) => {
       this.store$.dispatch(setConsoleMessage({
         message: `<b>app</b> <i>${app.properties.title}</i> is now on focus <small>[${app.properties.focus}]</small>`
       }));
-      return EMPTY;
-    }))
+    })),
+    { dispatch: false }
   );
 
   setAppMinified$ = createEffect(() => this.actions$.pipe(
     ofType(setAppMinified),
-    switchMap(({app}) => {
+    map(({app}) => {
       this.store$.dispatch(setConsoleMessage({
         message: `<b>app</b> <i>${app.properties.title}</i> is now on minified <small>[${app.properties.minified}]</small>`
       }));
-      return EMPTY;
-    }))
+    })),
+    { dispatch: false }
   );
 
   setTheme$ = createEffect(() => this.actions$.pipe(

@@ -18,6 +18,8 @@
   font-size: map_get($fontSizes, normal);
   text-rendering: geometricPrecision;
 
+  border-radius: $borderRadius;
+
   @include respond-to('small') {
     width: calc(100% - 2px) !important;
     height: calc(100% - 2px) !important;
@@ -67,6 +69,9 @@
     justify-content: space-between;
     z-index: 0;
 
+    border-top-left-radius: $borderRadius;
+    border-top-right-radius: $borderRadius;
+
     &-title {
       display: inline-flex;
       padding: map_get($padding, small);
@@ -83,7 +88,7 @@
     &-actions {
       display: inline-flex;
       background-color: $primary-color;
-
+      border-top-right-radius: $borderRadius;
       .icon {
         padding: map_get($padding, small);
         cursor: pointer;
@@ -103,7 +108,7 @@
 
         &:last-child {
           background-color: red;
-
+          border-top-right-radius: $borderRadius;
           @include svgFill(white);
         }
       }
@@ -113,7 +118,7 @@
   &-content {
     padding: 0;
     width: 100%;
-    color: $on-background-color;
+    color: $primary-color;
     overflow: auto;
   }
 }

@@ -25,6 +25,14 @@
     }
   }
 
+  h2 {
+    width: 100%;
+    padding: map-get($padding, medium) 0;
+    text-align: center;
+    font-size: map_get($fontSizes, extra-big);
+    @include respond-to('small') { grid-area: none; }
+  }
+
   &-left {
     background-color: rgba($background-color, .25);
     height: calc(100% - #{map_get($padding, small) * 2});
@@ -67,7 +75,8 @@
       column-gap: map_get($padding, small);
       grid-template-areas:
         "h1 h1"
-        "about01 text1"
+        "about01 about01"
+        "text1 text1"
         "h2 h2"
         "text2 text2";
 
@@ -79,21 +88,21 @@
 
       h1 {
         grid-area: h1;
+        padding: map-get($padding, medium) 0;
+        text-align: center;
+
         @include respond-to('small') { grid-area: none; }
       }
 
       h2 {
         grid-area: h2;
-        width: 100%;
-        @include respond-to('small') { grid-area: none; }
       }
 
       #about01 {
-        width: 20rem;
+        width: 100%;
         height: 20rem;
-        float: left;
-        margin-right: map_get($padding, medium);
         grid-area: about01;
+        padding: map-get($padding, medium) 0;
 
         @include respond-to('small') {
           width: 15rem;
@@ -103,6 +112,11 @@
           grid-area: none;
         }
       }
+    }
+
+    #text1 {
+      text-align: center;
+      padding: map-get($padding, medium) 0;
     }
 
     #education {
