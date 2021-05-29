@@ -133,6 +133,25 @@ const browser_polyGone = new Application({
   }
 });
 
+const browser_autoBattler = new Application({
+  title: 'AutoBattler!',
+  component: 'BrowserComponent',
+  alt: 'A full mobile game made for MasterGameDev mobile course',
+  icon: 'autobattler-logo',
+  iconContrast: 'autobattler-logo',
+  fullScreen: true,
+  size: {width: '720px', height: '1280px'},
+  data: { url: 'assets/static/webgl/autobattler/index.html' },
+  fs: {
+    category: APPLICATION_CATEGORY.GAME,
+    paths: [
+      fs.getPath('applications'),
+      fs.getPath('game'),
+      fs.getPath('desktop')
+    ]
+  }
+});
+
 const knightsAndMonsters = new Application({
   title: 'Knights VS Monsters',
   component: 'KnightsAndMonstersComponent',

@@ -26,10 +26,10 @@
     "@ngrx/store": "^9.1.1",
     "@ngrx/store-devtools": "^9.1.1",
     "@types/gsap": "^1.20.2",
-    "gsap": "^3.2.6",
+    "gsap": "^3.6.1",
     "html2canvas": "^1.0.0-rc.5",
     "jspdf": "^1.5.3",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "uuid": "^8.0.0",
@@ -40,9 +40,9 @@
     "@angular/cli": "~9.0.6",
     "@angular/compiler-cli": "~9.0.6",
     "@angular/language-service": "~9.0.6",
-    "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
@@ -52,9 +52,9 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
     "protractor": "~5.4.3",
+    "three": "^0.129.0",
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
-    "typescript": "~3.7.5",
-    "three": "^0.109.0"
+    "typescript": "~3.7.5"
   }
 }
