@@ -1,23 +1,24 @@
 $fontSizes: (
-  "small": 0.875rem,
-  "normal": 1.25rem,
-  "medium": 1.5rem,
-  "big": 2.25rem,
-  "extra-big": 4.875rem
+        "small": 0.75rem,
+        "normal": 1rem,
+        "medium": 1.5rem,
+        "big": 2rem,
+        "extra-big": 3rem
 ) !default;
 
 $padding: (
-  "small": .75rem,
-  "normal": 1rem,
-  "medium": 1.5rem,
-  "big": 6rem,
-  "extra-big": 7rem
+        "extra-small": .5rem,
+        "small": .75rem,
+        "normal": 1rem,
+        "medium": 1.5rem,
+        "big": 6rem,
+        "extra-big": 7rem
 );
 
 $breakpoints: (
-  'small':  767px,
-  'medium': 992px,
-  'large':  1200px
+        'small': 767px,
+        'medium': 992px,
+        'large': 1200px
 ) !default;
 
 $borderRadius: 5px;

@@ -29,9 +29,12 @@ import {Application} from '../interfaces/interfaces';
 @Component({
   selector: 'app-taskbar',
   template: `
-    <div class="taskbar" #taskbar>
-      <div class="taskbar-menu" (click)="toggleMenu()">
-        <div class="icon" [innerHTML]="(loadedAssets$ | async)?.nicaLogo?.resource | safe:'html'"></div>
+    <div class="taskbar"
+         #taskbar>
+      <div class="taskbar-menu"
+           (click)="toggleMenu()">
+        <div class="icon"
+             [innerHTML]="(loadedAssets$ | async)?.nicaLogo?.resource | safe:'html'"></div>
         <span>START</span>
       </div>
       <app-menu *ngIf="menuActive$ | async"></app-menu>
@@ -49,26 +52,38 @@ import {Application} from '../interfaces/interfaces';
           <span>{{window.properties.title}}</span>
         </div>
       </div>
-      <div class="taskbar-theme-toggle" title="Theme settings" (click)="toggleTaskbarThemeSelector()"></div>
-      <div class="taskbar-theme" *ngIf="(selectTaskbarThemeSelectorActive$ | async)">
+      <div class="taskbar-theme-toggle"
+           title="Theme settings"
+           (click)="toggleTaskbarThemeSelector()"></div>
+      <div class="taskbar-theme"
+           *ngIf="(selectTaskbarThemeSelectorActive$ | async)">
         <div class="taskbar-theme-colors">
           <h3>Choose a Theme color</h3>
           <div class="taskbar-theme-colors-picker">
-            <div class="taskbar-theme-colors-item" style="background-color: #07FE6A;"
+            <div class="taskbar-theme-colors-item"
+                 style="background-color: #e0f8d0;"
                  [class.selected]="(selectedTheme$ | async) === 'default'"
                  (click)="setTheme('default')"></div>
-            <div class="taskbar-theme-colors-item" style="background-color: #ff9ff3;"
+            <div class="taskbar-theme-colors-item"
+                 style="background-color: #ffc2e2;"
                  (click)="setTheme('pink')"
                  [class.selected]="(selectedTheme$ | async) === 'pink'"></div>
-            <div class="taskbar-theme-colors-item" style="background-color: #ff5733;"
+            <div class="taskbar-theme-colors-item"
+                 style="background-color: #e56b6f;"
                  (click)="setTheme('sunset')"
                  [class.selected]="(selectedTheme$ | async) === 'sunset'"></div>
-            <div class="taskbar-theme-colors-item" style="background-color: #c1a57b;"
+            <div class="taskbar-theme-colors-item"
+                 style="background-color: #ffd6ba;"
                  (click)="setTheme('elegant')"
                  [class.selected]="(selectedTheme$ | async) === 'elegant'"></div>
-            <div class="taskbar-theme-colors-item" style="background-color: #ff1e56;"
+            <div class="taskbar-theme-colors-item"
+                 style="background-color: #ffe8d6;"
                  (click)="setTheme('vintage')"
                  [class.selected]="(selectedTheme$ | async) === 'vintage'"></div>
+            <div class="taskbar-theme-colors-item"
+                 style="background-color: #000;"
+                 (click)="setTheme('paper')"
+                 [class.selected]="(selectedTheme$ | async) === 'paper'"></div>
           </div>
         </div>
       </div>

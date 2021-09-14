@@ -1,34 +1,46 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {selectLoadedAssets} from '@appstore/app.reducer';
-import {TweenMax, TimelineMax, TweenLite} from 'gsap';
+import {TweenMax, TimelineMax} from 'gsap';
 
 @Component({
   selector: 'app-browser',
   template: `
     <div class="app-kandm">
+      <app-tooltip
+        [html]="'This is just an intro animation example using GSAP, game will not start.<br><b>Parallax</b> is pretty cool 😎'">
+      </app-tooltip>
       <div class="app-kandm-intro">
         <div class="app-kandm-intro-background">
-          <div class="image" id="background01"
+          <div class="image"
+               id="background01"
                [style.backgroundImage]="'url(assets/' + (loadedAssets$ | async)?.km_background01?.path + ')'"></div>
-          <div class="image" id="background02"
+          <div class="image"
+               id="background02"
                [style.backgroundImage]="'url(assets/' + (loadedAssets$ | async)?.km_background02?.path + ')'"></div>
-          <div class="image" id="background03"
+          <div class="image"
+               id="background03"
                [style.backgroundImage]="'url(assets/' + (loadedAssets$ | async)?.km_background03?.path + ')'"></div>
         </div>
         <div class="app-kandm-intro-logo">
-          <div class="image" id="shield"
+          <div class="image"
+               id="shield"
                [style.backgroundImage]="'url(assets/' + (loadedAssets$ | async)?.km_shield?.path + ')'"></div>
-          <div class="image" id="sword-left"
+          <div class="image"
+               id="sword-left"
                [style.backgroundImage]="'url(assets/' + (loadedAssets$ | async)?.km_sword?.path + ')'"></div>
-          <div class="image" id="sword-right"
+          <div class="image"
+               id="sword-right"
                [style.backgroundImage]="'url(assets/' + (loadedAssets$ | async)?.km_sword_r?.path + ')'"></div>
           <div id="logos">
-            <div class="image" id="logo-p1"
+            <div class="image"
+                 id="logo-p1"
                  [innerHTML]="(loadedAssets$ | async)?.km_logo1?.resource | safe:'html'"></div>
-            <div class="image" id="logo-p2"
+            <div class="image"
+                 id="logo-p2"
                  [innerHTML]="(loadedAssets$ | async)?.km_logo2?.resource | safe:'html'"></div>
-            <div class="image" id="logo-p3"
+            <div class="image"
+                 id="logo-p3"
                  [innerHTML]="(loadedAssets$ | async)?.km_logo3?.resource | safe:'html'"></div>
           </div>
         </div>
@@ -107,7 +119,7 @@ export class KnightsAndMonstersComponent implements OnInit {
         ease: 'power3'
       }),
       TweenMax.from('#shield', .5, {
-        y: "-10rem",
+        y: '-10rem',
         ease: 'circle'
       }),
     ], 'sequential');

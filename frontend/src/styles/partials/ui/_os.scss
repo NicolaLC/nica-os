@@ -2,7 +2,7 @@
   display: grid;
   grid-template-areas: "desktop" "taskbar";
   height: 100%;
-  grid-template-rows: calc(100% - 3rem) 3rem;
+  grid-template-rows: calc(100% - 3rem - 2px) calc(3rem + 2px);
 
   .desktop {
     grid-area: desktop;
@@ -26,17 +26,22 @@
       flex-direction: column;
       place-content: flex-start;
       place-items: center;
-      width: 5rem;
-      height: 5rem;
-      margin: map_get($padding, normal);
-      padding: map_get($padding, normal);
+      width: 4rem;
+      height: 4rem;
+      margin: map_get($padding, small);
+      padding: map_get($padding, small);
       cursor: pointer;
       opacity: 0;
       transform: translate3d(0, 100px, 0);
-      color: $on-background-color;
+      color: $on-surface-color;
 
-      word-break: break-word;
+      font-size: map-get($fontSizes, small);
+      font-weight: bolder;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       text-align: center;
+      text-transform: capitalize;
 
       @include respond-to('small') {
         margin: 0;
@@ -49,11 +54,11 @@
       }
 
       .icon {
-        width: 3rem;
-        height: 3rem;
+        width: 2rem;
+        height: 2rem;
         margin-bottom: map_get($padding, normal);
 
-        @include svgFill($on-background-color);
+        @include svgFill($on-surface-color);
       }
     }
 
@@ -64,6 +69,7 @@
       height: 5rem;
       top: calc(50% - 2.5rem);
       left: calc(50% - 2.5rem);
+      border-radius: 5px;
 
       @include respond-to('small') {
         width: 2rem;
@@ -79,52 +85,42 @@
     padding: map_get($padding, medium);
     height: calc(100% - #{map_get($padding, medium) * 2});
     width: calc(100% - #{map_get($padding, medium) * 2});
+    background-color: black;
+    font-family: $secondaryFont !important;
 
     @include scrollbars(10px, $on-background-color, $background-color);
 
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
+    table {
+      width: 100%;
+      font-size: map-get($fontSizes, medium);
 
-      @include respond-to('small') {
-        margin-left: map_get($padding, normal);
+      .console-description {
+        color: lawngreen;
       }
 
-      li {
-        padding: 0;
-        display: grid;
-        grid-template-columns: 3rem auto 1rem;
-        align-items: center;
+      .console-message {
 
         b {
-          background-color: blue;
-        }
-
-        i {
-          background-color: lawngreen;
-          color: blue;
-          font-style: normal;
-        }
-
-        small {
-          font-size: inherit !important;
-          background-color: $primary-color;
-          color: $on-primary-color;
-        }
-
-        pre {
-          display: inline-flex;
-          margin: 0;
-          background-color: aqua;
-          font-size: inherit !important;
-          font-family: inherit !important;
+          color: #82B6FF;
         }
       }
     }
+  }
+}
 
-    &-rindex {
-      color: white;
-    }
+h1, h2 {
+  &:before {
+    content: "";
+    background-color: $on-background-color;
+    width: 2rem;
+    height: .5rem;
+    border-radius: 5px;
+    display: block;
+  }
+}
+
+b {
+  .emphasis {
+    color: $on-background-color;
   }
 }

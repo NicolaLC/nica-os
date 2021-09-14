@@ -14,13 +14,13 @@ import {
   setTheme,
   toggleTaskbarThemeSelector
 } from './app.actions';
-import {Application, AppSettings, AssetMap} from '../interfaces/interfaces';
+import {Application, AppSettings, AssetMap, ConsoleMessage} from '../interfaces/interfaces';
 import {cloneDeep} from 'lodash';
 
 export interface AppState {
   loading: boolean;
   loadingMessage: string[];
-  consoleMessages: string[];
+  consoleMessages: ConsoleMessage[];
   loadedAssets: AssetMap;
   applications: Application[];
   menuActive: boolean;
@@ -52,12 +52,12 @@ const _appReducer = createReducer(initialState,
     applications.map(a => {
       a.properties.focus = newApp ? a.id === newApp.id : false;
       /** if there is at least one focused app there is no new app */
-      if (a.properties.focus) {
+      if ( a.properties.focus ) {
         a.properties.minified = false;
         newApp = null;
       }
     });
-    if (newApp) {
+    if ( newApp ) {
       applications.push(newApp);
     }
     return {...state, applications};
@@ -83,7 +83,10 @@ const _appReducer = createReducer(initialState,
     return {...state, applications};
   }),
   on(setTheme, (state, {theme}) => ({...state, appSettings: {...state.appSettings, theme}})),
-  on(toggleTaskbarThemeSelector, (state) => ({...state, taskbarThemeSelectorActive: !state.taskbarThemeSelectorActive})),
+  on(toggleTaskbarThemeSelector, (state) => ({
+    ...state,
+    taskbarThemeSelectorActive: !state.taskbarThemeSelectorActive
+  })),
 );
 
 export function appReducer(state, action) {

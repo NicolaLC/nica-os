@@ -30,6 +30,16 @@ export class Application {
   }
 }
 
+export class ConsoleMessage {
+  description: string;
+  message: string;
+
+  constructor(description = 'EMPTY', message = '_EMPTY') {
+    this.description = description;
+    this.message = message;
+  }
+}
+
 export enum APPLICATION_CATEGORY {
   GAME = 'GAME',
   UTILITY = 'UTILITY',
@@ -121,7 +131,7 @@ export class FileSystem {
   getPath(pathPartial: string) {
     const target = this._paths[pathPartial];
     return target ?
-      ( target === this.root ? this.root : `${this.root}/${target}` )
+      (target === this.root ? this.root : `${ this.root }/${ target }`)
       : pathPartial;
   }
 }

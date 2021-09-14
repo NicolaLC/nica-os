@@ -17,6 +17,17 @@
     background-color: rgba($on-surface-color, .1);
     color: $surface-color;
 
+    display: inline-flex;
+    width: 100%;
+
+    fa-icon {
+      display: inline-flex;
+      padding: 0 map-get($padding, normal);
+      background-color: $on-surface-color;
+      color: $surface-color;
+      place-items: center;
+    }
+
     input {
       background-color: transparent;
       color: $on-background-color;
@@ -25,6 +36,8 @@
       border-radius: 0;
       padding: map_get($padding, normal);
       width: calc(100% - #{map_get($padding, normal) * 2});
+      font-weight: bolder;
+      font-style: italic;
     }
   }
 
@@ -43,10 +56,11 @@
       list-style: none;
 
       li {
-        padding: map_get($padding, normal);
+        padding: map_get($padding, small) map_get($padding, normal);
         display: inline-flex;
         width: calc(100% - #{map_get($padding, normal) * 2});
         cursor: pointer !important;
+        text-transform: capitalize;
 
         @include respond-to('small') {
           font-size: map_get($fontSizes, small);
@@ -67,6 +81,11 @@
 
           @include svgFill($on-primary-color);
         }
+
+        &.secondary {
+          padding-left: map-get($padding, medium);
+          width: calc(100% - #{map_get($padding, normal)} - #{map_get($padding, medium)});
+        }
       }
     }
   }
@@ -79,16 +98,19 @@
     width: calc(100% - #{map_get($padding, normal) * 2});
     height: calc(100% - #{map_get($padding, normal) * 2});
     overflow: auto;
-    @include scrollbars(10px, $on-background-color, $background-color);
+    background-color: $background-color;
+
+    @include scrollbars(10px, $primary-color, rgba($primary-color, .1));
 
     table {
       thead {
         tr {
           border-bottom: 1px solid $primary-color;
+
           th {
             text-align: left;
             font-size: map_get($fontSizes, small);
-            color: $primary-color;
+            color: $on-surface-color;
           }
         }
       }

@@ -1,10 +1,10 @@
 .app-welcome {
 
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: 25% 75%;
   width: 100%;
   height: 100%;
-  background-color: rgba($primary-color, .05);
+  background-color: $background-color;
 
   @include respond-to('small') {
     grid-template-columns: 100%;
@@ -28,34 +28,67 @@
   h2 {
     width: 100%;
     padding: map-get($padding, medium) 0;
-    text-align: center;
+    text-align: left;
     font-size: map_get($fontSizes, extra-big);
-    @include respond-to('small') { grid-area: none; }
+    grid-column: 1/-1;
+
+    @include respond-to('small') {
+      grid-area: none;
+    }
   }
 
   &-left {
-    background-color: rgba($background-color, .25);
+    background-color: black;
     height: calc(100% - #{map_get($padding, small) * 2});
     width: calc(100% - #{map_get($padding, small) * 2});
     padding: map_get($padding, small);
+    position: relative;
 
     @include respond-to('small') {
       display: none;
     }
 
+    h3 {
+      margin-top: 0;
+    }
+
     ul {
       list-style: none;
       margin: 0;
-      padding: 0;
+      padding: 0 0 0 map-get($padding, normal);
+
       li {
         margin: map_get($padding, small) 0;
         cursor: pointer;
         opacity: .5;
 
-        &:hover {
-          color: $primary\-color;
+        &.active {
+          color: $primary-color;
           opacity: 1;
         }
+
+        &:hover {
+          color: $on-surface-color;
+          opacity: 1;
+        }
+
+        transition: color .25s ease-in-out;
+      }
+    }
+
+    #downloadCV {
+      a {
+        position: absolute;
+        bottom: map-get($padding, normal);
+        display: inline-flex;
+        flex-grow: 1;
+        justify-content: center;
+        align-items: center;
+        padding: map-get($padding, small);
+
+        width: calc(100% - #{map_get($padding, small) * 4} - 10px);
+
+        @include osOutline($primary-color);
       }
     }
   }
@@ -65,6 +98,7 @@
     width: calc(100% - #{map_get($padding, medium) * 2});
     overflow: auto;
     padding: map_get($padding, medium);
+    background-color: rgba($primary-color, .1);
 
     @include scrollbars(10px, $primary-color, rgba($primary-color, .1));
 
@@ -75,9 +109,52 @@
       column-gap: map_get($padding, small);
       grid-template-areas:
         "h1 h1"
-        "about01 about01"
-        "text1 text1"
+        "text1 text1";
+
+      @include respond-to('small') {
+        grid-template-areas: none;
+        grid-template-columns: none;
+        display: flex;
+      }
+    }
+
+    .personal-icons {
+      margin: map-get($padding, normal) 0;
+      display: inline-grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      grid-column-gap: map-get($padding, normal);
+      grid-row-gap: map-get($padding, normal);
+
+      &-item {
+        display: inline-flex;
+        place-items: center;
+        color: $on-primary-color;
+        background-color: $primary-color;
+        @include osOutline($primary-color);
+
+        .image {
+          width: 64px;
+          height: 68px;
+          margin-right: map-get($padding, normal);
+          border-radius: 5px;
+        }
+
+        span {
+          font-size: map-get($fontSizes, normal);
+          font-weight: bold;
+        }
+      }
+    }
+
+    #story {
+      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: 50% 50%;
+      column-gap: map_get($padding, small);
+      grid-template-areas:
         "h2 h2"
+        "about01 about01"
         "text2 text2";
 
       @include respond-to('small') {
@@ -85,89 +162,164 @@
         grid-template-columns: none;
         display: flex;
       }
+    }
 
-      h1 {
-        grid-area: h1;
-        padding: map-get($padding, medium) 0;
-        text-align: center;
+    h1 {
+      grid-area: h1;
+      padding: map-get($padding, medium) 0;
+      text-align: left;
 
-        @include respond-to('small') { grid-area: none; }
+      @include respond-to('small') {
+        grid-area: none;
       }
+    }
 
-      h2 {
-        grid-area: h2;
-      }
+    h2 {
+      grid-area: h2;
+    }
 
-      #about01 {
-        width: 100%;
-        height: 20rem;
-        grid-area: about01;
-        padding: map-get($padding, medium) 0;
+    #about01 {
+      width: 100%;
+      height: auto;
+      max-width: 10rem;
+      float: right;
+      grid-area: about01;
+      padding: map-get($padding, medium) 0;
+      margin: 0 auto;
 
-        @include respond-to('small') {
-          width: 15rem;
-          height: auto;
-          max-width: 100vw;
-          margin: 0 auto;
-          grid-area: none;
-        }
+      @include respond-to('small') {
+        width: 15rem;
+        height: auto;
+        max-width: 100vw;
+        margin: 0 auto;
+        grid-area: none;
       }
     }
 
     #text1 {
-      text-align: center;
+      text-align: left;
       padding: map-get($padding, medium) 0;
-    }
-
-    #education {
-      #university,
-      #master-game-dev {
-        width: 10rem;
-        height: 10rem;
-
-        margin: map_get($padding, medium) auto;
-      }
     }
 
     #works,
     #education {
       .education-item,
       .work-item {
-        margin: map_get($padding, big) 0;
-        display: grid;
-        grid-template-rows: 5rem 1fr;
-        row-gap: map_get($padding, medium);
+        display: inline-grid;
+        grid-column-gap: map-get($padding, normal);
+        margin-bottom: map-get($padding, medium);
+        place-items: center;
+        grid-template-areas:
+          "icon title"
+          "icon date"
+          "empty subtitle";
 
-        &-left {
-          .image {
-            height: 100%;
-            width: 100%;
-            background-size: contain !important;
-            background-position: center !important;
-          }
+        .image {
+          grid-area: icon;
+          min-width: 5rem;
+          min-height: 5rem;
         }
 
         &-title {
-          font-size: map_get($fontSizes, big);
+          grid-area: title;
+          width: 100%;
+          font-weight: bolder;
+          font-size: map-get($fontSizes, medium);
         }
 
         &-subtitle {
-          opacity: .75;
-          font-size: map_get($fontSizes, normal);
-
-          a {
-            text-decoration: none;
-            color: $primary-color;
-          }
+          grid-area: subtitle;
+          margin-top: map-get($padding, small);
         }
 
         &-dates {
-          font-style: italic;
-          color: $primary-color;
+          width: 100%;
+          grid-area: date;
+        }
+      }
+    }
+
+    #skills {
+      .skills {
+        &-container {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          grid-column-gap: map-get($padding, normal);
+          grid-row-gap: map-get($padding, normal);
+
+          @include respond-to('medium') {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          @include respond-to('small') {
+            grid-template-columns: 1fr;
+          }
         }
 
-        &-description {
-          margin-top: map_get($padding, normal);
+        &-item {
+          display: grid;
+          grid-template-areas: "icon title" "description description";
+          grid-template-columns: 2rem auto;
+          background-color: $surface-color;
+          color: $on-surface-color;
+          grid-column-gap: map-get($padding, normal);
+          grid-row-gap: map-get($padding, normal);
+          padding: map-get($padding, normal);
+
+          @include osOutline($primary-color);
+
+          &-title {
+            grid-area: title;
+            font-weight: bolder;
+            font-size: map-get($fontSizes, medium);
+          }
+
+          &-description {
+            grid-area: description;
+            color: $on-background-color;
+          }
+
+          &-icon {
+            grid-area: icon;
+            color: $on-surface-color;
+            font-size: map-get($fontSizes, medium);
+          }
+        }
+      }
+    }
+
+    #more {
+      .more-links {
+        margin-top: map-get($padding, medium);
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-column-gap: map-get($padding, normal);
+        grid-row-gap: map-get($padding, normal);
+
+        @include respond-to('medium') {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        @include respond-to('small') {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        app-link {
+          a {
+            display: inline-flex;
+            justify-content: center;
+            place-content: center;
+            align-items: center;
+            justify-items: center;
+            padding: map-get($padding, normal);
+            @include osOutline($primary-color);
+          }
+
+          &#downloadCV {
+            a {
+              background-color: $on-surface-color;
+              color: $surface-color;
+              grid-column: 1/-1;
+            }
+          }
         }
       }
     }
@@ -181,7 +333,7 @@
     margin: map-get($padding, normal) 0 0 0;
   }
 
-  p {
+  span {
     font-size: map_get($fontSizes, medium);
 
     b, i {
@@ -190,11 +342,16 @@
 
     &#text1 {
       grid-area: text1;
-      @include respond-to('small') { grid-area: none; }
+      @include respond-to('small') {
+        grid-area: none;
+      }
     }
+
     &#text2 {
       grid-area: text2;
-      @include respond-to('small') { grid-area: none; }
+      @include respond-to('small') {
+        grid-area: none;
+      }
     }
   }
 }

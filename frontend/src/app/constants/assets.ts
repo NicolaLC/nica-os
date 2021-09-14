@@ -16,6 +16,11 @@ export const assetsToLoad: AssetMap = {
     loaded: false,
     resource: null
   },
+  gitlab: {
+    path: 'gitlab.svg',
+    loaded: false,
+    resource: null
+  },
   nicaLogo: {
     path: 'nica-logo.svg',
     loaded: false,
@@ -31,33 +36,8 @@ export const assetsToLoad: AssetMap = {
     loaded: false,
     resource: null
   },
-  close: {
-    path: 'close.svg',
-    loaded: false,
-    resource: null
-  },
-  fullscreen: {
-    path: 'fullscreen.svg',
-    loaded: false,
-    resource: null
-  },
-  closeFullscreen: {
-    path: 'closeFullscreen.svg',
-    loaded: false,
-    resource: null
-  },
-  minify: {
-    path: 'minify.svg',
-    loaded: false,
-    resource: null
-  },
   console: {
     path: 'console.svg',
-    loaded: false,
-    resource: null
-  },
-  closeWhite: {
-    path: 'close_white.svg',
     loaded: false,
     resource: null
   },
@@ -67,7 +47,7 @@ export const assetsToLoad: AssetMap = {
     resource: null
   },
   about01: {
-    path: 'about01.svg',
+    path: 'about01.png',
     loaded: false,
     resource: null
   },
@@ -108,6 +88,11 @@ export const assetsToLoad: AssetMap = {
   },
   unity: {
     path: 'unity.svg',
+    loaded: false,
+    resource: null
+  },
+  unreal: {
+    path: 'unreal.svg',
     loaded: false,
     resource: null
   },
@@ -230,5 +215,31 @@ export const assetsToLoad: AssetMap = {
     path: 'folderIconProjects.svg',
     loaded: false,
     resource: null
+  },
+  scienceIcon: {
+    path: 'science-icon.svg',
+    loaded: false,
+    resource: null
+  },
+  catIcon: {
+    path: 'cat-icon.svg',
+    loaded: false,
+    resource: null
+  },
+  beerIcon: {
+    path: 'beer-icon.svg',
+    loaded: false,
+    resource: null
+  },
+  mountainIcon: {
+    path: 'mountain-icon.svg',
+    loaded: false,
+    resource: null
+  },
+  italianLogo: {
+    path: 'italian-logo.png',
+    loaded: false,
+    resource: null
   }
+
 };

@@ -1,10 +1,13 @@
 import {
   AfterViewInit,
-  ChangeDetectionStrategy, ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ComponentFactoryResolver,
   ElementRef,
-  Input, OnChanges, SimpleChanges,
+  Input,
+  OnChanges,
+  SimpleChanges,
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
@@ -12,19 +15,18 @@ import {select, Store} from '@ngrx/store';
 import {AppState, selectLoadedAssets} from '../store/app.reducer';
 import {TimelineMax} from 'gsap';
 import Draggable from 'gsap/Draggable';
-import {Application} from '../interfaces/interfaces';
+import {Application} from '@interfaces/interfaces';
 import {closeApp, setAppFocus, setAppFullscreen, setAppMinified} from '../store/app.actions';
-import {WelcomeComponent} from '../applications/welcome.component';
-import {ConsoleComponent} from '../applications/console.component';
-import {applicationMapping} from '../constants/applications';
+import {applicationMapping} from '@constants/applications';
 import {UtilityService} from '@services/utility.service';
-import { Subscription } from 'rxjs';
+import {faCompress, faExpand, faTimes, faWindowMaximize, faWindowMinimize} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-window',
   template: `
     <div
-      class="window" #window
+      class="window"
+      #window
       [class.full-screen]="currentWindow.properties.fullScreen"
       [class.on-focus]="currentWindow.properties.focus"
       [class.hidden]="currentWindow.properties.minified"
@@ -34,30 +36,31 @@ import { Subscription } from 'rxjs';
     >
       <div class="window-toolbar">
         <div class="window-toolbar-title">
-          <div class="icon"
-               *ngIf="currentWindow?.properties?.icon"
-               [innerHTML]="(loadedAssets$ | async)[currentWindow?.properties?.icon]?.resource | safe:'html'"
-          ></div>
           {{currentWindow?.properties?.title}}
         </div>
         <div class="window-toolbar-actions">
           <ng-container *ngIf="(utilityService.isMobile | async) === false">
             <div class="icon"
                  *ngIf="!currentWindow.properties.fullScreen"
-                 [innerHTML]="(loadedAssets$ | async)?.fullscreen?.resource | safe:'html'"
-                 (click)="toggleFullScreen()"></div>
+                 (click)="toggleFullScreen()">
+              <fa-icon [icon]="faMaximize"></fa-icon>
+            </div>
             <div class="icon"
                  *ngIf="currentWindow.properties.fullScreen"
-                 [innerHTML]="(loadedAssets$ | async)?.closeFullscreen?.resource | safe:'html'"
                  (click)="toggleFullScreen()"
-            ></div>
+            >
+              <fa-icon [icon]="faMinimize"></fa-icon>
+            </div>
           </ng-container>
           <div class="icon"
-               [innerHTML]="(loadedAssets$ | async)?.minify?.resource | safe:'html'"
                (click)="toggleWindowMinified()"
-          ></div>
-          <div class="icon" [innerHTML]="(loadedAssets$ | async)?.close?.resource | safe:'html'"
-               (click)="closeWindow()"></div>
+          >
+            <fa-icon [icon]="faWindowMinimize"></fa-icon>
+          </div>
+          <div class="icon"
+               (click)="closeWindow()">
+            <fa-icon [icon]="faClose"></fa-icon>
+          </div>
         </div>
       </div>
       <div class="window-content">
@@ -72,6 +75,12 @@ export class WindowComponent implements AfterViewInit, OnChanges {
   loadedAssets$ = this.store$.pipe(select(selectLoadedAssets));
   windowAnimation: TimelineMax;
   draggableRef: Draggable;
+
+  faMaximize = faExpand;
+  faMinimize = faCompress;
+  faWindowMaximize = faWindowMaximize;
+  faWindowMinimize = faWindowMinimize;
+  faClose = faTimes;
 
   @Input() currentWindow: Application;
 
@@ -116,9 +125,9 @@ export class WindowComponent implements AfterViewInit, OnChanges {
   }
 
   private handleChanges(fullScreen: boolean) {
-    if (this.draggableRef) {
+    if ( this.draggableRef ) {
       fullScreen ? this.draggableRef.disable() : this.draggableRef.enable();
-      if (fullScreen) {
+      if ( fullScreen ) {
         this.windowEl.style.top = '50%';
         this.windowEl.style.left = '50%';
       }
@@ -126,7 +135,7 @@ export class WindowComponent implements AfterViewInit, OnChanges {
   }
 
   private animateIn() {
-    if (this.windowAnimation && this.windowAnimation.progress() === 1) {
+    if ( this.windowAnimation && this.windowAnimation.progress() === 1 ) {
       return;
     }
     window.requestAnimationFrame(() => {
@@ -134,7 +143,7 @@ export class WindowComponent implements AfterViewInit, OnChanges {
       this.windowAnimation.to(this.windowEl, .25, {opacity: '1', ease: 'Expo.easeInOut'}, 0);
       this.windowAnimation.play();
 
-      if (this.currentWindow.properties.draggable) {
+      if ( this.currentWindow.properties.draggable ) {
         this.draggableRef = Draggable.create(this.windowEl,
           {
             type: 'x,y',

@@ -21,7 +21,7 @@
 @mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white,  50%)) {
   // For Google Chrome
   &::-webkit-scrollbar {
-    width:  $size;
+    width: $size;
     height: $size;
   }
 
@@ -43,8 +43,15 @@
 @mixin svgFill($color) {
   svg {
     fill: $color;
+
     rect, circle, path, line {
       fill: $color !important;
     }
   }
+}
+
+@mixin osOutline($borderColor) {
+  border: 5px solid $borderColor;
+  box-shadow: 0 5px 0 0 rgba($borderColor, 0.5);
+  border-radius: 5px;
 }

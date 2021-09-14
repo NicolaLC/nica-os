@@ -4,6 +4,14 @@
   background-color: black;
   overflow: hidden;
 
+  app-tooltip {
+    position: absolute;
+    bottom: map-get($padding, normal);
+    right: map-get($padding, normal);
+    display: inline-block;
+    z-index: 10001;
+  }
+
   &-intro {
     width: 100%;
     height: 100%;
@@ -27,7 +35,7 @@
 
       #background01,
       #background02,
-      #background03{
+      #background03 {
         background-size: contain !important;
         background-repeat: repeat !important;
         position: absolute;
@@ -92,8 +100,10 @@
       }
     }
   }
+
   &-buttons {
     margin-top: map_get($padding, big);
+
     button {
       background-size: contain !important;
       background-color: transparent;

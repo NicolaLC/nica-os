@@ -2,12 +2,11 @@ body {
   height: 100%;
   margin: 0;
   overflow: hidden;
-  text-transform: uppercase;
   font-family: $mainFont !important;
   padding: 0;
   font-size: 100%;
   text-rendering: geometricPrecision;
-  background-color: $background-color;
+  background-color: $surface-color;
   color: $on-background-color;
 }
 

@@ -21,6 +21,7 @@ import {select, Store} from '@ngrx/store';
 import {of} from 'rxjs';
 import {ThemeService} from '../services/theme.service';
 import {UtilityService} from '@services/utility.service';
+import {ConsoleMessage} from '@interfaces/interfaces';
 
 @Injectable()
 export class AppEffects {
@@ -32,7 +33,7 @@ export class AppEffects {
     ),
     switchMap(([action, loadedAssets]) => {
       this.store$.dispatch(setLoadingMessage({message: 'Loading website assets.'}));
-      if (loadedAssets) {
+      if ( loadedAssets ) {
         this.store$.dispatch(setLoadingMessage({message: '<b>Loading</b> done.'}));
         return [loadAssetsSuccess({loadedAssets})];
       } else {
@@ -51,49 +52,53 @@ export class AppEffects {
   );
 
   createApp$ = createEffect(() => this.actions$.pipe(
-    ofType(createApp),
-    map(({app}) => {
-      this.store$.dispatch(setConsoleMessage({message: `<b>New app created</b>: ${app.properties.title}`}));
-    })),
-    { dispatch: false }
+      ofType(createApp),
+      map(({app}) => {
+        this.store$.dispatch(setConsoleMessage({
+          message: new ConsoleMessage('[OS]', `<b>New app created</b>: ${ app.properties.title }`)
+        }));
+      })),
+    {dispatch: false}
   );
 
   closeApp$ = createEffect(() => this.actions$.pipe(
-    ofType(closeApp),
-    map(({app}) => {
-      this.store$.dispatch(setConsoleMessage({message: `<b>app closed</b>: ${app.properties.title}`}));
-    })),
-    { dispatch: false }
+      ofType(closeApp),
+      map(({app}) => {
+        this.store$.dispatch(setConsoleMessage({
+          message: new ConsoleMessage('[OS]', `<b>app closed</b>: ${ app.properties.title }`)
+        }));
+      })),
+    {dispatch: false}
   );
 
   setAppFullScreen$ = createEffect(() => this.actions$.pipe(
-    ofType(setAppFullscreen),
-    map(({app}) => {
-      this.store$.dispatch(setConsoleMessage({
-        message: `<b>app</b> <i>${app.properties.title}</i> is now fullscreen <small>[${app.properties.fullScreen}]</small>`
-      }));
-    })),
-    { dispatch: false }
+      ofType(setAppFullscreen),
+      map(({app}) => {
+        this.store$.dispatch(setConsoleMessage({
+          message: new ConsoleMessage('[OS]', `<b>Application</b> <i>${ app.properties.title }</i> is now on fullscreen <small>[${ app.properties.fullScreen }]</small>`)
+        }));
+      })),
+    {dispatch: false}
   );
 
   setAppFocus$ = createEffect(() => this.actions$.pipe(
-    ofType(setAppFocus),
-    map(({app}) => {
-      this.store$.dispatch(setConsoleMessage({
-        message: `<b>app</b> <i>${app.properties.title}</i> is now on focus <small>[${app.properties.focus}]</small>`
-      }));
-    })),
-    { dispatch: false }
+      ofType(setAppFocus),
+      map(({app}) => {
+        this.store$.dispatch(setConsoleMessage({
+          message: new ConsoleMessage('[OS]', `<b>Application</b> <i>${ app.properties.title }</i> is now on focus <small>[${ app.properties.focus }]</small>`)
+        }));
+      })),
+    {dispatch: false}
   );
 
   setAppMinified$ = createEffect(() => this.actions$.pipe(
-    ofType(setAppMinified),
-    map(({app}) => {
-      this.store$.dispatch(setConsoleMessage({
-        message: `<b>app</b> <i>${app.properties.title}</i> is now on minified <small>[${app.properties.minified}]</small>`
-      }));
-    })),
-    { dispatch: false }
+      ofType(setAppMinified),
+      map(({app}) => {
+        this.store$.dispatch(setConsoleMessage({
+          message: new ConsoleMessage('[OS]', `<b>Application</b> <i>${ app.properties.title }</i> is now on minified <small>[${ app.properties.minified }]</small>`)
+        }));
+      })),
+    {dispatch: false}
   );
 
   setTheme$ = createEffect(() => this.actions$.pipe(
@@ -110,7 +115,7 @@ export class AppEffects {
       this.utility.openFile(file);
       return [
         setConsoleMessage({
-          message: `<b>Opening file:</b> <i>${file.properties.name}</i>`
+          message: new ConsoleMessage('[OS]', `<b>Opening file:</b> <i>${ file.properties.name }</i>`)
         })
       ];
     }))

@@ -5,8 +5,8 @@
   top: 0;
   left: 0;
   z-index: 900009;
-  background-color: $background-color;
-  color: $on-background-color;
+  background-color: black;
+  color: white;
   display: flex;
   flex-direction: column;
   place-content: flex-start;
@@ -14,8 +14,8 @@
   opacity: 0;
   text-transform: uppercase;
 
-  font-size: map_get($fontSizes, small);
-  font-family: $mainFont !important;
+  font-size: map_get($fontSizes, big);
+  font-family: $secondaryFont !important;
   max-height: 100%;
   overflow: auto;
 

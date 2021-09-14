@@ -2,7 +2,7 @@ import {ConsoleComponent} from '@applications/console.component';
 import {BrowserComponent} from '@applications/browser.component';
 import {FileExplorerComponent} from '@applications/file-explorer/file-explorer.component';
 import {Application, APPLICATION_CATEGORY} from '@interfaces/interfaces';
-import {WelcomeComponent} from '@applications/welcome.component';
+import {WelcomeComponent} from '@applications/welcome/welcome.component';
 import {fs, FS_PATH_MAPPING} from '@constants/filesystem';
 import {TextEditorComponent} from '@applications/text-editor/text-editor.component';
 import {KnightsAndMonstersComponent} from '@applications/knights-and-monsters/knights-and-monsters.component';
@@ -49,7 +49,7 @@ const console = new Application({
   icon: 'console',
   iconContrast: 'console',
   startPosition: {x: '200px', y: '200px'},
-  size: {width: '500px', height: '300px'},
+  size: {width: '800px', height: '500px'},
   fs: {
     category: APPLICATION_CATEGORY.UTILITY,
     paths: [
@@ -65,7 +65,7 @@ const welcome = new Application({
   alt: 'Who is Nicola Castellani?',
   icon: 'home',
   iconContrast: 'home',
-  fullScreen: true,
+  fullScreen: false,
   size: {width: '1000px', height: '800px'},
   fs: {
     category: APPLICATION_CATEGORY.INFO,
@@ -83,13 +83,14 @@ const browser_spaceInvaders = new Application({
   component: 'BrowserComponent',
   icon: 'spaceinvaders',
   iconContrast: 'spaceinvaders',
+  fullScreen: true,
   size: {width: '1200px', height: '1000px'},
-  data: { url: 'https://nicolalc.github.io/jssheet/spaceinvaders/index.html' },
+  data: {url: 'https://nicolalc.github.io/jssheet/spaceinvaders/index.html'},
   fs: {
     category: APPLICATION_CATEGORY.GAME,
     paths: [
       fs.getPath(FS_PATH_MAPPING.APPLICATION),
-      fs.getPath(FS_PATH_MAPPING.GAME)
+      fs.getPath(FS_PATH_MAPPING.GAMES)
     ]
   }
 });
@@ -101,12 +102,12 @@ const browser_helloUnity = new Application({
   icon: 'unity',
   iconContrast: 'unity',
   size: {width: '1200px', height: '1000px'},
-  data: { url: 'https://nicawd.herokuapp.com/unity-demo' },
+  data: {url: 'https://nicawd.herokuapp.com/unity-demo'},
   fs: {
     category: APPLICATION_CATEGORY.GAME,
     paths: [
       fs.getPath(FS_PATH_MAPPING.APPLICATION),
-      fs.getPath(FS_PATH_MAPPING.GAME)
+      fs.getPath(FS_PATH_MAPPING.GAMES)
     ]
   }
 });
@@ -119,12 +120,13 @@ const browser_polyGone = new Application({
   iconContrast: 'polygone_logo',
   fullScreen: true,
   size: {width: '720px', height: '1280px'},
-  data: { url: 'assets/static/webgl/polygone/index.html' },
+  data: {url: 'assets/static/webgl/polygone/index.html'},
   fs: {
     category: APPLICATION_CATEGORY.GAME,
     paths: [
       fs.getPath(FS_PATH_MAPPING.APPLICATION),
-      fs.getPath(FS_PATH_MAPPING.GAME)
+      fs.getPath(FS_PATH_MAPPING.GAMES),
+      fs.getPath(FS_PATH_MAPPING.DESKTOP)
     ]
   }
 });
@@ -137,12 +139,13 @@ const browser_autoBattler = new Application({
   iconContrast: 'autobattler_logo',
   fullScreen: true,
   size: {width: '720px', height: '1280px'},
-  data: { url: 'assets/static/webgl/autobattler/index.html' },
+  data: {url: 'assets/static/webgl/autobattler/index.html'},
   fs: {
     category: APPLICATION_CATEGORY.GAME,
     paths: [
       fs.getPath(FS_PATH_MAPPING.APPLICATION),
-      fs.getPath(FS_PATH_MAPPING.GAME)
+      fs.getPath(FS_PATH_MAPPING.GAMES),
+      fs.getPath(FS_PATH_MAPPING.DESKTOP)
     ]
   }
 });
@@ -159,7 +162,7 @@ const knightsAndMonsters = new Application({
     category: APPLICATION_CATEGORY.GAME,
     paths: [
       fs.getPath(FS_PATH_MAPPING.APPLICATION),
-      fs.getPath(FS_PATH_MAPPING.GAME)
+      fs.getPath(FS_PATH_MAPPING.GAMES)
     ]
   }
 });

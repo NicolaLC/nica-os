@@ -7,7 +7,9 @@ import {selectLoadedAssets} from '../store/app.reducer';
   template: `
     <div class="app-browser">
       <div class="app-browser-searchbar">
-        <input disabled [value]="data?.url" placeholder="url"/>
+        <input disabled
+               [value]="data?.url"
+               placeholder="url"/>
       </div>
       <iframe [src]="data?.url | safe: 'resourceUrl'"></iframe>
     </div>

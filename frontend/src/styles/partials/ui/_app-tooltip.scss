@@ -1,0 +1,22 @@
+app-tooltip {
+  display: contents;
+
+  .tooltip {
+    background-color: $surface-color;
+    color: $on-surface-color;
+    width: calc(100% - #{map-get($padding, normal)} * 2 - 10px);
+    display: flex;
+    padding: map-get($padding, normal);
+
+    font-weight: bolder;
+    grid-column: 1/-1;
+
+    margin-bottom: map-get($padding, normal);
+
+    @include osOutline($on-background-color);
+
+    fa-icon {
+      margin-right: map-get($padding, normal);
+    }
+  }
+}

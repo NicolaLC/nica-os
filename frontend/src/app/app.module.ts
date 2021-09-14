@@ -23,7 +23,7 @@ import {TaskbarItemDirective} from '@directives/taskbar-item.directive';
 import {WindowComponent} from '@components/window.component';
 import {BrowserComponent} from '@applications/browser.component';
 import {FileExplorerComponent} from '@applications/file-explorer/file-explorer.component';
-import {WelcomeComponent} from '@applications/welcome.component';
+import {WelcomeComponent} from '@applications/welcome/welcome.component';
 import {MenuComponent} from '@components/menu.component';
 import {ThemeService} from '@services/theme.service';
 import {UtilityService} from '@services/utility.service';
@@ -35,6 +35,9 @@ import {TextEditorService} from '@applications/text-editor/text-editor.service';
 import {KnightsAndMonstersComponent} from '@applications/knights-and-monsters/knights-and-monsters.component';
 import {ButtonDirective} from '@directives/button.directive';
 import {RandomNameGeneratorComponent} from '@applications/random-name-generator/random-name-generator';
+import {LinkComponent} from '@components/link.component';
+import {TooltipComponent} from '@components/tooltip.component';
+import {SkillsItemComponent} from '@applications/welcome/skills-item.component';
 
 const components = [
   NicaOSComponent,
@@ -49,7 +52,10 @@ const components = [
   FileExplorerComponent,
   TextEditorComponent,
   KnightsAndMonstersComponent,
-  RandomNameGeneratorComponent
+  RandomNameGeneratorComponent,
+  LinkComponent,
+  TooltipComponent,
+  SkillsItemComponent
 ];
 
 const directives = [
@@ -90,4 +96,4 @@ const services = [
   providers: [...services],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

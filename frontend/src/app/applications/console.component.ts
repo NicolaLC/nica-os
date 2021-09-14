@@ -10,24 +10,30 @@ import {Subscription} from 'rxjs';
   selector: 'app-console',
   template: `
     <div id="console">
-      <ul>
-        <li>
-          <div class="console-rindex">[0]</div>
-          <div class="console-message">Loading...</div>
-        </li>
-        <li *ngFor="let message of (consoleMessages$ | async); let i = index; trackBy: trackByFn">
-          <div class="console-rindex">[{{ i + 1 }}]</div>
-          <div class="console-message" [innerHTML]="message | safe:'html'"></div>
-        </li>
-      </ul>
+      <table>
+        <tbody>
+        <tr>
+          <td class="console-rindex">[0]</td>
+          <td class="console-message">Loading...</td>
+        </tr>
+        <tr *ngFor="let message of (consoleMessages$ | async); let i = index; trackBy: trackByFn">
+          <td class="console-rindex">[{{ i + 1 }}]</td>
+          <td class="console-description"
+              [innerHTML]="message.description | safe:'html'"></td>
+          <td class="console-message"
+              colspan="3"
+              [innerHTML]="message.message | safe:'html'"></td>
+        </tr>
+        </tbody>
+      </table>
     </div>
-  `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  `, changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class ConsoleComponent {
   public data: any;
   consoleMessages$ = this.store$.pipe(select(selectConsoleMessages));
+
   constructor(private store$: Store<AppState>) {}
 
   trackByFn(index, item) {

@@ -1,7 +1,7 @@
 .taskbar {
   position: relative;
   grid-area: taskbar;
-  border-top: 2px solid $on-background-color;
+  background-color: rgba($on-background-color, .05);
   color: $background-color;
   height: 100%;
 
@@ -31,6 +31,8 @@
 
     grid-area: menuToggle;
 
+    font-weight: bold;
+
     .icon {
       height: 1rem;
       width: 1rem;
@@ -52,10 +54,12 @@
 
   &-today {
     grid-area: today;
-    color: $on-background-color;
+    color: $on-surface-color;
     display: flex;
     place-content: center;
     place-items: center;
+    font-size: map-get($fontSizes, small);
+    font-weight: bold;
   }
 
   &-windows {
@@ -76,13 +80,15 @@
       min-width: 8rem;
       transition: all .25s ease-out;
       cursor: pointer;
-      font-size: map_get($fontSizes, medium);
+      font-size: map_get($fontSizes, normal);
+      font-weight: bolder;
       opacity: 0;
       box-shadow: 0 0 0 0 $on-background-color inset;
-      padding: 0 map_get($padding, small);
+      padding: 0 map-get($padding, small);
 
       @include respond-to('medium') {
-        min-width: 2rem;
+        min-width: 3rem;
+        padding: 0;
         span {
           display: none;
         }
@@ -109,6 +115,12 @@
         color: $on-primary-color;
         @include svgFill($on-primary-color);
       }
+
+      span {
+        text-overflow: ellipsis;
+        text-align: center;
+        text-transform: capitalize;
+      }
     }
   }
 
@@ -124,10 +136,8 @@
 
     z-index: 9000009;
 
-    background-color: $surface-color;
+    background-color: black;
     color: $on-surface-color;
-
-    border: 2px solid $on-surface-color;
 
     @include respond-to('medium') {
       grid-area: none;
@@ -163,6 +173,7 @@
         padding: map_get($padding, normal);
         margin: 0 -#{map_get($padding, normal)};
         cursor: pointer;
+        color: $primary-color;
 
         .icon {
           width: 1rem;
@@ -217,14 +228,16 @@
   &-theme {
     grid-area: themeSelector;
     position: absolute;
-    bottom: 3.25rem;
+    bottom: 4rem;
     right: -5rem;
-    width: 10rem;
+    width: auto;
+    min-width: 5rem;
 
     padding: map_get($padding, normal);
     background-color: $surface-color;
     color: $on-surface-color;
-    border: 2px solid $primary-color;
+
+    @include osOutline($primary-color);
 
     &-colors {
       display: flex;
@@ -233,23 +246,27 @@
       h3 {
         margin: 0 0 map_get($padding, small) 0;
         color: $on-surface-color;
+        font-size: map-get($fontSizes, small);
+        text-align: center;
       }
 
       &-picker {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         row-gap: map_get($padding, small);
+        column-gap: map_get($padding, small);
       }
 
 
       &-item {
-        width: 1rem;
-        height: 1rem;
+        width: 2rem;
+        height: 2rem;
+        @include osOutline($on-surface-color);
 
         cursor: pointer;
 
         &.selected {
-          box-shadow: 0 0 0 2px $primary-color;
+          @include osOutline(white);
         }
       }
     }
@@ -260,8 +277,9 @@
     width: 1rem;
     height: 1rem;
     cursor: pointer;
-    background-color: $on-background-color;
-    border-radius: 50px;
+    background-color: $primary-color;
+    border: 5px solid $on-surface-color;
+    border-radius: 5px;
   }
 
 }

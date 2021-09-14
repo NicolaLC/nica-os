@@ -1,20 +1,29 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostListener, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  HostListener,
+  ViewChild
+} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {AppState, selectActiveApplications, selectLoadedAssets} from '../store/app.reducer';
 import {TimelineMax} from 'gsap';
 import {closeMenu, createApp, openFile, setAppMinified, setConsoleMessage} from '../store/app.actions';
 import {APPLICATIONS} from '@constants/applications';
-import {Application, File} from '@interfaces/interfaces';
+import {Application, ConsoleMessage, File} from '@interfaces/interfaces';
 import {fs} from '@constants/filesystem';
 import {selectApplications, selectFiles} from '@fsstore/file-explorer.reducer';
-import {UtilityService} from '@services/utility.service';
 
 @Component({
   selector: 'app-desktop',
   template: `
-    <div class="desktop" #desktop>
+    <div class="desktop"
+         #desktop>
       <div class="icon desktop-background"
-           [style.background]="'url(assets/' + (loadedAssets$ | async)?.nicaCutted?.path + ')'" #background>
+           [style.background]="icons[currentIcon]"
+           #background>
       </div>
       <ng-container *ngIf="showIcons">
         <div class="desktop-icon"
@@ -57,6 +66,16 @@ export class DesktopComponent implements AfterViewInit {
   applications$ = this.store$.pipe(select(selectApplications, {path: fs.getPath('desktop')}));
   files$ = this.store$.pipe(select(selectFiles, {path: fs.getPath('desktop')}));
 
+  currentIcon = 0;
+  icons = [
+    'url(assets/science-icon.svg)',
+    'url(assets/beer-icon.svg)',
+    'url(assets/cat-icon.svg)',
+    'url(assets/mountain-icon.svg)'
+  ];
+  randomizedCount = 1;
+  randomizedTimeout = null;
+
   @ViewChild('desktop')
   _desktop: ElementRef;
   private get desktop(): HTMLElement {
@@ -71,13 +90,14 @@ export class DesktopComponent implements AfterViewInit {
 
   @HostListener('mousedown', ['$event'])
   onMouseDown({target}) {
-    if (target === this.desktop) {
+    if ( target === this.desktop ) {
       this.store$.dispatch(closeMenu());
     }
   }
 
   constructor(
-    public store$: Store<AppState>
+    public store$: Store<AppState>,
+    private cd: ChangeDetectorRef
   ) {}
 
 
@@ -86,6 +106,10 @@ export class DesktopComponent implements AfterViewInit {
   }
 
   animateIn() {
+    this.randomizedTimeout = setTimeout(() => this.randomizeLoader(), 100 * this.randomizedCount);
+    setTimeout(() => {
+      clearTimeout(this.randomizedTimeout);
+    }, 2400);
     window.requestAnimationFrame(() => {
       this.desktopAnimation = new TimelineMax({paused: true, reversed: false});
       this.desktopAnimation.to(this.desktop, 1, {opacity: '1', ease: 'Expo.easeInOut'}, 0);
@@ -98,16 +122,17 @@ export class DesktopComponent implements AfterViewInit {
         this.store$.dispatch(createApp({
           app: APPLICATIONS.console
         }));
-        setTimeout(() => {
-          this.store$.dispatch(setConsoleMessage({message: `<b>WELCOME USER</b>`}));
-          this.store$.dispatch(setConsoleMessage({message: `<b>LOADING DESKTOP...</b>`}));
-        }, 1000);
-      }, 3000);
 
-      setTimeout(() => {
-        this.store$.dispatch(setAppMinified({ app: APPLICATIONS.console, minified: true }));
-        this.store$.dispatch(createApp({ app: APPLICATIONS.welcome }));
-      }, 6000);
+        setTimeout(() => {
+          this.store$.dispatch(setConsoleMessage({message: new ConsoleMessage('[DESKTOP]', `<b>WELCOME USER</b>`)}));
+          this.store$.dispatch(setConsoleMessage({message: new ConsoleMessage('[DESKTOP]', `<b>LOADING...</b>`)}));
+        }, 1000);
+
+        setTimeout(() => {
+          this.store$.dispatch(setAppMinified({app: APPLICATIONS.console, minified: true}));
+          this.store$.dispatch(createApp({app: APPLICATIONS.welcome}));
+        }, 2000);
+      }, 4000);
     });
   }
 
@@ -123,5 +148,18 @@ export class DesktopComponent implements AfterViewInit {
 
   trackByFn(index, item) {
     return item.id;
+  }
+
+  private randomizeLoader() {
+    this.currentIcon = this.getRandomInt(0, this.icons.length - 1);
+    this.cd.detectChanges();
+    clearTimeout(this.randomizedTimeout);
+    this.randomizedTimeout = setTimeout(() => this.randomizeLoader(), 10 * (++this.randomizedCount));
+  }
+
+  private getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 }

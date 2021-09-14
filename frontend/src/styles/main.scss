@@ -3,11 +3,29 @@
 @import './partials/_mixins.scss';
 @import './partials/_animations.scss';
 
-.default-theme { @import "./partials/themes/default-theme"; }
-.pink-theme    { @import "./partials/themes/pink-theme"; }
-.sunset-theme  { @import "./partials/themes/sunset-theme"; }
-.elegant-theme { @import "./partials/themes/elegant-theme"; }
-.vintage-theme { @import "./partials/themes/vintage-theme"; }
+.default-theme {
+  @import "./partials/themes/default-theme";
+}
+
+.pink-theme {
+  @import "./partials/themes/pink-theme";
+}
+
+.sunset-theme {
+  @import "./partials/themes/sunset-theme";
+}
+
+.elegant-theme {
+  @import "./partials/themes/elegant-theme";
+}
+
+.vintage-theme {
+  @import "./partials/themes/vintage-theme";
+}
+
+.paper-theme {
+  @import "./partials/themes/paper-theme";
+}
 
 html {
   font-family: $mainFont;

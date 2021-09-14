@@ -1,8 +1,65 @@
 @font-face {
-  font-family: "Clacon";
-  src: url("../../assets/fonts/clacon.ttf") format("truetype");
-  font-weight: 900;
+  font-family: "Ubuntu";
+  src: url("../../assets/fonts/Ubuntu/Ubuntu-Bold.ttf") format("truetype");
+  font-weight: bold;
   font-style: normal;
 }
 
-$mainFont: "Clacon", "sans-serif";
+@font-face {
+  font-family: "Ubuntu";
+  src: url("../../assets/fonts/Ubuntu/Ubuntu-BoldItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("../../assets/fonts/Ubuntu/Ubuntu-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("../../assets/fonts/Ubuntu/Ubuntu-Light.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("../../assets/fonts/Ubuntu/Ubuntu-LightItalic.ttf") format("truetype");
+  font-weight: 100;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("../../assets/fonts/Ubuntu/Ubuntu-Medium.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("../../assets/fonts/Ubuntu/Ubuntu-MediumItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("../../assets/fonts/Ubuntu/Ubuntu-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Clacon";
+  src: url("../../assets/fonts/Clacon.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+$mainFont: "Ubuntu", "sans-serif";
+$secondaryFont: "Clacon", "sans-serif";
