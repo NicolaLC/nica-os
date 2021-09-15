@@ -23,8 +23,8 @@
     fa-icon {
       display: inline-flex;
       padding: 0 map-get($padding, normal);
-      background-color: $on-surface-color;
-      color: $surface-color;
+      background-color: $surface-color;
+      color: $on-surface-color;
       place-items: center;
     }
 

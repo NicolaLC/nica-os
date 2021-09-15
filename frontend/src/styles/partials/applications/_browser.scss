@@ -8,13 +8,16 @@
 
   &-searchbar {
     grid-area: toolbar;
+    padding: 0 map-get($padding, normal);
+    place-content: center;
+
     input {
-      width: calc(100% - #{map_get($padding, normal) * 2});
+      width: 100%;
+      height: 2rem;
       border: none;
       outline: none;
-      padding: 0 map_get($padding, normal);
       margin: 0;
-      height: 100%;
+
       border-radius: 0;
       background-color: $surface-color;
       color: $on-surface-color;

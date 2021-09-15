@@ -9,7 +9,8 @@ import {selectApplicationsByCategory} from '@fsstore/file-explorer.reducer';
 @Component({
   selector: 'app-menu',
   template: `
-    <div class="menu" #menu>
+    <div class="menu"
+         #menu>
       <div class="menu-applications">
         <h3>Info</h3>
         <div
@@ -53,7 +54,7 @@ import {selectApplicationsByCategory} from '@fsstore/file-explorer.reducer';
       </div>
       <div class="menu-user">
         <div class="menu-user-icon"
-             [style.background]="'url(assets/' + (loadedAssets$ | async)?.nicaCutted?.path + ')'"></div>
+             [style.background]="'url(assets/' + (loadedAssets$ | async)?.about01?.path + ')'"></div>
         <div class="menu-user-info">
           <h4>Nicola Castellani</h4>
           <b>ADMINISTRATOR</b>
@@ -75,7 +76,7 @@ export class MenuComponent implements AfterViewInit {
   _menu: ElementRef;
   private get menu(): HTMLElement { return this._menu.nativeElement; }
 
-  constructor( public store$: Store<AppState> ) {}
+  constructor(public store$: Store<AppState>) {}
 
   ngAfterViewInit() { this.animateIn(); }
 

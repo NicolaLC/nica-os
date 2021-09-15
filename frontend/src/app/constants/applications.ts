@@ -187,14 +187,14 @@ const randomNameGenerator = new Application({
 export const APPLICATIONS: { [key: string]: Application } = {
   console,
   welcome,
+  browser_polyGone,
+  browser_autoBattler,
   browser_spaceInvaders,
   browser_helloUnity,
   explorer,
   textEditor,
   knightsAndMonsters,
-  randomNameGenerator,
-  browser_polyGone,
-  browser_autoBattler
+  randomNameGenerator
 };
 
 

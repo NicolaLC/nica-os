@@ -21,12 +21,14 @@ export class UtilityService {
   }
 
   openFile(file: File) {
-    switch (file.properties.category) {
+    switch ( file.properties.category ) {
       case FILE_CATEGORY.FOLDER:
         this.store$.dispatch(setCurrentPath({path: file.fs.root}));
         return this.store$.dispatch(createApp({app: APPLICATIONS.explorer}));
       case FILE_CATEGORY.LINK:
         return window.open(file.properties.data.url, '_blank');
+      // this.store$.dispatch(setCurrentPath({path: file.fs.root}));
+      // return this.store$.dispatch(createApp({app: APPLICATIONS.browser, data: {url: file.properties.data.url}}));
       default:
         return console.warn('No category found for file %o', file);
     }

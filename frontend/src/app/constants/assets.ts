@@ -240,6 +240,20 @@ export const assetsToLoad: AssetMap = {
     path: 'italian-logo.png',
     loaded: false,
     resource: null
+  },
+  youtube: {
+    path: 'youtube.svg',
+    loaded: false,
+    resource: null
+  },
+  itch: {
+    path: 'itch.io.svg',
+    loaded: false,
+    resource: null
+  },
+  codingame: {
+    path: 'codingame.svg',
+    loaded: false,
+    resource: null
   }
-
 };

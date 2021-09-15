@@ -11,7 +11,10 @@ export const setLoadingMessage = createAction('[App] Set Loading Message', props
 export const setConsoleMessage = createAction('[App] Set Console Message', props<{ message: ConsoleMessage }>());
 
 /** WINDOW MANAGEMENT */
-export const createApp = createAction('[App] Create window', props<{ app: Application }>());
+export const createApp = createAction(
+  '[App] Create window',
+  props<{ app: Application, data?: any }>()
+);
 export const closeApp = createAction('[App] Close window', props<{ app: Application }>());
 export const setAppFullscreen = createAction('[App] Toggle window fullscreen', props<{ app: Application, fullScreen: boolean }>());
 export const setAppFocus = createAction('[App] Toggle window focus', props<{ app: Application, focus: boolean }>());

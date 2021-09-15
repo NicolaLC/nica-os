@@ -15,9 +15,6 @@
   background-color: $surface-color;
   color: $on-surface-color;
 
-  font-size: map_get($fontSizes, normal);
-  text-rendering: geometricPrecision;
-
   @include osOutline($on-background-color);
 
   @include respond-to('small') {
@@ -89,9 +86,8 @@
         padding: map_get($padding, small);
         cursor: pointer;
         opacity: 1;
-        background-color: $primary-color;
 
-        @include svgFill($on-primary-color);
+        @include svgFill($background-color);
 
         svg {
           height: 1rem;
@@ -104,11 +100,6 @@
           svg {
             opacity: 1;
           }
-        }
-
-        &:last-child {
-          background-color: red;
-          @include svgFill(white);
         }
       }
     }

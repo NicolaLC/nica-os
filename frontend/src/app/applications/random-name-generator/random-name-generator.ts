@@ -5,8 +5,8 @@ import {firstNames, prefixes, secondNames, suffix} from '@applications/random-na
   selector: 'app-random-name-generator',
   template: `
     <div class="random-name-generator">
+      <h1>{{randomName || 'Click to generate'}}</h1>
       <button (click)="generateRandom()">GIMME A NAME</button>
-      <h1>{{randomName}}</h1>
     </div>
   `
 })
@@ -16,7 +16,7 @@ export class RandomNameGeneratorComponent {
 
   public generateRandom() {
     // tslint:disable-next-line:max-line-length
-    this.randomName = `${this.getRandomFrom(prefixes)} ${this.getRandomFrom(firstNames)} ${this.getRandomFrom(secondNames)}, ${this.getRandomFrom(suffix)}`;
+    this.randomName = `${ this.getRandomFrom(prefixes) } ${ this.getRandomFrom(firstNames) } ${ this.getRandomFrom(secondNames) }, ${ this.getRandomFrom(suffix) }`;
   }
 
   private getRandomFrom(array: string[]): string {

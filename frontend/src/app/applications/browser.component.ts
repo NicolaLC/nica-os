@@ -1,6 +1,8 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostListener, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {selectLoadedAssets} from '../store/app.reducer';
+import {faRedo} from '@fortawesome/free-solid-svg-icons/faRedo';
+import {faLongArrowAltLeft} from '@fortawesome/free-solid-svg-icons/faLongArrowAltLeft';
 
 @Component({
   selector: 'app-browser',
@@ -11,7 +13,8 @@ import {selectLoadedAssets} from '../store/app.reducer';
                [value]="data?.url"
                placeholder="url"/>
       </div>
-      <iframe [src]="data?.url | safe: 'resourceUrl'"></iframe>
+      <iframe [src]="data?.url | safe: 'resourceUrl'"
+              #iframe></iframe>
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -19,7 +22,15 @@ import {selectLoadedAssets} from '../store/app.reducer';
 
 export class BrowserComponent {
   public data: any;
-  loadedAssets$ = this.store$.pipe(select(selectLoadedAssets));
+  faReload = faRedo;
+  faBack = faLongArrowAltLeft;
+
+  @ViewChild('iframe')
+  _iFrameRef: ElementRef;
 
   constructor(private store$: Store<any>) {}
+
+  private get frame(): HTMLFrameElement {
+    return this._iFrameRef.nativeElement as HTMLFrameElement;
+  }
 }

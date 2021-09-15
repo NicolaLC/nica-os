@@ -9,10 +9,13 @@
   flex-direction: column;
 
   button {
-    padding: 1rem;
-    border: 2px solid $primary-color;
-    color: $primary-color;
-    background: transparent;
-    outline: none;
+    padding: map-get($padding, normal);
+    color: $background-color;
+
+    font-family: $mainFont;
+    font-weight: bolder;
+    cursor: pointer;
+
+    @include osOutline($primary-color)
   }
 }

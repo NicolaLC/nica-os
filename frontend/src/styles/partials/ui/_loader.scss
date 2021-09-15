@@ -14,7 +14,7 @@
   opacity: 0;
   text-transform: uppercase;
 
-  font-size: map_get($fontSizes, big);
+  font-size: map_get($fontSizes, small);
   font-family: $secondaryFont !important;
   max-height: 100%;
   overflow: auto;

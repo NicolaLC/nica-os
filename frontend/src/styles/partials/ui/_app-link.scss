@@ -3,13 +3,14 @@ app-link {
 
   a {
     text-decoration: none;
-    color: $on-surface-color;
+    color: $primary-color;
     cursor: pointer;
     display: inline-block;
 
     fa-icon {
       font-size: map-get($fontSizes, small);
       margin-right: map-get($padding, extra-small);
+      color: $primary-color;
     }
   }
 }

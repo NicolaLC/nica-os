@@ -1,8 +1,8 @@
 .taskbar {
   position: relative;
   grid-area: taskbar;
-  background-color: rgba($on-background-color, .05);
-  color: $background-color;
+  background-color: $surface-color;
+  color: $on-surface-color;
   height: 100%;
 
   transform: translate(0, 500px);
@@ -10,10 +10,10 @@
   display: grid;
   align-items: center;
   grid-template-areas: "menuToggle menu windows themeToggle themeSelector today";
-  grid-template-columns: 8rem 0 1fr 1rem 0 8rem;
+  grid-template-columns: 8rem 0 1fr 2rem 0 7rem;
 
   @include respond-to('medium') {
-    grid-template-columns: 4rem 0 1fr 1rem 0 8rem;
+    grid-template-columns: 4rem 0 1fr 2rem 0 7rem;
   }
 
   z-index: 9000009;
@@ -128,15 +128,15 @@
     grid-area: menu;
     display: grid;
     grid-template-rows: 1fr 5rem;
-    min-width: 300px;
-    min-height: 400px;
+    min-width: 50vw;
+    min-height: 30vh;
     position: absolute;
     left: -8rem;
     bottom: 3.1rem;
 
     z-index: 9000009;
 
-    background-color: black;
+    background-color: $surface-color;
     color: $on-surface-color;
 
     @include respond-to('medium') {
@@ -153,8 +153,8 @@
     }
 
     h3 {
-      font-size: map_get($fontSizes, small);
-      color: $primary-color;
+      font-size: map_get($fontSizes, medium);
+      color: $on-surface-color;
     }
 
     &-applications {
@@ -173,7 +173,6 @@
         padding: map_get($padding, normal);
         margin: 0 -#{map_get($padding, normal)};
         cursor: pointer;
-        color: $primary-color;
 
         .icon {
           width: 1rem;

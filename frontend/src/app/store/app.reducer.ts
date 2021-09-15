@@ -14,7 +14,7 @@ import {
   setTheme,
   toggleTaskbarThemeSelector
 } from './app.actions';
-import {Application, AppSettings, AssetMap, ConsoleMessage} from '../interfaces/interfaces';
+import {Application, AppSettings, AssetMap, ConsoleMessage} from '@interfaces/interfaces';
 import {cloneDeep} from 'lodash';
 
 export interface AppState {
@@ -46,9 +46,9 @@ const _appReducer = createReducer(initialState,
   on(setConsoleMessage, (state, {message}) => ({...state, consoleMessages: [...state.consoleMessages, message]})),
   on(toggleMenuActive, (state) => ({...state, menuActive: !state.menuActive})),
   on(closeMenu, (state) => ({...state, menuActive: false})),
-  on(createApp, (state, {app}) => {
+  on(createApp, (state, {app, data}) => {
     const applications = cloneDeep(state.applications);
-    let newApp = app;
+    let newApp = cloneDeep(app);
     applications.map(a => {
       a.properties.focus = newApp ? a.id === newApp.id : false;
       /** if there is at least one focused app there is no new app */
@@ -59,6 +59,7 @@ const _appReducer = createReducer(initialState,
     });
     if ( newApp ) {
       applications.push(newApp);
+      if ( data ) { newApp.properties.data = data; }
     }
     return {...state, applications};
   }),

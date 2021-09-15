@@ -7,7 +7,6 @@
   .desktop {
     grid-area: desktop;
     height: 100%;
-    max-height: calc(100% - 3rem);
     overflow: hidden;
     place-content: flex-start;
     place-items: flex-start;
@@ -34,6 +33,8 @@
       opacity: 0;
       transform: translate3d(0, 100px, 0);
       color: $on-surface-color;
+
+      user-select: none;
 
       font-size: map-get($fontSizes, small);
       font-weight: bolder;

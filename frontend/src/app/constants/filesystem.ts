@@ -32,57 +32,20 @@ export const fs: FileSystem = new FileSystem(
 export const FILES: File[] = [
   {
     properties: {
-      name: FS_PATH_MAPPING.APPLICATION,
-      alt: 'Applications folder',
-      category: FILE_CATEGORY.FOLDER,
-      icon: 'folderIcon',
-      iconContrast: 'folderIcon'
+      name: 'RelativeGravity',
+      alt: 'Gravity based platformer on itch.io',
+      category: FILE_CATEGORY.LINK,
+      data: {url: 'https://amazingsuprise.itch.io/relativegravity'},
+      icon: 'unity',
+      iconContrast: 'unity'
     },
     fs: {
       paths: [
-        fs.getPath(FS_PATH_MAPPING.ROOT),
+        fs.getPath(FS_PATH_MAPPING.PROJECTS),
+        fs.getPath(FS_PATH_MAPPING.GAMES),
         fs.getPath(FS_PATH_MAPPING.DESKTOP)
       ],
-      root: fs.getPath(FS_PATH_MAPPING.APPLICATION)
-    }
-  },
-  {
-    properties: {
-      name: FS_PATH_MAPPING.PROJECTS,
-      alt: 'Projects folder',
-      category: FILE_CATEGORY.FOLDER,
-      icon: 'folderIcon',
-      iconContrast: 'folderIcon'
-    },
-    fs: {
-      paths: [fs.getPath(FS_PATH_MAPPING.ROOT), fs.getPath(FS_PATH_MAPPING.DESKTOP)],
       root: fs.getPath(FS_PATH_MAPPING.PROJECTS)
-    }
-  },
-  {
-    properties: {
-      name: FS_PATH_MAPPING.GAMES,
-      alt: 'Games folder',
-      category: FILE_CATEGORY.FOLDER,
-      icon: 'folderIcon',
-      iconContrast: 'folderIcon'
-    },
-    fs: {
-      paths: [fs.getPath(FS_PATH_MAPPING.ROOT), fs.getPath(FS_PATH_MAPPING.DESKTOP)],
-      root: fs.getPath(FS_PATH_MAPPING.GAMES)
-    }
-  },
-  {
-    properties: {
-      name: FS_PATH_MAPPING.SOCIAL,
-      alt: 'Socials folder',
-      category: FILE_CATEGORY.FOLDER,
-      icon: 'folderIcon',
-      iconContrast: 'folderIcon'
-    },
-    fs: {
-      paths: [fs.getPath(FS_PATH_MAPPING.ROOT), fs.getPath(FS_PATH_MAPPING.DESKTOP)],
-      root: fs.getPath(FS_PATH_MAPPING.SOCIAL)
     }
   },
   {
@@ -267,6 +230,56 @@ export const FILES: File[] = [
       root: fs.getPath(FS_PATH_MAPPING.PROJECTS)
     }
   },
+
+  {
+    properties: {
+      name: 'Itch.io',
+      alt: 'My personal profile on itch.io',
+      category: FILE_CATEGORY.LINK,
+      data: {url: 'https://amazingsuprise.itch.io/'},
+      icon: 'itch',
+      iconContrast: 'itch'
+    },
+    fs: {
+      paths: [
+        fs.getPath(FS_PATH_MAPPING.SOCIAL),
+        fs.getPath(FS_PATH_MAPPING.DESKTOP)
+      ],
+      root: fs.getPath(FS_PATH_MAPPING.SOCIAL)
+    }
+  },
+  {
+    properties: {
+      name: 'YouTube',
+      alt: 'Videos about game prototypes',
+      category: FILE_CATEGORY.LINK,
+      data: {url: 'https://www.youtube.com/channel/UC7NzbI1ti8ePGzmOkX5byTA'},
+      icon: 'youtube',
+      iconContrast: 'youtube'
+    },
+    fs: {
+      paths: [
+        fs.getPath(FS_PATH_MAPPING.SOCIAL),
+        fs.getPath(FS_PATH_MAPPING.DESKTOP)],
+      root: fs.getPath(FS_PATH_MAPPING.SOCIAL)
+    }
+  },
+  {
+    properties: {
+      name: 'CodinGame',
+      alt: 'My codin game profile',
+      category: FILE_CATEGORY.LINK,
+      data: {url: 'https://www.codingame.com/profile/a854de0c07f757bbde5aba79f11aecf21492014'},
+      icon: 'codingame',
+      iconContrast: 'codingame'
+    },
+    fs: {
+      paths: [
+        fs.getPath(FS_PATH_MAPPING.SOCIAL),
+        fs.getPath(FS_PATH_MAPPING.DESKTOP)],
+      root: fs.getPath(FS_PATH_MAPPING.SOCIAL)
+    }
+  },
   {
     properties: {
       name: 'DEV.to',
@@ -291,7 +304,9 @@ export const FILES: File[] = [
       iconContrast: 'linkedin'
     },
     fs: {
-      paths: [fs.getPath(FS_PATH_MAPPING.SOCIAL)],
+      paths: [
+        fs.getPath(FS_PATH_MAPPING.SOCIAL),
+        fs.getPath(FS_PATH_MAPPING.DESKTOP)],
       root: fs.getPath(FS_PATH_MAPPING.SOCIAL)
     }
   },
@@ -305,7 +320,9 @@ export const FILES: File[] = [
       iconContrast: 'twitterIcon'
     },
     fs: {
-      paths: [fs.getPath(FS_PATH_MAPPING.SOCIAL)],
+      paths: [
+        fs.getPath(FS_PATH_MAPPING.SOCIAL),
+        fs.getPath(FS_PATH_MAPPING.DESKTOP)],
       root: fs.getPath(FS_PATH_MAPPING.SOCIAL)
     }
   },
@@ -334,6 +351,61 @@ export const FILES: File[] = [
     },
     fs: {
       paths: [fs.getPath(FS_PATH_MAPPING.SOCIAL)],
+      root: fs.getPath(FS_PATH_MAPPING.SOCIAL)
+    }
+  },
+  {
+    properties: {
+      name: FS_PATH_MAPPING.APPLICATION,
+      alt: 'Applications folder',
+      category: FILE_CATEGORY.FOLDER,
+      icon: 'folderIcon',
+      iconContrast: 'folderIcon'
+    },
+    fs: {
+      paths: [
+        fs.getPath(FS_PATH_MAPPING.ROOT),
+        fs.getPath(FS_PATH_MAPPING.DESKTOP)
+      ],
+      root: fs.getPath(FS_PATH_MAPPING.APPLICATION)
+    }
+  },
+  {
+    properties: {
+      name: FS_PATH_MAPPING.PROJECTS,
+      alt: 'Projects folder',
+      category: FILE_CATEGORY.FOLDER,
+      icon: 'folderIcon',
+      iconContrast: 'folderIcon'
+    },
+    fs: {
+      paths: [fs.getPath(FS_PATH_MAPPING.ROOT), fs.getPath(FS_PATH_MAPPING.DESKTOP)],
+      root: fs.getPath(FS_PATH_MAPPING.PROJECTS)
+    }
+  },
+  {
+    properties: {
+      name: FS_PATH_MAPPING.GAMES,
+      alt: 'Games folder',
+      category: FILE_CATEGORY.FOLDER,
+      icon: 'folderIcon',
+      iconContrast: 'folderIcon'
+    },
+    fs: {
+      paths: [fs.getPath(FS_PATH_MAPPING.ROOT), fs.getPath(FS_PATH_MAPPING.DESKTOP)],
+      root: fs.getPath(FS_PATH_MAPPING.GAMES)
+    }
+  },
+  {
+    properties: {
+      name: FS_PATH_MAPPING.SOCIAL,
+      alt: 'Socials folder',
+      category: FILE_CATEGORY.FOLDER,
+      icon: 'folderIcon',
+      iconContrast: 'folderIcon'
+    },
+    fs: {
+      paths: [fs.getPath(FS_PATH_MAPPING.ROOT), fs.getPath(FS_PATH_MAPPING.DESKTOP)],
       root: fs.getPath(FS_PATH_MAPPING.SOCIAL)
     }
   }

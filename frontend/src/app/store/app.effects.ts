@@ -15,11 +15,11 @@ import {
   setTheme,
   toggleTaskbarThemeSelector
 } from './app.actions';
-import {AssetsService} from '../services/assets.service';
+import {AssetsService} from '@services/assets.service';
 import {AppState, selectLoadedAssets} from './app.reducer';
 import {select, Store} from '@ngrx/store';
 import {of} from 'rxjs';
-import {ThemeService} from '../services/theme.service';
+import {ThemeService} from '@services/theme.service';
 import {UtilityService} from '@services/utility.service';
 import {ConsoleMessage} from '@interfaces/interfaces';
 

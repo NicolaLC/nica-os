@@ -45,7 +45,7 @@ import {faDownload} from '@fortawesome/free-solid-svg-icons/faDownload';
           <span id="text1">
             I'm a passionate <b>UI Developer</b>, looking to become a complete <b>UI Tech</b> in my career.<br><br>
             I love <b>perfect designs</b>, not only by appearance but also by accessibility.<br><br>
-            My goal is to <b>design and develop</b> interfaces from usability to performance,<br>
+            My goal is to <b>design and develop</b> interfaces from usability to performance,
             looking forward to creating <b class="emphasis"><i>amazing UIs to help people understand your products with your eyes</i></b>.
           </span>
         </div>

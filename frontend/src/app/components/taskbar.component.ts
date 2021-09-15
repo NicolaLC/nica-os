@@ -35,7 +35,7 @@ import {Application} from '../interfaces/interfaces';
            (click)="toggleMenu()">
         <div class="icon"
              [innerHTML]="(loadedAssets$ | async)?.nicaLogo?.resource | safe:'html'"></div>
-        <span>START</span>
+        <span>Menu</span>
       </div>
       <app-menu *ngIf="menuActive$ | async"></app-menu>
       <div class="taskbar-windows">
