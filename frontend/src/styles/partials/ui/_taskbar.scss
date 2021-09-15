@@ -142,14 +142,14 @@
     @include respond-to('medium') {
       grid-area: none;
       left: 0;
-      top: -95vh;
-      bottom: unset;
+      bottom: 3rem;
       min-width: unset;
       min-height: unset;
       border-bottom: none;
       position: fixed;
       width: calc(100vw - 4px);
-      height: calc(100vh - 3.25rem);
+      height: 95vh;
+
     }
 
     h3 {
@@ -163,6 +163,9 @@
       width: calc(100% - #{map_get($padding, normal) *2});
       height: calc(100% - #{map_get($padding, normal) *2});
       padding: map_get($padding, normal);
+
+      overflow: auto;
+      @include scrollbars(10px, $on-background-color, $background-color);
 
       &-item {
         display: grid;
