@@ -124,3 +124,7 @@ b {
     color: $on-background-color;
   }
 }
+
+.full-row {
+  grid-column: -1/1;
+}

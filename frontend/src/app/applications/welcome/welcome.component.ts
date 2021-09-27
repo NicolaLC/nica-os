@@ -3,6 +3,8 @@ import {select, Store} from '@ngrx/store';
 import {selectLoadedAssets} from '@appstore/app.reducer';
 import {DEVELOPMENT_SKILLS, FRAMEWORK_SKILLS, TOOLS_SKILLS} from '@applications/welcome/data/skills';
 import {faDownload} from '@fortawesome/free-solid-svg-icons/faDownload';
+import {faPhone} from '@fortawesome/free-solid-svg-icons/faPhone';
+import {faMailBulk} from '@fortawesome/free-solid-svg-icons/faMailBulk';
 
 @Component({
   selector: 'app-welcome',
@@ -48,6 +50,13 @@ import {faDownload} from '@fortawesome/free-solid-svg-icons/faDownload';
             My goal is to <b>design and develop</b> interfaces from usability to performance,
             looking forward to creating <b class="emphasis"><i>amazing UIs to help people understand your products with your eyes</i></b>.
           </span>
+          <p class="full-row"><b>Contact me:</b></p>
+          <app-link [icon]="faMail"
+                    [link]="'mailto:nicolacastellanidev@gmail.com'">nicolacastellanidev@gmail.com
+          </app-link>
+          <app-link [icon]="faPhone"
+                    [link]="'tel:+393462307313'">+39 346 23 07 313
+          </app-link>
         </div>
         <h2>A brief introduction</h2>
         <div class="personal-icons">
@@ -331,6 +340,9 @@ import {faDownload} from '@fortawesome/free-solid-svg-icons/faDownload';
             <app-link [link]="'https://www.youtube.com/channel/UC7NzbI1ti8ePGzmOkX5byTA'">YouTube</app-link>
             <app-link [link]="'https://github.com/NicolaLC'">GitHub</app-link>
             <app-link [link]="'https://gitlab.com/nicolacastellanidev'">GitLab</app-link>
+            <app-link [link]="'https://amazingsurprise.itch.io'">itch.io</app-link>
+            <app-link [link]="'https://www.codingame.com/profile/a854de0c07f757bbde5aba79f11aecf21492014'">CodinGame
+            </app-link>
             <app-link [link]="'https://soundcloud.com/nicola-castellani-372867834'">SoundCloud</app-link>
             <app-link [link]="'https://twitter.com/amazingsurpr1se'">Twitter</app-link>
             <app-link [link]="'https://dev.to/nicolalc'">Dev.to</app-link>
@@ -357,7 +369,8 @@ export class WelcomeComponent {
   isWorkVisible = false;
 
   faDownload = faDownload;
-
+  faPhone = faPhone;
+  faMail = faMailBulk;
   DEVELOPMENT_SKILLS = DEVELOPMENT_SKILLS;
   FRAMEWORK_SKILLS = FRAMEWORK_SKILLS;
   TOOLS_SKILLS = TOOLS_SKILLS;
