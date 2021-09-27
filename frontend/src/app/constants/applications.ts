@@ -131,6 +131,25 @@ const browser_polyGone = new Application({
   }
 });
 
+const browser_relativeGravity = new Application({
+  title: 'Relative Gravity!',
+  component: 'BrowserComponent',
+  alt: 'Gravity based puzzle platformer in Unity!',
+  icon: 'unity',
+  iconContrast: 'unity',
+  fullScreen: true,
+  size: {width: '720px', height: '1280px'},
+  data: {url: 'assets/static/webgl/relativegravity/index.html'},
+  fs: {
+    category: APPLICATION_CATEGORY.GAME,
+    paths: [
+      fs.getPath(FS_PATH_MAPPING.APPLICATION),
+      fs.getPath(FS_PATH_MAPPING.GAMES),
+      fs.getPath(FS_PATH_MAPPING.DESKTOP)
+    ]
+  }
+});
+
 const browser_autoBattler = new Application({
   title: 'AutoBattler!',
   component: 'BrowserComponent',
@@ -187,8 +206,9 @@ const randomNameGenerator = new Application({
 export const APPLICATIONS: { [key: string]: Application } = {
   console,
   welcome,
-  browser_polyGone,
   browser_autoBattler,
+  browser_relativeGravity,
+  browser_polyGone,
   browser_spaceInvaders,
   browser_helloUnity,
   explorer,

@@ -32,24 +32,6 @@ export const fs: FileSystem = new FileSystem(
 export const FILES: File[] = [
   {
     properties: {
-      name: 'RelativeGravity',
-      alt: 'Gravity based platformer on itch.io',
-      category: FILE_CATEGORY.LINK,
-      data: {url: 'https://amazingsuprise.itch.io/relativegravity'},
-      icon: 'unity',
-      iconContrast: 'unity'
-    },
-    fs: {
-      paths: [
-        fs.getPath(FS_PATH_MAPPING.PROJECTS),
-        fs.getPath(FS_PATH_MAPPING.GAMES),
-        fs.getPath(FS_PATH_MAPPING.DESKTOP)
-      ],
-      root: fs.getPath(FS_PATH_MAPPING.PROJECTS)
-    }
-  },
-  {
-    properties: {
       name: 'AutoBattler! code',
       alt: 'Auto battler game made in Unity',
       category: FILE_CATEGORY.LINK,
