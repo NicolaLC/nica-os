@@ -61,7 +61,7 @@ import {Application} from '../interfaces/interfaces';
           <h3>Choose a Theme color</h3>
           <div class="taskbar-theme-colors-picker">
             <div class="taskbar-theme-colors-item"
-                 style="background-color: #e0f8d0;"
+                 style="background-color: #21e6c1;"
                  [class.selected]="(selectedTheme$ | async) === 'default'"
                  (click)="setTheme('default')"></div>
             <div class="taskbar-theme-colors-item"
@@ -73,7 +73,7 @@ import {Application} from '../interfaces/interfaces';
                  (click)="setTheme('sunset')"
                  [class.selected]="(selectedTheme$ | async) === 'sunset'"></div>
             <div class="taskbar-theme-colors-item"
-                 style="background-color: #ffd6ba;"
+                 style="background-color: #57f9ff;"
                  (click)="setTheme('elegant')"
                  [class.selected]="(selectedTheme$ | async) === 'elegant'"></div>
             <div class="taskbar-theme-colors-item"
