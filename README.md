@@ -4,7 +4,7 @@ Personal Website created using angular and ngrx
 
 Visit here:
 
-https://nicolacastellani.devplaygrounds.org/
+[https://nicolalc.github.io/nicolalc/](https://nicolalc.github.io/nicolalc/)
 
 ## How to
 
