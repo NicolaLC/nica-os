@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -28,7 +28,7 @@
     "@types/gsap": "^1.20.2",
     "gsap": "^3.6.1",
     "html2canvas": "^1.0.0-rc.7",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.5.1",
     "lodash": "^4.17.21",
     "rxjs": "~6.5.4",
     "tslib": "^2.0.0",
@@ -36,14 +36,14 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "12.2.5",
-    "@angular/cli": "12.2.5",
+    "@angular-devkit/build-angular": "^18.1.2",
+    "@angular/cli": "^18.1.2",
     "@angular/compiler-cli": "12.2.5",
     "@angular/language-service": "12.2.5",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "^2.0.9",
     "@types/node": "^12.20.13",
-    "codelyzer": "^6.0.0",
+    "codelyzer": "^0.0.28",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~6.3.2",
@@ -51,7 +51,7 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.6.0",
-    "protractor": "~7.0.0",
+    "protractor": "^7.0.0",
     "three": "^0.129.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
