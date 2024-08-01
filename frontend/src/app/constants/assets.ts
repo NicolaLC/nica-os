@@ -1,259 +1,274 @@
-import {AssetMap} from '../interfaces/interfaces';
+import { AssetMap } from "../interfaces/interfaces";
 
 export const assetsToLoad: AssetMap = {
   nicaCutted: {
-    path: 'nica-cutted.svg',
+    path: "nica-cutted.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   linkedin: {
-    path: 'linkedin.svg',
+    path: "linkedin.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   github: {
-    path: 'github.svg',
+    path: "github.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   gitlab: {
-    path: 'gitlab.svg',
+    path: "gitlab.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   nicaLogo: {
-    path: 'nica-logo.svg',
+    path: "nica-logo.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   nicaBackground: {
-    path: 'nicaLogo.svg',
+    path: "nicaLogo.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   marimar: {
-    path: 'marimar.svg',
+    path: "marimar.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   console: {
-    path: 'console.svg',
+    path: "console.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   home: {
-    path: 'home.svg',
+    path: "home.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   about01: {
-    path: 'about01.png',
+    path: "about01.png",
     loaded: false,
-    resource: null
+    resource: null,
   },
   university: {
-    path: 'university.svg',
+    path: "university.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   addvalue: {
-    path: 'addvalue.svg',
+    path: "addvalue.svg",
     loaded: false,
-    resource: null
+    resource: null,
+  },
+  rortos: {
+    path: "rortos.webp",
+    loaded: false,
+    resource: null,
+  },
+  trailblazer: {
+    path: "trailblazer.png",
+    loaded: false,
+    resource: null,
+  },
+  equixly: {
+    path: "equixly.svg",
+    loaded: false,
+    resource: null,
   },
   vas: {
-    path: 'vas.svg',
+    path: "vas.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   slowmedia: {
-    path: 'slowmedia.svg',
+    path: "slowmedia.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   eleads: {
-    path: 'eleads.svg',
+    path: "eleads.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   trueblue: {
-    path: 'trueblue.svg',
+    path: "trueblue.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   spaceinvaders: {
-    path: 'spaceinvaders.svg',
+    path: "spaceinvaders.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   unity: {
-    path: 'unity.svg',
+    path: "unity.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   unreal: {
-    path: 'unreal.svg',
+    path: "unreal.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   folderIcon: {
-    path: 'folderIcon.svg',
+    path: "folderIcon.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   devTo: {
-    path: 'devTo.svg',
+    path: "devTo.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   textEditorIcon: {
-    path: 'textEditorIcon.svg',
+    path: "textEditorIcon.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   jssheetIcon: {
-    path: 'jssheetIcon.svg',
+    path: "jssheetIcon.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   twitterIcon: {
-    path: 'twitterIcon.svg',
+    path: "twitterIcon.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   redditIcon: {
-    path: 'redditIcon.svg',
+    path: "redditIcon.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   hackernoonIcon: {
-    path: 'hackernoonIcon.svg',
+    path: "hackernoonIcon.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   socialFolderIcon: {
-    path: 'socialFolderIcon.svg',
+    path: "socialFolderIcon.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   km_logo1: {
-    path: 'k&m/logo-part1.svg',
+    path: "k&m/logo-part1.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   km_logo2: {
-    path: 'k&m/logo-part2.svg',
+    path: "k&m/logo-part2.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   km_logo3: {
-    path: 'k&m/logo-part3.svg',
+    path: "k&m/logo-part3.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   km_playButton: {
-    path: 'k&m/play_button.png',
+    path: "k&m/play_button.png",
     loaded: false,
-    resource: null
+    resource: null,
   },
   km_shield: {
-    path: 'k&m/shield_icon.png',
+    path: "k&m/shield_icon.png",
     loaded: false,
-    resource: null
+    resource: null,
   },
   km_sword: {
-    path: 'k&m/sword_icon.png',
+    path: "k&m/sword_icon.png",
     loaded: false,
-    resource: null
+    resource: null,
   },
   km_sword_r: {
-    path: 'k&m/sword_icon_r.png',
+    path: "k&m/sword_icon_r.png",
     loaded: false,
-    resource: null
+    resource: null,
   },
   km_background01: {
-    path: 'k&m/background01.png',
+    path: "k&m/background01.png",
     loaded: false,
-    resource: null
+    resource: null,
   },
   km_background02: {
-    path: 'k&m/background02.png',
+    path: "k&m/background02.png",
     loaded: false,
-    resource: null
+    resource: null,
   },
   km_background03: {
-    path: 'k&m/background03.png',
+    path: "k&m/background03.png",
     loaded: false,
-    resource: null
+    resource: null,
   },
   random: {
-    path: 'random.svg',
+    path: "random.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   polygone_logo: {
-    path: 'polygone_logo.svg',
+    path: "polygone_logo.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   autobattler_logo: {
-    path: 'autobattler-logo.svg',
+    path: "autobattler-logo.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   folderIconGame: {
-    path: 'folderIconGame.svg',
+    path: "folderIconGame.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   folderIconApps: {
-    path: 'folderIconApps.svg',
+    path: "folderIconApps.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   folderIconProjects: {
-    path: 'folderIconProjects.svg',
+    path: "folderIconProjects.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   scienceIcon: {
-    path: 'science-icon.svg',
+    path: "science-icon.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   catIcon: {
-    path: 'cat-icon.svg',
+    path: "cat-icon.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   beerIcon: {
-    path: 'beer-icon.svg',
+    path: "beer-icon.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   mountainIcon: {
-    path: 'mountain-icon.svg',
+    path: "mountain-icon.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   italianLogo: {
-    path: 'italian-logo.png',
+    path: "italian-logo.png",
     loaded: false,
-    resource: null
+    resource: null,
   },
   youtube: {
-    path: 'youtube.svg',
+    path: "youtube.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   itch: {
-    path: 'itch.io.svg',
+    path: "itch.io.svg",
     loaded: false,
-    resource: null
+    resource: null,
   },
   codingame: {
-    path: 'codingame.svg',
+    path: "codingame.svg",
     loaded: false,
-    resource: null
-  }
+    resource: null,
+  },
 };

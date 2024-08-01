@@ -1,13 +1,22 @@
-import {ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
-import {select, Store} from '@ngrx/store';
-import {selectLoadedAssets} from '@appstore/app.reducer';
-import {DEVELOPMENT_SKILLS, FRAMEWORK_SKILLS, TOOLS_SKILLS} from '@applications/welcome/data/skills';
-import {faDownload} from '@fortawesome/free-solid-svg-icons/faDownload';
-import {faPhone} from '@fortawesome/free-solid-svg-icons/faPhone';
-import {faMailBulk} from '@fortawesome/free-solid-svg-icons/faMailBulk';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  ViewChild,
+} from "@angular/core";
+import {
+  DEVELOPMENT_SKILLS,
+  FRAMEWORK_SKILLS,
+  TOOLS_SKILLS,
+} from "@applications/welcome/data/skills";
+import { selectLoadedAssets } from "@appstore/app.reducer";
+import { faDownload } from "@fortawesome/free-solid-svg-icons/faDownload";
+import { faMailBulk } from "@fortawesome/free-solid-svg-icons/faMailBulk";
+import { faPhone } from "@fortawesome/free-solid-svg-icons/faPhone";
+import { select, Store } from "@ngrx/store";
 
 @Component({
-  selector: 'app-welcome',
+  selector: "app-welcome",
   template: `
     <div class="app-welcome">
       <div class="app-welcome-left">
@@ -34,7 +43,7 @@ import {faMailBulk} from '@fortawesome/free-solid-svg-icons/faMailBulk';
         </ul>
         <app-link id="downloadCV"
                   [icon]="faDownload"
-                  [link]="'assets/CV-2022.pdf'">
+                  [link]="'assets/nicolacastellani_cv_2024.pdf'">
           Curriculum Vitae
         </app-link>
       </div>
@@ -45,10 +54,18 @@ import {faMailBulk} from '@fortawesome/free-solid-svg-icons/faMailBulk';
         <div id="intro">
           <h1>Welcome 🖐</h1>
           <span id="text1">
-            I'm a passionate <b>UI Developer</b>, looking to become a complete <b>UI Tech</b> in my career.<br><br>
-            I love <b>perfect designs</b>, not only by appearance but also by accessibility.<br><br>
-            My goal is to <b>design and develop</b> interfaces from usability to performance,
-            looking forward to creating <b class="emphasis"><i>amazing UIs to help people understand your products with your eyes</i></b>.
+          As a <b>Software Engineer</b> specializing in <b>Frontend Development</b>, my aim is to create amazing user interfaces that are both accessible and high-performing.<br><br>
+          <i>Building something that people use every day is an honor and a significant responsibility that I take very seriously.</i>
+          <br><br>
+
+          Throughout my career, I've worked extensively with both <b>web and game technologies</b>, gaining valuable insights and skills from both fields.<br>
+          This unique blend of experience allows me to bring the best practices of each world to my projects.<br><br>
+
+          In my role as a Senior Software Engineer at <a href="https://equixly.com/" target="_blank">Equixly</a>, my focus is on developing professional and high-performance web applications for our customers.<br>
+          I am committed to bringing innovative ideas to the table, particularly when it comes to displaying large sets of real-time information in an intuitive and efficient manner.<br><br>
+          
+          My specialization in Frontend Development is driven by a combination of technical expertise and a strong design sensibility.<br>
+          I have a keen eye for detail and a deep love for interface design, which helps me create user experiences that are not only functional but also visually appealing.
           </span>
           <p class="full-row"><b>Contact me:</b></p>
           <app-link [icon]="faMail"
@@ -186,8 +203,88 @@ import {faMailBulk} from '@fortawesome/free-solid-svg-icons/faMailBulk';
           <div class="work-item">
             <div class="work-item-left">
               <div class="image"
+                   [style.background]="'url(assets/' + (loadedAssets$ | async)?.equixly?.path + ')'"></div>
+            </div>
+
+            <div class="work-item-right">
+              <div class="work-item-title">
+              Senior Frontend Engineer
+              </div>
+              <div class="work-item-subtitle">
+                <app-link link="https://equixly.com/"
+                          target="_blank">Equixly
+                </app-link>
+              </div>
+              <div class="work-item-dates">
+                MAY 2024 - PRESENT
+              </div>
+              <div class="work-item-description">
+                As a Senior Frontend Engineer at Equixly, my aim is clear: to enhance our products by focusing on user interfaces and usability. I'm dedicated to improving accessibility and making our applications easier to use for everyone.
+                My main goal is to ensure smooth communication between our products and our customers, delivering a complex set of information as simple ones. I see the challenge as presenting complex information in a straightforward manner, allowing all users to easily navigate our applications.
+              </div>
+            </div>
+          </div>
+
+          <div class="work-item">
+            <div class="work-item-left">
+              <div class="image"
+                   [style.background]="'url(assets/' + (loadedAssets$ | async)?.trailblazer?.path + ')'"></div>
+            </div>
+
+            <div class="work-item-right">
+              <div class="work-item-title">
+                Software Engineer
+              </div>
+              <div class="work-item-subtitle">
+                <app-link link="https://www.trailblazer.games/"
+                          target="_blank">Trailblazer Games
+                </app-link>
+              </div>
+              <div class="work-item-dates">
+                NOV 2022 - APR 2024
+              </div>
+              <div class="work-item-description">
+                As a software engineer, I am responsible for overseeing our web products and the services that support them. This includes everything from design and development to maintenance and optimization. It's a challenging role, but one that I find incredibly rewarding.
+                Collaboration is an essential part of my work, and I work closely with both the community and game teams to ensure that we are delivering the best possible experience to our users. By combining our expertise and working towards a common goal, we are able to create products that are both innovative and user-friendly.
+                My dedication to my craft is evident in the work I do. I stay up-to-date with the latest advancements in the field and am always looking for new and innovative ways to improve our products and services. It's important to me that we are delivering the best possible experience to our users, and I take great pride in my role in making that happen.
+                At times, the workload can be daunting, but I find that by focusing on the end goal and working collaboratively with my team, we are able to achieve great things. I am grateful for the opportunity to work in such a dynamic and exciting field and am excited about the future possibilities that lie ahead.
+              </div>
+            </div>
+          </div>
+
+          <div class="work-item">
+            <div class="work-item-left">
+              <div class="image"
+                   [style.background]="'url(assets/' + (loadedAssets$ | async)?.rortos?.path + ')'"></div>
+            </div>
+
+            <div class="work-item-right">
+              <div class="work-item-title">
+              Game Developer | Unity | Frontend
+              </div>
+              <div class="work-item-subtitle">
+                <app-link link="https://www.rortos.com/"
+                          target="_blank">Rortos
+                </app-link>
+              </div>
+              <div class="work-item-dates">
+                DEC 2021 - OCT 2022
+              </div>
+              <div class="work-item-description">
+                As a Unity Frontend Developer, I have the privilege of working on two exciting and innovative projects: Wings of Heroes and Real Flight Simulator. Both of these projects require a high level of expertise and attention to detail, and I take great pride in my role in bringing them to life.
+                Working on these projects requires me to utilize my extensive knowledge of Unity, including my proficiency in C# programming, UI design, and 2D/3D graphics. I am responsible for implementing frontend features, collaborating with other team members to ensure that the user experience is as smooth and engaging as possible.
+                One of the things I love about my job is the creative freedom it affords me. I am constantly exploring new and innovative ways to approach challenges and improve the overall quality of our projects. Additionally, I am always on the lookout for ways to enhance the performance and usability of our games, and I take great pride in delivering high-quality solutions that meet the needs of our users.
+                While the work can be demanding at times, it is always rewarding to see our games come to life and hear the positive feedback from our users. I am grateful for the opportunity to work on such exciting projects and am eager to see where my skills and expertise will take me in the future.
+              </div>
+            </div>
+          </div>
+
+          <div class="work-item">
+            <div class="work-item-left">
+              <div class="image"
                    [style.background]="'url(assets/' + (loadedAssets$ | async)?.addvalue?.path + ')'"></div>
             </div>
+
             <div class="work-item-right">
               <div class="work-item-title">
                 Freelance Consultant
@@ -198,7 +295,7 @@ import {faMailBulk} from '@fortawesome/free-solid-svg-icons/faMailBulk';
                 </app-link>
               </div>
               <div class="work-item-dates">
-                NOV 2018 - PRESENT
+                NOV 2018 - DEC 2021
               </div>
               <div class="work-item-description">
                 Working as Angular <b>8+ Frontend Specialist</b>, focused on applications styling and development.
@@ -208,6 +305,7 @@ import {faMailBulk} from '@fortawesome/free-solid-svg-icons/faMailBulk';
               </div>
             </div>
           </div>
+
           <div class="work-item">
             <div class="work-item-left">
               <div class="image"
@@ -349,7 +447,7 @@ import {faMailBulk} from '@fortawesome/free-solid-svg-icons/faMailBulk';
             <app-link [link]="'https://dribbble.com/NicolaLC'">Dribbble</app-link>
             <app-link id="downloadCV"
                       [icon]="faDownload"
-                      [link]="'assets/CV-2022.pdf'">
+                      [link]="'assets/nicolacastellani_cv_2024.pdf'">
               Curriculum Vitae
             </app-link>
           </div>
@@ -357,9 +455,8 @@ import {faMailBulk} from '@fortawesome/free-solid-svg-icons/faMailBulk';
       </div>
     </div>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-
 export class WelcomeComponent {
   public data: any;
   loadedAssets$ = this.store$.pipe(select(selectLoadedAssets));
@@ -375,21 +472,25 @@ export class WelcomeComponent {
   FRAMEWORK_SKILLS = FRAMEWORK_SKILLS;
   TOOLS_SKILLS = TOOLS_SKILLS;
 
-  ids = ['intro', 'story', 'education', 'works', 'skills', 'more'];
+  ids = ["intro", "story", "education", "works", "skills", "more"];
 
-  @ViewChild('welcomeRight', {static: true}) welcomeRight: ElementRef;
+  @ViewChild("welcomeRight", { static: true }) welcomeRight: ElementRef;
   private scrollTimeout: any;
 
   constructor(private store$: Store<any>) {}
 
   scrollTo(elementId) {
-    this.welcomeRight.nativeElement.querySelector(`#${ elementId }`).scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    });
+    this.welcomeRight.nativeElement
+      .querySelector(`#${elementId}`)
+      .scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
   }
 
-  trackByFn(it, i) { return i; }
+  trackByFn(it, i) {
+    return i;
+  }
 
   onScroll($event: Event) {
     clearTimeout(this.scrollTimeout);
@@ -399,15 +500,15 @@ export class WelcomeComponent {
   }
 
   afterScroll(scrollTop: number) {
-    this.ids.forEach(id => {
-      const element = document.querySelector(`#${ id }`) as any;
-      if ( !element ) {
+    this.ids.forEach((id) => {
+      const element = document.querySelector(`#${id}`) as any;
+      if (!element) {
         return;
       }
-      if ( scrollTop >= element.offsetTop - 500 ) {
-        document.querySelector(`.${ id }-anchor`).classList.add('active');
+      if (scrollTop >= element.offsetTop - 500) {
+        document.querySelector(`.${id}-anchor`).classList.add("active");
       } else {
-        document.querySelector(`.${ id }-anchor`).classList.remove('active');
+        document.querySelector(`.${id}-anchor`).classList.remove("active");
       }
     });
   }
