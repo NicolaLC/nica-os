@@ -98,7 +98,7 @@ import {faMailBulk} from '@fortawesome/free-solid-svg-icons/faMailBulk';
             After some years of experiments, I've decided to study <b>computer science</b> at secondary school, learning
             <b>Visual Basic</b> and <b>Pascal</b>, and creating my first programs
             <br><br>
-            The school itself gives me a lot of fun and experience with programming, but I've decided to study more at the
+            The school itself gave me a lot of fun and experience with programming, but I've decided to study more at the
             <app-link [link]="'https://www.univr.it/it/'">University of Verona</app-link>.
             <br><br>
             After the University, I've started working as <b>Web Fullstack Developer</b>, using <b>PHP, Zend, Javascript and SASS.</b>
